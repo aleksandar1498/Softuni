@@ -1,0 +1,14 @@
+*.idea
+*.jar
+#log file
+*.log
+#Package files
+*.jar
+*.war
+*.zip
+*.iml
+*.tar.gz
+*.rar
+*.ear
+*.ctxt
+hs_err_pid*

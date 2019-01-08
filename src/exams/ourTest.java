@@ -1,4 +1,4 @@
-package multidimensionalarrays.exams;
+package exams;
 
 import java.util.Scanner;
 

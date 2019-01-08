@@ -1,6 +1,5 @@
-package multidimensionalarrays.exams;
+package exams;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Snake {

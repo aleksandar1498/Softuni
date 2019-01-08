@@ -1,7 +1,6 @@
-package multidimensionalarrays.exams;
+package exams;
 
 import java.util.ArrayDeque;
-import java.util.Queue;
 import java.util.Scanner;
 
 public class Interniships {

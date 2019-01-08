@@ -1,9 +1,8 @@
-package multidimensionalarrays.exams;
+package exams;
 
 import java.util.ArrayDeque;
 import java.util.Comparator;
 import java.util.Scanner;
-import java.util.Stack;
 import java.util.stream.Collectors;
 
 public class Agency {

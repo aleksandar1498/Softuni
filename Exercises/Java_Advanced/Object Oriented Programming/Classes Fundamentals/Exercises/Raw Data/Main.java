@@ -1,5 +1,5 @@
 import java.util.*;
-
+import java.util.function.*;
 public class Main {
     public static void main(String args[]) {
         Scanner scanner=new Scanner(System.in);
@@ -18,15 +18,19 @@ public class Main {
             
         }
         String command = scanner.nextLine();
-        switch(command){
-            case "fragile":
-                cars.stream().filter(c -> (c.cargo.type.equals("fragile") && c.underPressureTires())).forEach(car -> System.out.println(car.model));
-                break;
-            case "flamable":
-                cars.stream().filter(c -> (c.cargo.type.equals("flamable") && c.e.power > 250)).forEach(car -> System.out.println(car.model));
-                break;
-        }
-      //  cars.forEach(c -> System.out.println(c.model));
-       
+        Predicate<Car> predicate=checkType(command);
+        Function<Car,Boolean> fun=c -> predicate.test(c);
+        cars.stream().filter(c -> fun.apply(c)).forEach(car -> System.out.println(car.model));
+    
     }
+    public static Predicate<Car> checkType(String type)
+        {
+            if(type.equals("flamable")){
+                return c -> (c.cargo.type.equals("flamable") && c.e.power > 250);
+            }else if(type.equals("fragile")){
+               return  c -> (c.cargo.type.equals("fragile") && c.underPressureTires());
+            }
+            return null;
+        }
+    
 }

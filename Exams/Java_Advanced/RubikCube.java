@@ -6,14 +6,14 @@ public class RubikCube {
        int size=Integer.parseInt(scanner.nextLine());
        int [][][] cube=new int[size][size][size];
        String bombard="";
-       long cubeSum=0;
+       int cubeSum=0;
        int emptyCells=(int)(Math.pow(size,3));
        while(!"Analyze".equals(bombard = scanner.nextLine())){
            int [] token=Arrays.stream(bombard.split(" ")).mapToInt(Integer::parseInt).toArray();
            int row=token[0];
            int col=token[1];
            int layer=token[2];
-           long val=token[3];
+           int val=token[3];
            if(isValidCoordinate(row,col,layer,size) && val != 0){
                if(cube[row][col][layer] == 0){
                    cube[row][col][layer]=val;

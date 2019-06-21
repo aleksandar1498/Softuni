@@ -1,34 +1,39 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
-import java.util.stream.*;
+ 
 public class MakeASalad {
-    public static void main(String args[]) {
-        Scanner scanner=new Scanner(System.in);
-        Deque<String> vegetablesQueue=new ArrayDeque<String>();
-        Arrays.asList(scanner.nextLine().split("\\s+")).stream().forEach(vegetablesQueue::offer);
-        Deque<Integer> saladsStack=new ArrayDeque<Integer>();
-        Arrays.asList(scanner.nextLine().split("\\s+")).stream().mapToInt(Integer::parseInt).forEach(saladsStack::push);
-        int current=
-        
+    public static void main(String[] args){
+       Scanner scanner=new Scanner(System.in);
+        Map<String,Integer> veggies=new LinkedHashMap<String,Integer>(){{
+            put("tomato",80);
+            put("carrot",136);
+            put("lettuce",109);
+            put("potato",215);
+        }};
+        ArrayDeque<String> vegetables=new ArrayDeque<>();
+        Arrays.stream(scanner.nextLine().split("\\s+")).filter(x -> x.matches("(tomato|carrot|lettuce|potato)")).forEach(vegetables::offer);
+        ArrayDeque<Integer> salads=new ArrayDeque<>();
+        Arrays.stream(scanner.nextLine().split("\\s+")).mapToInt(Integer::parseInt).forEach(salads::push);
+        while (!vegetables.isEmpty() && !salads.isEmpty()) {
+            int currentSalad = salads.peek();
+ 
+            while (currentSalad > 0 && !vegetables.isEmpty()) {
+                currentSalad -= veggies.get(vegetables.poll());
+            }
+            System.out.print(salads.pop() + " ");
+        }
         System.out.println();
-        if(!saladsStack.isEmpty()){
-            saladsStack.stream().forEach(x -> System.out.print(x+" "));
+ 
+        if(!salads.isEmpty()){
+            System.out.println(salads.toString().replaceAll("[\\[\\],]",""));
         }
-        if(!vegetablesQueue.isEmpty()){
-            vegetablesQueue.stream().forEach(x -> System.out.print(x+" "));
+ 
+        if(!vegetables.isEmpty()){
+            System.out.println(vegetables.toString().replaceAll("[\\[\\],]",""));
         }
+ 
     }
-    public static int convertVegetableToInt(String val){
-        switch(val){
-            case "tomato":
-                return 80;
-            case "carrot":
-                return 136;
-            case "lettuce":
-                return 109;
-            case "potato":
-                return 215;
-        }
-        return 0;
-    }
-  
+ 
 }

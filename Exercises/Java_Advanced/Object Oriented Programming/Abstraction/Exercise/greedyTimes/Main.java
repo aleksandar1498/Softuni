@@ -17,32 +17,24 @@ public class Main {
             String item = items[i];
             long quantity = Long.parseLong(items[i + 1]);
             String typeItem = "";
-
+            Item currentItem=new Item(item,quantity);
             if (item.length() == 3) {
-                typeItem = "Cash";
+                bag.addCash(currentItem);
+
             } else if (item.toLowerCase().endsWith("gem")) {
-                typeItem = "Gem";
+                bag.addGem(currentItem);
+
             } else if (item.toLowerCase().equals("gold")) {
-                typeItem = "Gold";
+                bag.addGold(currentItem);
+
             }
 
-            if (typeItem.equals("")) {
-                continue;
-            }
 
-            bag.add(typeItem,new Item(item,quantity));
-        }
-        System.out.println();
-
-        // print
-        for (Map.Entry<String, LinkedList<Item>> stringLinkedListEntry : bag) {
-            Long sumValues = stringLinkedListEntry.getValue().stream().mapToLong(Item::getQuantity).sum();
-
-            System.out.println(String.format("<%s> $%s", stringLinkedListEntry.getKey(), sumValues));
-
-            stringLinkedListEntry.getValue().stream().sorted((e1, e2) -> Long.compare(e2.getQuantity(),e1.getQuantity())).forEach(i -> System.out.println("##" + i.getName() + " - " + i.getQuantity()));
 
         }
+
+
+        System.out.println(bag.toString());
 
     }
 }

@@ -1,14 +1,18 @@
 
 package greedyTimes;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
+import java.util.zip.InflaterInputStream;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
-        Scanner scanner = new Scanner(System.in);
-        long bagCapacity = Long.parseLong(scanner.nextLine());
-        String[] items = scanner.nextLine().split("\\s+");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        long bagCapacity = Long.parseLong(reader.readLine());
+        String[] items = reader.readLine().split("\\s+");
 
         //  Map<String, LinkedHashMap<String, Long>> bag = new LinkedHashMap<String, LinkedHashMap<String, Long>>();
         Bag bag = new Bag(bagCapacity);

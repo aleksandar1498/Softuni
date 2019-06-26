@@ -1,6 +1,7 @@
 package greedyTimes;
 
 import java.util.*;
+import java.util.function.Function;
 
 
 public class Bag {
@@ -81,51 +82,39 @@ public class Bag {
 
     @Override
     public String toString() {
-
-        StringBuilder builder = new StringBuilder();
-        if (this.gold.size() > 0) {
-
-            builder.append(String.format("<Gold> $%d", this.totGold)).append(System.lineSeparator());
-
-            this.gold
-                    .stream()
-                    .sorted((c1, c2) -> {
-                        int sort = c2.getName().compareTo(c1.getName());
-                        if (sort == 0) {
-                            sort = Long.compare(c1.getQuantity(), c2.getQuantity());
-                        }
-                        return sort;
-                    }).forEach(c -> builder.append(String.format("##%s - %d", c.getName(), c.getQuantity())).append(System.lineSeparator()));
-
-        }
-        if (this.gem.size() > 0) {
-
-            builder.append(String.format("<Gem> $%d", totGem)).append(System.lineSeparator());
-
-            gem.stream().sorted((c1, c2) -> {
+        Function<List<Item>,String> listStringFunction=(l) -> {
+            StringBuilder builder = new StringBuilder();
+            l.stream().sorted((c1, c2) -> {
                 int sort = c2.getName().compareTo(c1.getName());
                 if (sort == 0) {
                     sort = Long.compare(c1.getQuantity(), c2.getQuantity());
                 }
                 return sort;
             }).forEach(c -> builder.append(String.format("##%s - %d", c.getName(), c.getQuantity())).append(System.lineSeparator()));
+            return builder.toString();
+        };
+        StringBuilder builder = new StringBuilder();
+        if (this.gold.size() > 0) {
 
+            builder.append(String.format("<Gold> $%d", this.totGold)).append(System.lineSeparator());
+
+            builder.append(listStringFunction.apply(this.gold));
+        }
+        if (this.gem.size() > 0) {
+
+            builder.append(String.format("<Gem> $%d", totGem)).append(System.lineSeparator());
+
+            builder.append(listStringFunction.apply(this.gem));
 
         }
         if (this.cash.size() > 0) {
 
             builder.append(String.format("<Cash> $%d", totCash)).append(System.lineSeparator());
 
-            this.cash.stream().sorted((c1, c2) -> {
-                int sort = c2.getName().compareTo(c1.getName());
-                if (sort == 0) {
-                    sort = Long.compare(c1.getQuantity(), c2.getQuantity());
-                }
-                return sort;
-            }).forEach(c -> builder.append(String.format("##%s - %d", c.getName(), c.getQuantity())).append(System.lineSeparator()));
-
+            builder.append(listStringFunction.apply(this.cash));
         }
 
         return builder.toString();
     }
+
 }

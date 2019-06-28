@@ -12,7 +12,11 @@ public class Product {
     }
 
     private void setName(String name) {
+<<<<<<< HEAD
         if(name.length() == 0 || name.equals(" ")){
+=======
+        if(name.length() == 0 || name.matches("\\s+")){
+>>>>>>> 556b65219075b2a7d35b7837bc2e28ea355fac3c
             throw new IllegalArgumentException("Name cannot be empty");
         }
         this.name = name;

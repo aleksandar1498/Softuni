@@ -14,6 +14,11 @@ public class SongDatabase {
         this.songs.add(song);
     }
     public String getTotalLengthOfSongs(){
-        double totLength= this.songs.stream().mapToDouble(Song::getLength).sum();
+        int totLengthInSeconds= this.songs.stream().mapToInt(Song::getLengthInSeconds).sum();
+        int h=(int)totLengthInSeconds/3600;
+        totLengthInSeconds-=h*3600;
+        int m=(int)totLengthInSeconds/60;
+        totLengthInSeconds-=m*60;
+        return String.format("%02d:%02d:%02d",h,m,totLengthInSeconds);
     }
 }

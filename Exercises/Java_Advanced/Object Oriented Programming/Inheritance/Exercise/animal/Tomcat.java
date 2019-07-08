@@ -1,12 +1,13 @@
 package animal;
 
 public class Tomcat extends Cat {
-    public Tomcat(String name, int age, String gender) {
-        super(name, age, gender);
+    private final static String GENDER="Male";
+    public Tomcat(String name, int age) {
+        super(name, age, GENDER);
     }
 
     @Override
-    protected String produceSound() {
-        return "Give me one million b***h";
+    public String produceSound() {
+        return "MEOW";
     }
 }

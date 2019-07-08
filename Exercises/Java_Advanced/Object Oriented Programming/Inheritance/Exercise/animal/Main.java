@@ -12,24 +12,29 @@ public class Main {
             String name=animalToken[0];
             int age = Integer.parseInt(animalToken[1]);
             String gender=animalToken[2];
-            switch (command) {
-                case "Dog":
-                    animal=new Dog(name,age,gender);
-                    break;
-                case "Cat":
-                    animal=new Cat(name,age,gender);
-                    break;
-                case "Kitten":
-                    animal=new Kitten(name,age,gender);
-                    break;
-                case "Tomcat":
-                    animal=new Tomcat(name,age,gender);
-                    break;
-                case "Frog":
-                    animal=new Frog(name,age,gender);
-                    break;
+            try {
+                switch (command) {
+                    case "Dog":
+                        animal=new Dog(name,age,gender);
+                        break;
+                    case "Cat":
+                        animal=new Cat(name,age,gender);
+                        break;
+                    case "Kitten":
+                        animal=new Kitten(name,age);
+                        break;
+                    case "Tomcat":
+                        animal=new Tomcat(name,age);
+                        break;
+                    case "Frog":
+                        animal=new Frog(name,age,gender);
+                        break;
 
+                }
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
             }
+
             if(animal != null){
                 System.out.println(animal.toString());
             }

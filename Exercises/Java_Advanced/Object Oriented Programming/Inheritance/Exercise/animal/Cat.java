@@ -6,7 +6,7 @@ public class Cat extends Animal {
     }
 
     @Override
-    protected String produceSound() {
-        return "MiauMiau";
+    public String produceSound() {
+        return "Meow meow";
     }
 }

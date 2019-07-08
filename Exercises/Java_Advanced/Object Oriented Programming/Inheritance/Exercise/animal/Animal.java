@@ -1,53 +1,46 @@
 package animal;
 
-public class Animal {
+public abstract class Animal {
     private String name;
     private int age;
     private String gender;
 
     public Animal(String name, int age, String gender) {
-        this.setName(name);
-        this.setAge(age);
+        this.name = name;
+        this.age = age;
         this.setGender(gender);
     }
 
-    private String getName() {
-        return name;
+    public String getName() {
+        return this.name;
     }
 
-    private int getAge() {
-        return age;
+    public int getAge() {
+        return this.age;
     }
 
-    private String getGender() {
-        return gender;
+    public String getGender() {
+        return this.gender;
     }
 
     private void setName(String name) {
-        if(name.isEmpty() || name.isBlank() || name.matches("\\s+")){
-            throw new IllegalArgumentException("Invalid input");
-        }
         this.name = name;
     }
 
     private void setAge(int age) {
-        if(age <= 0){
-            throw new IllegalArgumentException("Invalid input");
+        if(age < 0){
+            throw new IllegalArgumentException("Invalid input!");
         }
         this.age = age;
     }
 
-    private void setGender(String gender) {
-        if(gender.isBlank() || gender.isEmpty() || gender.matches("\\s+")){
-            throw new IllegalArgumentException("Invalid input");
 
-        }
+    private void setGender(String gender) {
         this.gender = gender;
     }
 
-    protected String produceSound() {
-        return "Not implemented!";
-    }
+    protected abstract String produceSound() ;
+
 
     @Override
     public String toString() {

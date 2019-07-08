@@ -12,7 +12,7 @@ public class Player {
 
     public Player(String name, int endurance, int sprint, int dribble, int passing, int shooting) {
        this.setName(name);
-        this.seteEndurance(endurance);
+        this.setEndurance(endurance);
         this.setSprint(sprint);
         this.setDribble(dribble);
         this.setPassing(passing);
@@ -24,14 +24,14 @@ public class Player {
     }
 
     private void setName(String name) {
-        if (name.isEmpty() || name.matches("\\s+")) {
-            System.out.println("A name should not be empty.");
-            return;
+        if (name.trim().isEmpty() || name.matches("\\s+")) {
+            throw new IllegalArgumentException("A name should not be empty.");
+
         }
         this.name = name;
     }
 
-    private void seteEndurance(int endurance) {
+    private void setEndurance(int endurance) {
         isInvalid("Endurance", endurance);
         this.endurance = endurance;
     }
@@ -69,16 +69,23 @@ public class Player {
         return (this.dribble + this.endurance + this.passing + this.shooting + this.sprint) / 5.0;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Player player = (Player) o;
-        return player.name.equals(this.name);
+    public int getEndurance() {
+        return endurance;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
+    public int getSprint() {
+        return sprint;
+    }
+
+    public int getDribble() {
+        return dribble;
+    }
+
+    public int getPassing() {
+        return passing;
+    }
+
+    public int getShooting() {
+        return shooting;
     }
 }

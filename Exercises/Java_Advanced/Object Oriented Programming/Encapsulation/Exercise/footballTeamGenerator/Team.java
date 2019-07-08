@@ -1,39 +1,41 @@
 package footballTeamGenerator;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Team {
     private String name;
-    private Map<String, Player> players;
+    private List<Player> players;
 
     public Team(String name) {
         this.setName(name);
-        this.players = new LinkedHashMap<>();
+        this.players = new ArrayList<>();
     }
 
     public void addPlayer(Player player) {
+            if(players.stream().noneMatch(x -> x.getName().equals(player.getName()))){
+                players.add(player);
+            }
 
-            players.putIfAbsent(player.getName(), player);
 
 
 
     }
 
     public void removePlayer(String name) {
-        if (!players.containsKey(name)) {
-            // throw new IllegalArgumentException()
-            System.out.printf("Player %s is not in %s team.%n", name, this.getName());
-        } else {
-            players.remove(name);
+        Iterator<Player> iterator=this.players.iterator();
+        while (iterator.hasNext()){
+            if(iterator.next().getName().equals(name)){
+                iterator.remove();
+                return;
+            }
         }
+
+         throw new IllegalArgumentException(String.format("Player %s is not in %s team.",name,this.name));
 
     }
 
     public double getRating() {
-        return this.players.entrySet().stream().mapToDouble(x -> x.getValue().overallSkillLevel()).sum();
+        return Math.round(this.players.stream().mapToDouble(Player::overallSkillLevel).average().orElse(0));
     }
 
     public String getName() {
@@ -41,9 +43,9 @@ public class Team {
     }
 
     private void setName(String name) {
-        if (name.isEmpty() || name.matches("\\s+")) {
-            System.out.println("A name should not be empty.");
-            return;
+        if (name.trim().isEmpty() || name.matches("\\s+")) {
+            throw new IllegalArgumentException("A name should not be empty.");
+
         }
         this.name = name;
     }

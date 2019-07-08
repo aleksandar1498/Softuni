@@ -10,10 +10,7 @@ public class Dessert extends Food {
         this.calories = calories;
     }
 
-    protected void setCalories(double calories) {
-        if(calories <= 0){
-            throw new IllegalArgumentException("Invalid argument!");
-        }
-        this.calories = calories;
+    public double getCalories() {
+        return calories;
     }
 }

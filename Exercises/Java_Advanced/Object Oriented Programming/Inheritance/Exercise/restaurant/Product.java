@@ -11,22 +11,13 @@ public class Product {
         this.price = price;
     }
 
-    protected String getName() {
+    public String getName() {
         return this.name;
     }
 
-    protected void setName(String name) {
-        this.name = name;
-    }
-
-    protected BigDecimal getPrice() {
+    public BigDecimal getPrice() {
         return this.price;
     }
 
-    protected void setPrice(BigDecimal price) {
-        if(price.compareTo(BigDecimal.ZERO) <= 0){
-            throw  new IllegalArgumentException("Invalid argument");
-        }
-        this.price = price;
-    }
+
 }

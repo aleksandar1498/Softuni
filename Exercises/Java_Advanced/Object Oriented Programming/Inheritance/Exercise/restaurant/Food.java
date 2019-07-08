@@ -11,13 +11,7 @@ public class Food extends Product {
     }
 
     public double getGrams() {
-        return grams;
+        return this.grams;
     }
 
-    protected void setGrams(double grams) {
-        if(grams <= 0){
-            throw new IllegalArgumentException("Invalid argument!");
-        }
-        this.grams = grams;
-    }
 }

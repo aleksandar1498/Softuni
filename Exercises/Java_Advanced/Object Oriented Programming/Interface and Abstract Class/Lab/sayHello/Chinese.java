@@ -1,16 +1,12 @@
 package sayHello;
 
-public class Chinese implements Person {
+public class Chinese extends BasePerson {
     private String name;
 
     public Chinese(String name) {
-        this.name = name;
+        super(name);
     }
 
-    @Override
-    public String getName() {
-        return this.name;
-    }
 
     @Override
     public String sayHello() {

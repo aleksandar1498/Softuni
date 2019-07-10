@@ -10,21 +10,12 @@ public class Mission {
         this.codeName = codeName;
         this.state = state;
     }
-    public void changeState(){
-        if(this.state == State.finished){
-            this.state = State.inProgress;
-        }else{
-            this.state = State.finished;
-        }
-    }
+
 
     public String getCodeName() {
         return this.codeName;
     }
 
-    public State getState() {
-        return this.state;
-    }
 
     @Override
     public String toString() {

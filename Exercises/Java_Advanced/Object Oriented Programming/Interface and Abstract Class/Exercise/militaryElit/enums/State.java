@@ -2,7 +2,7 @@ package militaryElit.enums;
 
 public enum State {
     inProgress(true),
-    finished(false);
+    Finished(false);
     boolean completed;
 
     State(boolean completed) {

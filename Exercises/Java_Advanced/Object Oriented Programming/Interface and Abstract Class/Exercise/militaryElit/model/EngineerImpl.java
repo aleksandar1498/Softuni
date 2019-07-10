@@ -30,10 +30,12 @@ public class EngineerImpl extends SpecialisedSoldierImpl implements Engineer {
     public String toString() {
         StringBuilder builder = new StringBuilder(super.toString());
         builder.append(System.lineSeparator());
+        builder.append(String.format("Corps: %s",super.getCorps().name()));
+        builder.append(System.lineSeparator());
         builder.append("Repairs:");
         for (Repair repair : this.repairs) {
             builder.append(System.lineSeparator());
-            builder.append(repair);
+            builder.append("  ").append(repair);
         }
         return builder.toString();
     }

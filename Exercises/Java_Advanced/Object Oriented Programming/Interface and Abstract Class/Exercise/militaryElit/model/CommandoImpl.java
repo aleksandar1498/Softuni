@@ -16,13 +16,6 @@ public class CommandoImpl extends SpecialisedSoldierImpl implements Commando {
         this.missions = new ArrayList<>();
     }
 
-    @Override
-    public void completeMission(Mission mission) {
-
-        if (this.missions.stream().anyMatch(m -> m.getCodeName().equals(mission.getCodeName()))) {
-            missions.get(missions.indexOf(mission)).changeState();
-        }
-    }
 
     @Override
     public void addMission(Mission mission) {
@@ -42,7 +35,7 @@ public class CommandoImpl extends SpecialisedSoldierImpl implements Commando {
         builder.append("Missions:");
         for (Mission mission : this.missions) {
             builder.append(System.lineSeparator());
-            builder.append(mission);
+            builder.append("  ").append(mission);
         }
         return builder.toString();
     }

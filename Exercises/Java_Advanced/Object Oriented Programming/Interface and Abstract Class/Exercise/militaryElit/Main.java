@@ -14,6 +14,7 @@ public class Main {
     public static void main(String[] args) {
         List<Soldier> soldiers = new ArrayList<>();
         Map<Integer, Soldier> privateIds = new LinkedHashMap<>();
+
         Scanner scanner = new Scanner(System.in);
         String command = "";
         while (!"End".equals(command = scanner.nextLine())) {
@@ -26,21 +27,21 @@ public class Main {
             switch (typeSoldier) {
                 case "Private":
                     salary = Double.parseDouble(commands.get(4));
-                    System.out.println(id);
                     PrivateImpl priv = new PrivateImpl(id, firstName, lastName, salary);
-                    soldiers.add(priv);
+                    soldiers.add((PrivateImpl)priv);
                     privateIds.put(id, priv);
                     break;
-                case "LieutenantGeneral":
+                case "LeutenantGeneral":
                     salary = Double.parseDouble(commands.get(4));
-                    LieutenantGeneralImpl lieutenantGeneral = new LieutenantGeneralImpl(id, firstName, lastName, salary);
+                    LeutenantGeneralImpl leutenantGeneral = new LeutenantGeneralImpl(id, firstName, lastName, salary);
+                    System.out.println();
                     commands.stream().skip(5).forEach(privId -> {
                         int currId = Integer.parseInt(privId);
                         if (privateIds.containsKey(currId)) {
-                            lieutenantGeneral.addPrivate((PrivateImpl) privateIds.get(currId));
+                            leutenantGeneral.addPrivate((PrivateImpl) privateIds.get(currId));
                         }
                     });
-                    soldiers.add(lieutenantGeneral);
+                    soldiers.add(leutenantGeneral);
                     break;
                 case "Engineer":
                     salary = Double.parseDouble(commands.get(4));
@@ -53,7 +54,7 @@ public class Main {
                         }
                         soldiers.add(engineer);
                     } catch (IllegalArgumentException e) {
-                        System.out.println("Illegal corp");
+                    
                     }
 
                     break;
@@ -73,7 +74,7 @@ public class Main {
                         }
                         soldiers.add(commando);
                     } catch (IllegalArgumentException e) {
-                        System.out.println("Illegal corp");
+
                     }
                     break;
                 case "Spy":

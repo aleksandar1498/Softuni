@@ -1,23 +1,22 @@
 package telephony;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner=new Scanner(System.in);
-        List<String> numbers = new ArrayList<>(Arrays.asList(scanner.nextLine().split("\\s+")));
-        List<String> urls= new ArrayList<>(Arrays.asList(scanner.nextLine().split("\\s+")));
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(System.in));
+        List<String> numbers = new ArrayList<>(Arrays.asList(bufferedReader.readLine().trim().split("\\s+")));
+        List<String> urls= new ArrayList<>(Arrays.asList(bufferedReader.readLine().trim().split("\\s+")));
 
         Smartphone smartphone=new Smartphone(numbers,urls);
-        for (String number : smartphone.getNumbers()) {
-            System.out.println(smartphone.call(number));
-        }
-        for (String url : smartphone.getUrls()) {
-            System.out.println(smartphone.browse(url));
-        }
+        System.out.println(smartphone.call());
+        System.out.println(smartphone.browse());
 
     }
 }

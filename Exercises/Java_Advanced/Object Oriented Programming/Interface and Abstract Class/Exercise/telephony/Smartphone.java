@@ -2,55 +2,71 @@ package telephony;
 
 import java.util.List;
 
-public class Smartphone implements Callable,Browsable{
+public class Smartphone implements Callable, Browsable {
     private List<String> numbers;
     private List<String> urls;
-
-    public Smartphone(List<String> numbers, List<String> urls) {
-        this.setNumbers(numbers);
-        this.setUrls(urls);
-    }
-
-    List<String> getNumbers() {
-        return numbers;
-    }
-
-    List<String> getUrls() {
-        return urls;
-    }
-
-    private void setNumbers(List<String> numbers) {
-        this.numbers = numbers;
-    }
-
-    private void setUrls(List<String> urls) {
-        this.urls = urls;
+    public Smartphone(List<String> numbers,List<String> urls) {
+        this.numbers=numbers;
+        this.urls=urls;
     }
 
     @Override
-    public String browse(String url) {
-
-        StringBuilder builder= new StringBuilder();
-            if(url.matches("[^0-9]+")){
-                return builder.append("Browsing: ").append(url).append("!").toString();
-            }else{
-                return builder.append("Invalid URL!").toString();
-            }
-
-    }
-
-    @Override
-    public String call(String number) {
+    public String browse() {
+        int i=0;
         StringBuilder builder=new StringBuilder();
-
-
-
-            if(number.matches("[^\\D]+")) {
-               return builder.append("Calling... ").append(number).toString();
+        for (String url : this.urls) {
+            if(i == 0){
+                i++;
             }else{
-               return builder.append("Invalid number!").toString();
-
+                builder.append(System.lineSeparator());
+            }
+            boolean isValid = true;
+            for (char c : url.toCharArray()) {
+                if (Character.isDigit(c)) {
+                    isValid = false;
+                    break;
+                }
             }
 
+            if (isValid) {
+                builder.append(String.format("Browsing: %s!", url));
+                continue;
+            }
+            builder.append("Invalid URL!");
+
+        }
+        return builder.toString();
     }
+
+    @Override
+    public String call() {
+        int i=0;
+        StringBuilder builder=new StringBuilder();
+        for (String number : this.numbers) {
+            if(i == 0){
+                i++;
+            }else{
+                builder.append(System.lineSeparator());
+            }
+            boolean isValid = true;
+            for (char c : number.toCharArray()) {
+                if (!Character.isDigit(c)) {
+                    isValid = false;
+                    break;
+                }
+            }
+
+            if (isValid) {
+                builder.append(String.format("Calling... %s", number));
+                continue;
+            }
+            builder.append("Invalid number!");
+
+        }
+        return builder.toString();
+
+
+    }
+
+
 }

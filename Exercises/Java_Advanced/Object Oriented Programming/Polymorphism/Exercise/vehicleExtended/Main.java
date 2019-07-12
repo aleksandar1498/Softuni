@@ -8,10 +8,10 @@ public class Main {
         String[] carToken = scanner.nextLine().split("\\s+");
         Car car = new Car(Double.parseDouble(carToken[1]), Double.parseDouble(carToken[2]),Double.parseDouble(carToken[3]));
         String[] truckToken = scanner.nextLine().split("\\s+");
-        Truck truck = new Truck(Double.parseDouble(truckToken[1]), Double.parseDouble(truckToken[2]),Double.parseDouble(carToken[3]));
+        Truck truck = new Truck(Double.parseDouble(truckToken[1]), Double.parseDouble(truckToken[2]),Double.parseDouble(truckToken[3]));
         String[] busToken = scanner.nextLine().split("\\s+");
-        Bus bus = new Bus(Double.parseDouble(truckToken[1]), Double.parseDouble(truckToken[2]),Double.parseDouble(carToken[3]));
-
+        Bus bus = new Bus(Double.parseDouble(busToken[1]), Double.parseDouble(busToken[2]),Double.parseDouble(busToken[3]));
+        System.out.println();
         int n = Integer.parseInt(scanner.nextLine());
         for (int i = 0; i < n; i++) {
             String[] commandToken = scanner.nextLine().split("\\s+");

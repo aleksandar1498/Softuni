@@ -10,14 +10,14 @@ public abstract class CharacterImpl<T> implements Character {
         this.level = level;
     }
 
+    @Override
     public int getLevel() {
         return this.level;
     }
-
+    @Override
     public String getUsername() {
         return username;
     }
-
     public T getHashedPassword() {
         return hashedPassword;
     }
@@ -28,8 +28,7 @@ public abstract class CharacterImpl<T> implements Character {
 
     @Override
     public String toString() {
-        // <”username”> | <”hashed password”> -> <character type>
-        //<special points * level>
-        return String.format("%s | %s -> %s",this.getUsername(),this.getHashedPassword(),this.getClass().getSimpleName());
+
+        return String.format("\"%s\" | \"%s\" -> %s", this.getUsername(), this.getHashedPassword(), this.getClass().getSimpleName());
     }
 }

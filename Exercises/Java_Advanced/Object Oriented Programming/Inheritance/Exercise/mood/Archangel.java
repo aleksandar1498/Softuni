@@ -22,7 +22,7 @@ public class Archangel extends CharacterImpl<String>  {
     public String toString() {
         StringBuilder builder = new StringBuilder(super.toString());
         builder.append(System.lineSeparator());
-        builder.append(String.format("d",this.getMana()*super.getLevel()));
+        builder.append(String.format("%d",this.getMana()*super.getLevel()));
         return builder.toString();
     }
 

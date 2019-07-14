@@ -1,5 +1,7 @@
 package mood;
 
+import java.text.DecimalFormat;
+
 public class Demon extends CharacterImpl<Integer> {
     private double energy;
     public Demon(String username, int level, double energy) {
@@ -19,9 +21,10 @@ public class Demon extends CharacterImpl<Integer> {
 
     @Override
     public String toString() {
+        DecimalFormat decimalFormat= new DecimalFormat("#####.0#");
         StringBuilder builder = new StringBuilder(super.toString());
         builder.append(System.lineSeparator());
-        builder.append(String.format("%f",this.getEnergy()*super.getLevel()));
+        builder.append(String.format("%s", decimalFormat.format(this.getEnergy()*super.getLevel())));
         return builder.toString();
     }
 }

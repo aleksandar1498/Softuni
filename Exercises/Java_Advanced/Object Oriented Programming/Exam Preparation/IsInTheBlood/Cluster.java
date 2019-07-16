@@ -9,7 +9,7 @@ public class Cluster {
     private String id;
     private int rows;
     private int cols;
-    Cell [][] cells;
+    private Cell [][] cells;
 
     public Cluster(String id, int rows, int cols) {
         this.id = id;

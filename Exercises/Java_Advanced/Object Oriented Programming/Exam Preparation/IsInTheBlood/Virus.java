@@ -5,11 +5,10 @@ public class Virus extends Microbe {
         super(id, health, positionRow, positionCol, virulence);
     }
     public int getEnergy(){
-        return (this.getVirulence()+this.getHealth());
+        return (this.getVirulence()+super.getHealth());
     }
     @Override
     public String toString() {
-        // ⦁	--------Health {health} | Size {size} | Energy {energy}
-        return String.format("%s%n--------Health %d | Virulence %d | Energy %d",super.toString(),this.getHealth(),this.getVirulence(),this.getEnergy());
+        return String.format("%s--------Health %d | Virulence %d | Energy %d",super.toString(),super.getHealth(),this.getVirulence(),this.getEnergy());
     }
 }

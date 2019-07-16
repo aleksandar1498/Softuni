@@ -35,9 +35,9 @@ public class Organism {
         int count = 0;
         for (Cluster x : this.getClusters()) {
             {
-                for (int i = 0; i < x.cells.length; i++) {
-                    for (int i1 = 0; i1 < x.cells[i].length; i1++) {
-                        if (x.cells[i][i1] != null) {
+                for (int i = 0; i < x.getCells().length; i++) {
+                    for (int i1 = 0; i1 < x.getCells()[i].length; i1++) {
+                        if (x.getCells()[i][i1] != null) {
                             count++;
                         }
                     }

@@ -1,7 +1,7 @@
 package IsInTheBlood;
 
 public class RedBloodCell extends BloodCell {
-    private int velocity;
+    private int velocity ;
 
     public RedBloodCell(String id, int health, int positinRow, int positionCol, int velocity) {
         super(id, health, positinRow, positionCol);
@@ -21,7 +21,6 @@ public class RedBloodCell extends BloodCell {
     }
     @Override
     public String toString() {
-        // ⦁	--------Health {health} | Size {size} | Energy {energy}
         return String.format("%s%n--------Health %d | Velocity %d | Energy %d",super.toString(),super.getHealth(),this.getVelocity(),this.getEnergy());
     }
 }

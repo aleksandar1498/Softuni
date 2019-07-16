@@ -47,6 +47,6 @@ public abstract class Cell {
     public abstract int getEnergy();
     @Override
     public String toString() {
-        return String.format("------Cell %s [%d,%d]",this.getId(),this.getPositionRow(),this.getPositionCol());
+        return String.format("------Cell %s [%d,%d]%n",this.getId(),this.getPositionRow(),this.getPositionCol());
     }
 }

@@ -6,18 +6,63 @@ import needForSpeed.cars.ShowCar;
 import needForSpeed.races.CasualRace;
 import needForSpeed.races.Race;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        Car car = new ShowCar("VW","Golf",1998,129,129,21,22);
-        Car car1 = new PerformanceCar("VW","Vento",1998,312,2,221,122);
-        Car car2 = new PerformanceCar("VW","Passat",1998,42,155,121,232);
-Race race = new CasualRace(21,"Montana",100);
-race.addPartecipant(car);
-        race.addPartecipant(car1);
+     Scanner scanner=new Scanner(System.in);
+     String command="";
+        CarManager carManager = new CarManager();
 
-        race.addPartecipant(car2);
+        while (!"Cops Are Here".equals(command = scanner.nextLine())){
+         String [] commandToken = command.split("\\s+");
+         switch (commandToken[0]){
+             case "register":
+                 carManager.register(
+                         Integer.parseInt(commandToken[1]),
+                         commandToken[2],
+                         commandToken[3],
+                         commandToken[4],
+                         Integer.parseInt(commandToken[5]),
+                         Integer.parseInt(commandToken[6]),
+                         Integer.parseInt(commandToken[7]),
+                         Integer.parseInt(commandToken[8]),
+                         Integer.parseInt(commandToken[9]));
+                 break;
+             case "check":
+                 System.out.println(carManager.check(Integer.parseInt(commandToken[1])));
+                 break;
+             case "open":
+                 carManager.open(
+                         Integer.parseInt(commandToken[1]),
+                         commandToken[2],
+                         Integer.parseInt(commandToken[3]),
+                         commandToken[4],
+                         Integer.parseInt(commandToken[5])
+                 );
+                 break;
+             case "participate":
+                 carManager.participate(
+                         Integer.parseInt(commandToken[1]),
+                         Integer.parseInt(commandToken[2]));
+                 break;
+             case "start":
+                 System.out.println(carManager.start(Integer.parseInt(commandToken[1])));
+                 break;
+             case "park":
+                 carManager.park(Integer.parseInt(commandToken[1]));
+                 break;
+             case "unpark":
+                 carManager.unpark(Integer.parseInt(commandToken[1]));
+                 break;
+             case "tune":
+                 carManager.tune(
+                         Integer.parseInt(commandToken[1]),
+                         commandToken[2]
+                 );
+                 break;
 
-        System.out.println(car);
-        System.out.println(race);
+         }
+     }
     }
 }

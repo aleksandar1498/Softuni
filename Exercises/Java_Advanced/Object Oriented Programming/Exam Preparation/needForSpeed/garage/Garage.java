@@ -16,6 +16,13 @@ public class Garage {
     public List<Car> getParkedCars() {
         return Collections.unmodifiableList(parkedCars);
     }
+    public void park(Car c){
+        this.parkedCars.add(c);
+    }
+    public void unpark(Car c){
+        this.parkedCars.remove(this.parkedCars.indexOf(c));
+    }
+
 
     public void setParkedCars(List<Car> parkedCars) {
         this.parkedCars = parkedCars;

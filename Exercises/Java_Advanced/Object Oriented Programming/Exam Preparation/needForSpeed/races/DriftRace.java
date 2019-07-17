@@ -15,10 +15,10 @@ public class DriftRace extends Race {
         //(suspension + durability)
         StringBuilder builder = new StringBuilder(super.toString());
         int i = 1;
-        List<Car> finalists=super.getParticipants().stream().limit(3).sorted((p1,p2) -> Integer.compare(
+        List<Car> finalists=super.getParticipants().stream().sorted((p1,p2) -> Integer.compare(
                 (p2.getSuspension() + p2.getDurability()),
                 (p1.getSuspension() + p1.getDurability())
-        )).collect(Collectors.toList());
+        )).limit(3).collect(Collectors.toList());
         for(Car partecipant : finalists){
             int wonMoney=super.getPrizePool();
             int performance = partecipant.getSuspension() + partecipant.getDurability();

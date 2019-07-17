@@ -14,12 +14,12 @@ public class CasualRace extends Race {
     public String toString() {
         StringBuilder builder = new StringBuilder(super.toString());
         int i = 1;
-        List<Car> finalists=super.getParticipants().stream().limit(3).sorted((p1,p2) -> {
+        List<Car> finalists=super.getParticipants().stream().sorted((p1,p2) -> {
             return Integer.compare(
                     (p2.getHorsePower() / p2.getAcceleration()) + (p2.getSuspension() + p2.getDurability()),
                     (p1.getHorsePower() / p1.getAcceleration()) + (p1.getSuspension() + p1.getDurability())
             );
-        }).collect(Collectors.toList());
+        }).limit(3).collect(Collectors.toList());
         for(Car partecipant : finalists){
             int wonMoney=super.getPrizePool();
             int performance = (partecipant.getHorsePower() / partecipant.getAcceleration()) + (partecipant.getSuspension() + partecipant.getDurability());

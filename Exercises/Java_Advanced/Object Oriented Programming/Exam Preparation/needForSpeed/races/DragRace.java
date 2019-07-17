@@ -15,10 +15,10 @@ public class DragRace extends  Race {
         // (horsepower / acceleration)
         StringBuilder builder = new StringBuilder(super.toString());
         int i = 1;
-        List<Car> finalists=super.getParticipants().stream().limit(3).sorted((p1,p2) -> Integer.compare(
+        List<Car> finalists=super.getParticipants().stream().sorted((p1,p2) -> Integer.compare(
                 (p2.getHorsePower() / p2.getAcceleration()),
                 (p1.getHorsePower() / p1.getAcceleration())
-        )).collect(Collectors.toList());
+        )).limit(3).collect(Collectors.toList());
         for(Car partecipant : finalists){
             int wonMoney=super.getPrizePool();
             int performance = (partecipant.getHorsePower() / partecipant.getAcceleration());

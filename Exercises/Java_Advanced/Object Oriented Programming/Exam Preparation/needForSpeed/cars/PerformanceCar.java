@@ -14,7 +14,9 @@ public class PerformanceCar extends Car {
     public List<String> getAddOns() {
         return Collections.unmodifiableList(addOns);
     }
-
+    public void addAddOn(String addOn){
+        this.addOns.add(addOn);
+    }
     @Override
     public String toString() {
         return String.format("%s%nAdd-ons: %s",super.toString(),(this.getAddOns().size() > 0)?String.join(", ",this.getAddOns()):"None");

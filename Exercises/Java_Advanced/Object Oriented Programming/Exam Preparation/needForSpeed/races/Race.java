@@ -10,6 +10,7 @@ public abstract class Race {
     private int length;
     private String route;
     private int prizePool;
+    private boolean opened;
     private List<Car> participants ;
 
     public Race(int length, String route, int prizePool) {
@@ -17,6 +18,7 @@ public abstract class Race {
         this.route = route;
         this.prizePool = prizePool;
         this.participants = new ArrayList<>();
+        this.opened = true;
     }
     public void addPartecipant(Car c){
         this.participants.add(c);
@@ -42,6 +44,13 @@ public abstract class Race {
         return Collections.unmodifiableList(participants);
     }
 
+    public boolean isOpened() {
+        return opened;
+    }
+
+    public void setOpened(boolean opened) {
+        this.opened = opened;
+    }
 
     @Override
     public String toString() {

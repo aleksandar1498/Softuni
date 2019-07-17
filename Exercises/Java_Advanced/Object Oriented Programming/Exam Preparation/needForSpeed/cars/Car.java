@@ -74,4 +74,13 @@ public abstract class Car {
     public void setDurability(int durability) {
         this.durability = durability;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s %s %d", this.getBrand(), this.getModel(), this.getYearOfProduction()) +
+                System.lineSeparator() +
+                String.format("%d HP, 100 m/h in %d s", this.getHorsePower(), this.getAcceleration()) +
+                System.lineSeparator() +
+                String.format("%d Suspension force, %d Durability", this.getSuspension(), this.getDurability());
+    }
 }

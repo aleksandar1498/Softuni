@@ -2,6 +2,8 @@ package needForSpeed.races;
 
 import needForSpeed.cars.Car;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public abstract class Race {
@@ -10,42 +12,39 @@ public abstract class Race {
     private int prizePool;
     private List<Car> participants ;
 
-    public Race(int length, String route, int prizePool, List<Car> participants) {
+    public Race(int length, String route, int prizePool) {
         this.length = length;
         this.route = route;
         this.prizePool = prizePool;
-        this.participants = participants;
+        this.participants = new ArrayList<>();
+    }
+    public void addPartecipant(Car c){
+        this.participants.add(c);
     }
 
     public int getLength() {
         return length;
     }
 
-    public void setLength(int length) {
-        this.length = length;
-    }
 
     public String getRoute() {
         return route;
     }
 
-    public void setRoute(String route) {
-        this.route = route;
-    }
+
 
     public int getPrizePool() {
         return prizePool;
     }
 
-    public void setPrizePool(int prizePool) {
-        this.prizePool = prizePool;
-    }
 
     public List<Car> getParticipants() {
-        return participants;
+        return Collections.unmodifiableList(participants);
     }
 
-    public void setParticipants(List<Car> participants) {
-        this.participants = participants;
+
+    @Override
+    public String toString() {
+        return this.getRoute()+" - "+this.getLength();
     }
 }

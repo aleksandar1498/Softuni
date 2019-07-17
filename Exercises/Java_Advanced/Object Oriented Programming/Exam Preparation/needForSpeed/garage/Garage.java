@@ -2,17 +2,19 @@ package needForSpeed.garage;
 
 import needForSpeed.cars.Car;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Garage {
-    List<Car> parkedCars;
+    private List<Car> parkedCars;
 
-    public Garage(List<Car> parkedCars) {
-        this.parkedCars = parkedCars;
+    public Garage() {
+        this.parkedCars = new ArrayList<>();
     }
 
     public List<Car> getParkedCars() {
-        return parkedCars;
+        return Collections.unmodifiableList(parkedCars);
     }
 
     public void setParkedCars(List<Car> parkedCars) {

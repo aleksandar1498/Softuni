@@ -14,7 +14,11 @@ public class MessageLogger implements Logger {
     @Override
     public void log(String date, Report report, String message) {
         for (Appender appender : appenders) {
-            appender.append(date,report,message);
+            try {
+                appender.append(date,report,message);
+            } catch (Exception e) {
+              e.getMessage();
+            }
         }
     }
 

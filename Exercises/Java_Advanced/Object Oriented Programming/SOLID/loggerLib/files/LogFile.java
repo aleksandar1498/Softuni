@@ -12,7 +12,13 @@ public class LogFile implements File {
 
     @Override
     public int size() {
-        return 0;
+        int size=0;
+        for(char c: buffer.toString().toCharArray()){
+            if(Character.isAlphabetic(c)){
+                size+=(int)c;
+            }
+        }
+        return size;
     }
 
     @Override

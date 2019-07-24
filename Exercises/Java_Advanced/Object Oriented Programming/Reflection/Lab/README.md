@@ -26,10 +26,6 @@ on new line:
 
 **Don’t change anything in "Reflection class"!**
 
-### Solution
-
-![](media/2af76e118b277f10922d8accf2503c7e.png)
-
 Getters and Setters
 -------------------
 
@@ -81,10 +77,6 @@ that:
 
 -   Can be placed only on types
 
-###  Examples
-
-![](media/f6deffea95847adc78ad9f9f5056a9fd.png)
-
 Coding Tracker
 --------------
 
@@ -97,11 +89,3 @@ Create annotation **Author** with a **String** element called **name**, that:
 Create a class **Tracker** with a method:
 
 -   public static void printMethodsByAuthor()
-
-###  Examples
-
-![](media/a3aa1124d9ef97b17f4ef78da898e69b.png)
-
-### Output
-
-![](media/e0a3c68dc2abc84cd5b7ba067557cafc.png)

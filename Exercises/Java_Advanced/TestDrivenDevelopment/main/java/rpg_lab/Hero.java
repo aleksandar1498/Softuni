@@ -3,16 +3,24 @@ package rpg_lab;
 import interfaces.Target;
 import interfaces.Weapon;
 
+import java.util.Collections;
+import java.util.List;
+
 public class Hero {
 
     private String name;
     private int experience;
     private Weapon weapon;
-
-    public Hero(String name,Weapon weapon) {
+    private List<Weapon> inventory;
+    public Hero(String name,Weapon weapon,List<Weapon> inventory) {
         this.name = name;
         this.experience = 0;
         this.weapon = weapon;
+        this.inventory = inventory;
+    }
+
+    public List<Weapon> getInventory() {
+        return Collections.unmodifiableList(this.inventory);
     }
 
     public String getName() {
@@ -32,6 +40,8 @@ public class Hero {
 
         if (target.isDead()) {
             this.experience += target.giveExperience();
+            this.inventory.add(target.releaseLoot());
         }
     }
+
 }

@@ -1,5 +1,7 @@
 package interfaces;
 
+import java.util.List;
+
 public interface Target {
     int getHealth();
 
@@ -8,4 +10,8 @@ public interface Target {
     int giveExperience();
 
     boolean isDead();
+
+    List<Weapon> getWeapons();
+
+    Weapon releaseLoot();
 }

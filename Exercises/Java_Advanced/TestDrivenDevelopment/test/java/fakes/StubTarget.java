@@ -1,7 +1,11 @@
 package fakes;
 
 import interfaces.Target;
+import interfaces.Weapon;
 import utils.Constants;
+
+import java.util.List;
+import java.util.Random;
 
 public class StubTarget implements Target {
     @Override
@@ -23,4 +27,15 @@ public class StubTarget implements Target {
     public boolean isDead() {
         return true;
     }
+
+    @Override
+    public List<Weapon> getWeapons() {
+        return null;
+    }
+
+    @Override
+    public Weapon releaseLoot() {
+        return null;
+    }
+
 }

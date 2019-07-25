@@ -1,11 +1,18 @@
 package rpg_tests;
 
+import interfaces.Target;
+import interfaces.Weapon;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 import rpg_lab.AxeImpl;
 import rpg_lab.Dummy;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static utils.Constants.*;
 
 public class DummyTest {
@@ -39,5 +46,13 @@ public class DummyTest {
     public void shouldNotGiveXPIfAlive() {
         Dummy dummy = new Dummy(DUMMY_HEALTH, DUMMY_XP);
         dummy.giveExperience();
+    }
+    @Test
+    public void shouldReleaseWeaponIfDead(){
+        Target dummy = new Dummy(-DUMMY_HEALTH,DUMMY_XP);
+        dummy.getWeapons().add(new AxeImpl(AXE_ATTACK,AXE_DURABILITY));
+        dummy.getWeapons().add(new AxeImpl(AXE_ATTACK,AXE_DURABILITY));
+        dummy.releaseLoot();
+        assertEquals(1 ,dummy.getWeapons().size());
     }
 }

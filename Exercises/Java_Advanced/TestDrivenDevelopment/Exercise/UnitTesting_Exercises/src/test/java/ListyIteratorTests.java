@@ -43,4 +43,14 @@ public class ListyIteratorTests {
         boolean result = listIterator.hasNext();
         assertEquals(true,result);
     }
+    @Test(expected = IllegalStateException.class)
+    public void printShouldThrowExpectedIfThereAreNotElements() throws OperationNotSupportedException {
+        ListIterator listIterator = new ListIterator();
+        System.out.println(listIterator.print());
+    }
+    @Test
+    public void printShouldReturnTheValueAtTheCurrentIndex() throws OperationNotSupportedException {
+        ListIterator listIterator = new ListIterator(BASE_LIST_TO_ITERATE);
+        assertEquals("A",listIterator.print());
+    }
 }

@@ -57,6 +57,7 @@ public abstract class HardwareImpl implements Hardware {
         if(this.getSoftwares().stream().noneMatch(s -> s.getName().equals(software.getName()))){
             if(this.getMaximumCapacity() >= software.getCapacityConsumption() && this.getMaximumMemory() >= software.getMemoryConsumption()){
                 this.getSoftwares().add(software);
+
                 this.setAvailableCapacity(this.getAvailableCapacity()-software.getCapacityConsumption());
                 this.setAvailableMemory(this.getAvailableMemory()-software.getMemoryConsumption());
             }

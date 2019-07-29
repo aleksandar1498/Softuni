@@ -31,7 +31,7 @@ public class CommandInterpreterImpl implements CommandInterpreter {
                 for (Field current : currentFields) {
                     current.setAccessible(true);
                     if(field.getType().equals(current.getType())){
-                        field.set(executable,(Map)current.get(this.system.getHardwares()));
+                        field.set(executable,current.get(this.system));
                     }
 
                 }

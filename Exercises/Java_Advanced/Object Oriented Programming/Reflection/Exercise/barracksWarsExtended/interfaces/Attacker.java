@@ -1,4 +1,4 @@
-package barracksWars.interfaces;
+package barracksWarsExtended.interfaces;
 
 public interface Attacker {
     

@@ -1,10 +1,10 @@
-package barracksWars.core.commands;
+package barracksWarsExtended.core.commands;
 
-import barracksWars.annotations.Inject;
-import barracksWars.interfaces.CommandInterpreter;
-import barracksWars.interfaces.Executable;
-import barracksWars.interfaces.Repository;
-import barracksWars.interfaces.UnitFactory;
+import barracksWarsExtended.annotations.Inject;
+import barracksWarsExtended.interfaces.CommandInterpreter;
+import barracksWarsExtended.interfaces.Executable;
+import barracksWarsExtended.interfaces.Repository;
+import barracksWarsExtended.interfaces.UnitFactory;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;

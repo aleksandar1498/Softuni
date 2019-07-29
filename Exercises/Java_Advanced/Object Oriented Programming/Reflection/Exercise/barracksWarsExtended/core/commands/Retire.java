@@ -1,8 +1,8 @@
-package barracksWars.core.commands;
+package barracksWarsExtended.core.commands;
 
-import barracksWars.annotations.Inject;
-import barracksWars.interfaces.Repository;
-import barracksWars.interfaces.UnitFactory;
+import barracksWarsExtended.annotations.Inject;
+import barracksWarsExtended.interfaces.Repository;
+import barracksWarsExtended.interfaces.UnitFactory;
 import jdk.jshell.spi.ExecutionControl;
 
 public class Retire extends Command {

@@ -1,7 +1,7 @@
-package barracksWars.data;
+package barracksWarsExtended.data;
 
-import barracksWars.interfaces.Repository;
-import barracksWars.interfaces.Unit;
+import barracksWarsExtended.interfaces.Repository;
+import barracksWarsExtended.interfaces.Unit;
 import jdk.jshell.spi.ExecutionControl;
 
 import java.util.Map;

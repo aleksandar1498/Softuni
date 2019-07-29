@@ -32,4 +32,9 @@ public abstract class SoftwareImpl implements Software {
     protected void setType(String type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }

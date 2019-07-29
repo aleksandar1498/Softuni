@@ -13,6 +13,12 @@ public abstract class BoatEngineImpl implements BoatEngine {
         this.horsePower = horsePower;
         this.displacement = displacement;
     }
+
+    @Override
+    public String getModel() {
+        return model;
+    }
+
     protected void setOutput(int output){
         this.output = output;
     }

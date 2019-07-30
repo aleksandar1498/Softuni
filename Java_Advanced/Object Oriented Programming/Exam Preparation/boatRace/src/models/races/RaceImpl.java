@@ -1,6 +1,7 @@
 package models.races;
 
 import exceptions.DuplicateModelException;
+import exceptions.ParameterArgumentException;
 import interfaces.boats.Boat;
 import interfaces.races.Race;
 import models.RepositoryImpl;
@@ -13,13 +14,15 @@ public class RaceImpl implements Race {
     private int windSpeed;
     private int oceanSpeed;
     private boolean motorboatsAreAllowed;
+    private boolean opened;
     private Repository<Boat> participants;
-    public RaceImpl(int distance, int windSpeed, int oceanSpeed, boolean motorboatsAreAllowed) {
-        this.distance = distance;
-        this.windSpeed = windSpeed;
-        this.oceanSpeed = oceanSpeed;
-        this.motorboatsAreAllowed = motorboatsAreAllowed;
-        this.participants = new RepositoryImpl<>();
+
+    public RaceImpl() {
+        this.close();
+    }
+
+    public boolean isMotorboatsAreAllowed() {
+        return motorboatsAreAllowed;
     }
 
     @Override
@@ -34,4 +37,44 @@ public class RaceImpl implements Race {
     public Repository<Boat> getParticipants() {
         return this.participants;
     }
+
+    public void setDistance(int distance) throws ParameterArgumentException {
+        if(distance < 0){
+            throw new ParameterArgumentException("Distance");
+        }
+        this.distance = distance;
+    }
+
+    @Override
+    public void setWindSpeed(int windSpeed) {
+        this.windSpeed = windSpeed;
+    }
+
+    @Override
+    public void setOceanSpeed(int oceanSpeed) {
+        this.oceanSpeed = oceanSpeed;
+    }
+
+    @Override
+    public void setMotorboatsAreAllowed(boolean motorboatsAreAllowed) {
+        this.motorboatsAreAllowed = motorboatsAreAllowed;
+    }
+
+    @Override
+    public void open() {
+        this.opened = true;
+    }
+
+    @Override
+    public void close() {
+        this.opened = false;
+    }
+
+
+    @Override
+    public boolean isOpen() {
+        return this.opened;
+    }
+
+
 }

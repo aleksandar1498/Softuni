@@ -14,8 +14,12 @@ public class RepositoryImpl<T> implements Repository<T> {
     }
 
     @Override
-    public void add(String model,T element) {
-        this.getEntries().put(model, element);
+    public boolean add(String model,T element) {
+        if(!this.getEntries().containsKey(model)){
+            this.getEntries().put(model, element);
+            return true;
+        }
+        return false;
     }
 
     @Override

@@ -7,15 +7,15 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class RepositoryImpl<T> implements Repository<T> {
-    private Map<String,T> entries;
+    private Map<String, T> entries;
 
     public RepositoryImpl() {
         this.entries = new LinkedHashMap<>();
     }
 
     @Override
-    public boolean add(String model,T element) {
-        if(!this.getEntries().containsKey(model)){
+    public boolean add(String model, T element) {
+        if (!this.getEntries().containsKey(model)) {
             this.getEntries().put(model, element);
             return true;
         }
@@ -24,10 +24,10 @@ public class RepositoryImpl<T> implements Repository<T> {
 
     @Override
     public T get(String model) throws NonExistantModelException {
-        if(this.getEntries().containsKey(model)){
+        if (this.getEntries().containsKey(model)) {
             return this.getEntries().get(model);
         }
-       throw new NonExistantModelException("");
+        throw new NonExistantModelException("");
     }
 
     @Override
@@ -35,7 +35,19 @@ public class RepositoryImpl<T> implements Repository<T> {
         return this.getEntries().containsKey(model);
     }
 
-    private Map<String, T> getEntries() {
+    @Override
+    public int count() {
+        return this.getEntries().size();
+    }
+
+    @Override
+    public void clearRepo() {
+        this.entries.clear();
+    }
+
+
+    @Override
+    public Map<String, T> getEntries() {
         return this.entries;
     }
 }

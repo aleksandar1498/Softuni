@@ -19,6 +19,7 @@ public class RaceImpl implements Race {
 
     public RaceImpl() {
         this.close();
+        this.participants = new RepositoryImpl<>();
     }
 
     public boolean isMotorboatsAreAllowed() {
@@ -58,6 +59,21 @@ public class RaceImpl implements Race {
     @Override
     public void setMotorboatsAreAllowed(boolean motorboatsAreAllowed) {
         this.motorboatsAreAllowed = motorboatsAreAllowed;
+    }
+
+    @Override
+    public int getOceanSpeed() {
+        return this.oceanSpeed;
+    }
+
+    @Override
+    public int getDistance() {
+        return this.distance;
+    }
+
+    @Override
+    public int getWindSpeed() {
+        return this.windSpeed;
     }
 
     @Override

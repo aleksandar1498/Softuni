@@ -1,8 +1,6 @@
 package utils;
 
-import exceptions.NonExistantModelException;
-import exceptions.ParameterArgumentException;
-import exceptions.RaceAlreadyExistsException;
+import exceptions.*;
 import interfaces.commands.CommandInterpreter;
 import interfaces.commands.Executable;
 
@@ -33,11 +31,11 @@ public class Engine implements Runnable {
                     System.out.println(result);
                 }
 
-                } catch (ClassNotFoundException | InstantiationException | InvocationTargetException | NoSuchMethodException | IllegalAccessException | NonExistantModelException | RaceAlreadyExistsException | ParameterArgumentException e) {
+                } catch (ClassNotFoundException | InstantiationException | InvocationTargetException | NoSuchMethodException | IllegalAccessException | NonExistantModelException | RaceAlreadyExistsException | ParameterArgumentException | InsufficientContestantsException | NoSetRaceException | IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-            }
-
+                }
 
         }
+        System.out.println();
     }
 }

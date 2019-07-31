@@ -28,7 +28,6 @@ public class CreatePowerBoat extends Command{
 
     @Override
     public String execute() throws NoSuchMethodException, ClassNotFoundException, IllegalAccessException, InstantiationException, InvocationTargetException, NonExistantModelException {
-        System.out.println(super.getData()[3]+" "+super.getData()[4]);
 
         if(this.getDatabase().getBoatEngineRepository().contains(super.getData()[3])
         && this.getDatabase().getBoatEngineRepository().contains(super.getData()[4])){

@@ -29,6 +29,11 @@ public abstract class BoatImpl implements Boat {
     }
 
     @Override
+    public double getWeight() {
+        return this.weight;
+    }
+
+    @Override
     public String getModel() {
         return this.model;
     }

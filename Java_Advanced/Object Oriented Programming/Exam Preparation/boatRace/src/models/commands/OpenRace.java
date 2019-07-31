@@ -31,7 +31,7 @@ public class OpenRace extends Command {
             this.race.setOceanSpeed(oceanCurrentSpeed);
             this.race.setMotorboatsAreAllowed(allowsMotorboats);
             this.race.open();
-            return String.format("A new race with distance %d meters, wind speed %d and ocean current speed %d has been set"
+            return String.format("A new race with distance %d meters, wind speed %d m/s and ocean current speed %d m/s has been set."
                     ,distance
                     ,windSpeed
                     ,oceanCurrentSpeed);

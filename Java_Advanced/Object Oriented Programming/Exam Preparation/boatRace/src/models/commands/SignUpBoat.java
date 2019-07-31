@@ -21,7 +21,7 @@ public class SignUpBoat extends Command {
     }
 
     @Override
-    public String execute() throws NoSuchMethodException, ClassNotFoundException, IllegalAccessException, InstantiationException, InvocationTargetException, NonExistantModelException, RaceAlreadyExistsException, ParameterArgumentException, NoSetRaceException {
+    public String execute() throws NoSuchMethodException, ClassNotFoundException, IllegalAccessException, InstantiationException, InvocationTargetException, NonExistantModelException, RaceAlreadyExistsException, ParameterArgumentException, NoSetRaceException, IllegalArgumentException {
         if(!this.race.isOpen()){
             throw new NoSetRaceException();
         }
@@ -37,6 +37,7 @@ public class SignUpBoat extends Command {
         }else{
             return "operation failed";
         }
+        this.race.getParticipants().add(boat.getModel(),boat);
         return String.format("Boat with model %s has signed up for the current Race.",boat.getModel());
     }
 }

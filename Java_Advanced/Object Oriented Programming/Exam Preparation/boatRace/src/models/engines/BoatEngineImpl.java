@@ -17,6 +17,11 @@ public abstract class BoatEngineImpl implements BoatEngine {
     }
 
     @Override
+    public int getOutput() {
+        return this.output;
+    }
+
+    @Override
     public String getModel() {
         return model;
     }

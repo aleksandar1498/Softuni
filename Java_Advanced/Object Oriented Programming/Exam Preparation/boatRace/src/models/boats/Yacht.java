@@ -4,6 +4,7 @@ import annotations.Motorboat;
 import exceptions.ModelArgumentException;
 import exceptions.ParameterArgumentException;
 import interfaces.engines.BoatEngine;
+import interfaces.races.Race;
 
 @Motorboat
 public class Yacht extends BoatImpl{
@@ -20,5 +21,20 @@ public class Yacht extends BoatImpl{
             throw new ParameterArgumentException("Cargo Weight");
         }
         this.cargo = cargo;
+    }
+
+    private BoatEngine getBoatEngine() {
+        return boatEngine;
+    }
+
+    private int getCargo() {
+        return cargo;
+    }
+
+    @Override
+    public double getSpeed(Race race) {
+        int oceanSpeed = race.getOceanSpeed();
+        double speed = this.getBoatEngine().getOutput() - (super.getWeight() + this.getCargo()) + (oceanSpeed / 2.0);
+        return (speed <= 0)?Double.MAX_VALUE:speed;
     }
 }

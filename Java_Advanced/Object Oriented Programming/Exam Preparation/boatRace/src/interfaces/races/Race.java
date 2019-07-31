@@ -18,6 +18,12 @@ public interface Race {
 
     void setMotorboatsAreAllowed(boolean motorboatsAreAllowed);
 
+    int getOceanSpeed();
+
+    int getDistance();
+
+    int getWindSpeed();
+
     void open();
 
     void close();

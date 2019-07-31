@@ -10,7 +10,7 @@ import interfaces.races.Race;
 public class Yacht extends BoatImpl{
     private BoatEngine boatEngine;
     private int cargo;
-    public Yacht(String model, int weight, BoatEngine boatEngine, int cargo) throws ParameterArgumentException, ModelArgumentException {
+    public Yacht(String model, Integer weight, BoatEngine boatEngine, Integer cargo) throws ParameterArgumentException, ModelArgumentException {
         super(model, weight);
         this.boatEngine = boatEngine;
         this.setCargo(cargo);

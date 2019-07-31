@@ -24,12 +24,13 @@ public class StartRace extends Command{
 
     @Override
     public String execute() throws NoSetRaceException, InsufficientContestantsException {
-        if(this.getRace().getParticipants().count() < 3){
-            throw new InsufficientContestantsException();
-        }
         if(!this.getRace().isOpen()){
             throw new NoSetRaceException();
         }
+        if(this.getRace().getParticipants().count() < 3){
+            throw new InsufficientContestantsException();
+        }
+
         StringBuilder builder = new StringBuilder();
         // removing participants
         String [] classification = { "First place:","Second place:","Third place:"};
@@ -43,7 +44,7 @@ public class StartRace extends Command{
                     }
                     return this.getRace().getDistance() / b.getSpeed(this.getRace());
                 })).collect(Collectors.toList())) {
-            builder.append(String.format("%s: %s Model: %s Time: %s%n",classification[i],boat.getClass().getSimpleName(),boat.getModel(),(boat.getSpeed(this.getRace()) == Double.MAX_VALUE)?"Did not finish!":df.format(this.getRace().getDistance() / boat.getSpeed(this.getRace()))+" sec"));
+            builder.append(String.format("%s %s Model: %s Time: %s%n",classification[i],boat.getClass().getSimpleName(),boat.getModel(),(boat.getSpeed(this.getRace()) == Double.MAX_VALUE)?"Did not finish!":df.format(this.getRace().getDistance() / boat.getSpeed(this.getRace()))+" sec"));
             i++;
         }
             //    .forEach(boat -> System.out.println(boat.getModel()+" "+this.getRace().getDistance()/boat.getSpeed(this.getRace())));

@@ -27,13 +27,16 @@ public class Engine implements Runnable {
             try {
                 executable = commandInterpreter.interpretCommand(commandName, args);
                 String result = executable.execute();
-                if(!result.equals("operation failed")){
+                if (!result.equals("operation failed")) {
                     System.out.println(result);
                 }
 
-                } catch (ClassNotFoundException | InstantiationException | InvocationTargetException | NoSuchMethodException | IllegalAccessException | NonExistantModelException | RaceAlreadyExistsException | ParameterArgumentException | InsufficientContestantsException | NoSetRaceException | IllegalArgumentException e) {
+            } catch (ClassNotFoundException | InstantiationException | NoSuchMethodException | IllegalAccessException | NonExistantModelException | RaceAlreadyExistsException | ParameterArgumentException | InsufficientContestantsException | NoSetRaceException | IllegalArgumentException e) {
+
                 System.out.println(e.getMessage());
-                }
+            } catch (InvocationTargetException e) {
+                System.out.println(e.getCause().getMessage());
+            }
 
         }
         System.out.println();

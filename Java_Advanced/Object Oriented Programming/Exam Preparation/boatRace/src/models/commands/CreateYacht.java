@@ -9,30 +9,33 @@ import repositories.Database;
 
 import java.lang.reflect.InvocationTargetException;
 
-public class CreateRowBoat extends Command {
+public class CreateYacht extends Command{
     @Inject
     private Database database;
     @Inject
     private BoatFactory boatFactory;
 
-    protected CreateRowBoat(String[] data) {
+    protected CreateYacht(String[] data) {
         super(data);
     }
 
     private Database getDatabase() {
-        return this.database;
+        return database;
     }
 
     private BoatFactory getBoatFactory() {
-        return this.boatFactory;
+        return boatFactory;
     }
 
     @Override
     public String execute() throws NoSuchMethodException, ClassNotFoundException, IllegalAccessException, InstantiationException, InvocationTargetException, NonExistantModelException, ParameterArgumentException {
-        Boat boat = this.getBoatFactory().build(super.getData());
-        if(this.getDatabase().getBoatsRepository().add(boat.getModel(),boat)){
-            return String.format("%s with model %s registered successfully.",boat.getClass().getSimpleName(),boat.getModel());
+        if(this.getDatabase().getBoatEngineRepository().contains(super.getData()[3])){
+            Boat boat = this.getBoatFactory().build(super.getData());
+            if(this.getDatabase().getBoatsRepository().add(boat.getModel(),boat)){
+                return String.format("%s with model %s registered successfully.",boat.getClass().getSimpleName(),boat.getModel());
+            }
         }
+
         return "operation failed";
     }
 }

@@ -16,7 +16,7 @@ public class RowBoat extends BoatImpl{
     }
 
     private void setOars(int oars) throws ParameterArgumentException {
-        if(oars < 0){
+        if(oars <= 0){
             throw new ParameterArgumentException("Oars");
         }
         this.oars = oars;

@@ -2,6 +2,7 @@ package models.commands;
 
 import annotations.Inject;
 import exceptions.NonExistantModelException;
+import exceptions.ParameterArgumentException;
 import factories.BoatFactory;
 import interfaces.boats.Boat;
 import repositories.Database;
@@ -26,7 +27,7 @@ public class CreateSailBoat extends Command {
     }
 
     @Override
-    public String execute() throws NoSuchMethodException, ClassNotFoundException, IllegalAccessException, InstantiationException, InvocationTargetException, NonExistantModelException {
+    public String execute() throws NoSuchMethodException, ClassNotFoundException, IllegalAccessException, InstantiationException, InvocationTargetException, NonExistantModelException, ParameterArgumentException {
         Boat boat = this.getBoatFactory().build(super.getData());
         if(this.getDatabase().getBoatsRepository().add(boat.getModel(),boat)){
             return String.format("%s with model %s registered successfully.",boat.getClass().getSimpleName(),boat.getModel());

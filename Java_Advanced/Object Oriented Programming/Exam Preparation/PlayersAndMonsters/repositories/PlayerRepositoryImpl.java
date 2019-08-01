@@ -24,7 +24,7 @@ public class PlayerRepositoryImpl implements PlayerRepository {
     }
 
     @Override
-    public void add(Player player) {
+    public void add(Player player){
         if (player == null) {
             throw new IllegalArgumentException("Player cannot be null");
         }
@@ -35,7 +35,7 @@ public class PlayerRepositoryImpl implements PlayerRepository {
     }
 
     @Override
-    public boolean remove(Player player) {
+    public boolean remove(Player player) throws IllegalArgumentException{
         if (player == null) {
             throw new IllegalArgumentException("Player cannot be null");
         }

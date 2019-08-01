@@ -38,7 +38,8 @@ public class Main {
                         break;
                 }
                 System.out.println(result);
-            } catch (InstantiationException | InvocationTargetException | NoSuchMethodException | IllegalAccessException | ClassNotFoundException e) {
+
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }

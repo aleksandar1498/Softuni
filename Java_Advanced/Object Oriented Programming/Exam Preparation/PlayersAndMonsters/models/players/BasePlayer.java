@@ -21,7 +21,7 @@ public abstract class BasePlayer implements Player {
     }
 
 
-    private void setUsername(String username) {
+    private void setUsername(String username)  throws IllegalArgumentException{
         if (username == null || username.trim().isEmpty()) {
             throw new IllegalArgumentException("Player's username cannot be null or an empty string.");
         }
@@ -46,7 +46,7 @@ public abstract class BasePlayer implements Player {
     }
 
     @Override
-    public void setHealth(int healthPoints) {
+    public void setHealth(int healthPoints)  throws IllegalArgumentException{
         if (healthPoints < 0) {
 
             throw new IllegalArgumentException("Player's health bonus cannot be less than zero.");
@@ -61,11 +61,12 @@ public abstract class BasePlayer implements Player {
     }
 
     @Override
-    public void takeDamage(int damagePoints) {
+    public void takeDamage(int damagePoints)  throws IllegalArgumentException{
         if (damagePoints < 0) {
             throw new IllegalArgumentException("Damage points cannot be less than zero.");
         }
         if ((this.getHealth() - damagePoints) < 0) {
+            this.setHealth(0);
             this.isDead=true;
             return;
         }

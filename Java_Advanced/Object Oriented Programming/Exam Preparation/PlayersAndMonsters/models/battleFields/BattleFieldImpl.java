@@ -10,7 +10,6 @@ public class BattleFieldImpl implements Battlefield {
 
     @Override
     public void fight(Player attackPlayer, Player enemyPlayer) {
-
         if(attackPlayer.isDead() || enemyPlayer.isDead()){
             throw new IllegalArgumentException("Player is dead!");
         }
@@ -29,12 +28,17 @@ public class BattleFieldImpl implements Battlefield {
         attackPlayer.getCardRepository().getCards().forEach(c -> {
             attackPlayer.setHealth(attackPlayer.getHealth()+c.getHealthPoints());
         });
-
-        enemyPlayer.takeDamage(attackPlayer.getCardRepository().getCards().stream().mapToInt(Card::getDamagePoints).sum());
-        if(enemyPlayer.isDead()){
-            return;
+        while (true){
+            enemyPlayer.takeDamage(attackPlayer.getCardRepository().getCards().stream().mapToInt(Card::getDamagePoints).sum());
+            if(enemyPlayer.isDead()){
+               break;
+            }
+            attackPlayer.takeDamage(enemyPlayer.getCardRepository().getCards().stream().mapToInt(Card::getDamagePoints).sum());
+            if(attackPlayer.isDead()){
+                break;
+            }
         }
-        attackPlayer.takeDamage(enemyPlayer.getCardRepository().getCards().stream().mapToInt(Card::getDamagePoints).sum());
+
     }
 
 }

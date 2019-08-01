@@ -24,7 +24,7 @@ public class CardRepositoryImpl implements CardRepository {
     }
 
     @Override
-    public void add(Card card) {
+    public void add(Card card)  throws IllegalArgumentException{
      if (card == null) {
             throw new IllegalArgumentException("Card cannot be null!");
         }
@@ -36,7 +36,7 @@ public class CardRepositoryImpl implements CardRepository {
 
 
     @Override
-    public boolean remove(Card card) {
+    public boolean remove(Card card)  throws IllegalArgumentException{
         if(card == null){
             throw new IllegalArgumentException("Card cannot be null!");
         }

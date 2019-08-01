@@ -3,30 +3,31 @@ package models.players;
 import models.players.interfaces.Player;
 import repositories.interfaces.CardRepository;
 
+import static common.ConstantMessages.DEFAULT_REPORT_SEPARATOR;
+import static common.ConstantMessages.PLAYER_REPORT_INFO;
+
 public abstract class BasePlayer implements Player {
+    private CardRepository cardRepository;
     private String username;
     private int health;
-    private CardRepository cardRepository;
     private boolean isDead;
 
-    public void setCardRepository(CardRepository cardRepository) {
-        this.cardRepository = cardRepository;
-    }
 
-    public BasePlayer(String username, int health, CardRepository cardRepository) {
+    public BasePlayer(CardRepository cardRepository, String username, int health) {
+        this.cardRepository = cardRepository;
         this.setUsername(username);
         this.setHealth(health);
-        this.cardRepository = cardRepository;
         this.isDead = false;
     }
 
 
     private void setUsername(String username) {
-        if(username == null || username.trim().isEmpty()){
+        if (username == null || username.trim().isEmpty()) {
             throw new IllegalArgumentException("Player's username cannot be null or an empty string.");
         }
         this.username = username;
     }
+
 
 
     @Override
@@ -46,12 +47,12 @@ public abstract class BasePlayer implements Player {
 
     @Override
     public void setHealth(int healthPoints) {
-        if(healthPoints < 0){
-            if(this.username.isEmpty() || this.username.matches("\\s+")){
-                throw new IllegalArgumentException("Player's health bonus cannot be less than zero.");
-            }
+        if (healthPoints < 0) {
+
+            throw new IllegalArgumentException("Player's health bonus cannot be less than zero.");
+
         }
-            this.health = healthPoints;
+        this.health = healthPoints;
     }
 
     @Override
@@ -61,28 +62,25 @@ public abstract class BasePlayer implements Player {
 
     @Override
     public void takeDamage(int damagePoints) {
-        if(damagePoints < 0){
+        if (damagePoints < 0) {
             throw new IllegalArgumentException("Damage points cannot be less than zero.");
         }
-        if((this.getHealth() - damagePoints) < 0){
-            this.setDead(true);
+        if ((this.getHealth() - damagePoints) < 0) {
+            this.isDead=true;
             return;
         }
-        this.setHealth(this.getHealth()-damagePoints);
+        this.setHealth(this.getHealth() - damagePoints);
     }
 
-    private void setDead(boolean dead) {
-        isDead = dead;
-    }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append(String.format("Username: %s - Health: %d – Cards %d",this.getUsername(),this.getHealth(),this.getCardRepository().getCount()));
+        builder.append(String.format(PLAYER_REPORT_INFO, this.getUsername(), this.getHealth(), this.getCardRepository().getCount()));
         this.getCardRepository().getCards().forEach(b -> {
             builder.append(System.lineSeparator()).append(b.toString());
         });
-        builder.append(System.lineSeparator()).append("###");
+        builder.append(System.lineSeparator()).append(DEFAULT_REPORT_SEPARATOR);
         return builder.toString();
     }
 }

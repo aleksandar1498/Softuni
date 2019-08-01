@@ -5,7 +5,8 @@ import models.cards.interfaces.Card;
 import models.players.interfaces.Player;
 
 public class BattleFieldImpl implements Battlefield {
-
+    public BattleFieldImpl() {
+    }
 
     @Override
     public void fight(Player attackPlayer, Player enemyPlayer) {
@@ -18,7 +19,7 @@ public class BattleFieldImpl implements Battlefield {
             attackPlayer.getCardRepository().getCards().forEach(c -> c.setDamagePoints(c.getDamagePoints()+30));
         }
         if(enemyPlayer.getClass().getSimpleName().equals("Beginner")){
-            enemyPlayer.setHealth(attackPlayer.getHealth()+40);
+            enemyPlayer.setHealth(enemyPlayer.getHealth()+40);
             enemyPlayer.getCardRepository().getCards().forEach(c -> c.setDamagePoints(c.getDamagePoints()+30));
         }
         enemyPlayer.getCardRepository().getCards().forEach(c -> {

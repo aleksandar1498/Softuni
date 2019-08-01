@@ -3,14 +3,19 @@ package repositories;
 import models.cards.interfaces.Card;
 import repositories.interfaces.CardRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CardRepositoryImpl implements CardRepository {
     private List<Card> cards;
 
+    public CardRepositoryImpl() {
+        this.cards = new ArrayList<>();
+    }
+
     @Override
     public int getCount() {
-        return this.getCards().size();
+        return this.cards.size();
     }
 
     @Override
@@ -29,9 +34,6 @@ public class CardRepositoryImpl implements CardRepository {
         this.getCards().add(card);
     }
 
-    public void setCards(List<Card> cards) {
-        this.cards = cards;
-    }
 
     @Override
     public boolean remove(Card card) {

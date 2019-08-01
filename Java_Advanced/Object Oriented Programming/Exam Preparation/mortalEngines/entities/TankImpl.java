@@ -37,7 +37,7 @@ public class TankImpl extends BaseMachine implements Tank {
     @Override
     public String toString() {
         String builder = super.toString() + System.lineSeparator() +
-                String.format("*Defense Mode(%s)", (this.getDefenseMode()) ? "ON" : "OFF");
+                String.format(" *Defense Mode(%s)", (this.getDefenseMode()) ? "ON" : "OFF");
         return builder;
     }
 

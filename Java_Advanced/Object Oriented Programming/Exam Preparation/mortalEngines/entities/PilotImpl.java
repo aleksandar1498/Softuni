@@ -46,7 +46,7 @@ public class PilotImpl implements Pilot {
     @Override
     public String report() {
         StringBuilder builder = new StringBuilder();
-        builder.append(String.format("%s - %d machines"));
+        builder.append(String.format("%s - %d machines",this.getName(),this.getMachines().size()));
         this.getMachines().forEach(m -> {
             builder.append(System.lineSeparator());
             builder.append(m.toString());

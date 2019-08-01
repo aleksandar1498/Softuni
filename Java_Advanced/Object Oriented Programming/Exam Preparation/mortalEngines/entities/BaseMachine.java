@@ -4,6 +4,8 @@ import common.OutputMessages;
 import entities.interfaces.Machine;
 import entities.interfaces.Pilot;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,6 +22,7 @@ public abstract class BaseMachine implements Machine {
         this.attackPoints = attackPoints;
         this.defensePoints = defensePoints;
         this.healthPoints = healthPoints;
+        this.targets = new ArrayList<>();
     }
 
     @Override
@@ -29,7 +32,7 @@ public abstract class BaseMachine implements Machine {
 
     @Override
     public void setName(String name) {
-        if(name == null || name.trim().isEmpty()){
+        if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("Machine name cannot be null or empty.");
         }
         this.name = name;
@@ -42,7 +45,7 @@ public abstract class BaseMachine implements Machine {
 
     @Override
     public void setPilot(Pilot pilot) {
-        if(pilot == null){
+        if (pilot == null) {
             throw new IllegalArgumentException("Pilot cannot be null.");
         }
 
@@ -76,7 +79,7 @@ public abstract class BaseMachine implements Machine {
 
     @Override
     public void attack(String target) {
-        if(target == null){
+        if (target == null) {
             throw new IllegalArgumentException("Attack target cannot be null or empty string.");
         }
         this.targets.add(target);
@@ -92,16 +95,19 @@ public abstract class BaseMachine implements Machine {
 
     @Override
     public String toString() {
-        String builder = String.format(
-                "*Type: %s", this.getClass().getSimpleName().replaceAll("Impl", "")) +
-                System.lineSeparator() +
-                String.format("*Health: %.2f", this.getHealthPoints()) +
-                System.lineSeparator() +
-                String.format("*Attack: %.2f", this.getAttackPoints()) +
-                System.lineSeparator() +
-                String.format("*Defense: %.2f", this.getDefensePoints()) +
-                System.lineSeparator() +
-                String.format("*Targets: %s", this.getTargets().toString().replaceAll("[\\[\\]]", ""));
+       
+        String builder =
+                String.format("- %s", this.getName()) +
+                        System.lineSeparator() +
+                        String.format(" *Type: %s", this.getClass().getSimpleName().replaceAll("Impl", "")) +
+                        System.lineSeparator() +
+                        String.format(" *Health: %.2f", this.getHealthPoints()) +
+                        System.lineSeparator() +
+                        String.format(" *Attack: %.2f", this.getAttackPoints()) +
+                        System.lineSeparator() +
+                        String.format(" *Defense: %.2f", this.getDefensePoints()) +
+                        System.lineSeparator() +
+                        String.format(" *Targets: %s",(this.getTargets().size() > 0)? this.getTargets().toString().replaceAll("[\\[\\]]", ""):"None");
         return builder;
     }
 }

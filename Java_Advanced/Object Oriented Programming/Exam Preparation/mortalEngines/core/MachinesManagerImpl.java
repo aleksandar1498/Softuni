@@ -11,6 +11,7 @@ import entities.interfaces.Machine;
 import entities.interfaces.Pilot;
 import entities.interfaces.Tank;
 
+import java.text.DecimalFormat;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -19,7 +20,7 @@ public class MachinesManagerImpl implements MachinesManager {
     private MachineFactory machineFactory;
     private Map<String, Pilot> pilots;
     private Map<String, Machine> machines;
-
+    private DecimalFormat df = new DecimalFormat("0.00");
     public MachinesManagerImpl(PilotFactory pilotFactory, MachineFactory machineFactory, Map<String, Pilot> pilots, Map<String, Machine> machines) {
         this.pilotFactory = pilotFactory;
         this.machineFactory = machineFactory;
@@ -52,7 +53,7 @@ public class MachinesManagerImpl implements MachinesManager {
     @Override
     public String manufactureFighter(String name, double attackPoints, double defensePoints) {
         if (this.machines.containsKey(name)) {
-            throw new IllegalArgumentException(String.format(OutputMessages.machineExists, name));
+            return String.format(OutputMessages.machineExists, name);
         }
         Machine machine = this.machineFactory.createFighter(name, attackPoints, defensePoints);
         this.machines.put(name, machine);
@@ -61,7 +62,7 @@ public class MachinesManagerImpl implements MachinesManager {
 
     @Override
     public String engageMachine(String selectedPilotName, String selectedMachineName) {
-        if (this.pilots.get(selectedPilotName) == null) {
+        if (!this.pilots.containsKey(selectedPilotName)) {
             return String.format(OutputMessages.pilotNotFound, selectedPilotName);
         }
         if (!this.machines.containsKey(selectedMachineName)) {
@@ -71,6 +72,8 @@ public class MachinesManagerImpl implements MachinesManager {
             return String.format(OutputMessages.machineHasPilotAlready, selectedMachineName);
         }
 
+        this.pilots.get(selectedPilotName).addMachine(this.machines.get(selectedMachineName));
+        this.machines.get(selectedMachineName).setPilot(this.pilots.get(selectedPilotName));
         return String.format(OutputMessages.machineEngaged, selectedPilotName, selectedMachineName);
     }
 
@@ -88,7 +91,7 @@ public class MachinesManagerImpl implements MachinesManager {
             if((defending.getHealthPoints()-attacker.getAttackPoints()) < 0){
                 defending.setHealthPoints(0);
             }else{
-                defending.setHealthPoints(defending.getHealthPoints() - attacker.getAttackPoints());
+                defending.setHealthPoints(defending.getHealthPoints() - (attacker.getAttackPoints()-defending.getDefensePoints()));
             }
         }
         attacker.attack(defendingMachineName);

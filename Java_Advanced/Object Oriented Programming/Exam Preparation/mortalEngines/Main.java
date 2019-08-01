@@ -27,28 +27,28 @@ public class Main {
             String [] argsCommand=command.split("\\s+");
             switch (argsCommand[0]){
                 case "Hire":
-                    machinesManager.hirePilot(argsCommand[1]);
+                    System.out.println(machinesManager.hirePilot(argsCommand[1]));
                     break;
                 case "ManufactureTank":
-                    machinesManager.manufactureTank(argsCommand[1],Double.parseDouble(argsCommand[2]),Double.parseDouble(argsCommand[3]));
+                    System.out.println(machinesManager.manufactureTank(argsCommand[1], Double.parseDouble(argsCommand[2]), Double.parseDouble(argsCommand[3])));
                     break;
                 case "ManufactureFighter":
-                    machinesManager.manufactureFighter(argsCommand[1],Double.parseDouble(argsCommand[2]),Double.parseDouble(argsCommand[3]));
+                    System.out.println(machinesManager.manufactureFighter(argsCommand[1], Double.parseDouble(argsCommand[2]), Double.parseDouble(argsCommand[3])));
                     break;
                 case "Engage":
-                    machinesManager.engageMachine(argsCommand[1],argsCommand[2]);
+                    System.out.println(machinesManager.engageMachine(argsCommand[1], argsCommand[2]));
                     break;
                 case "Attack":
-                    machinesManager.attackMachines(argsCommand[1],argsCommand[2]);
+                    System.out.println(machinesManager.attackMachines(argsCommand[1], argsCommand[2]));
                     break;
                 case "AggressiveMode":
-                    machinesManager.toggleFighterAggressiveMode(argsCommand[1]);
+                    System.out.println(machinesManager.toggleFighterAggressiveMode(argsCommand[1]));
                     break;
                 case "DefenseMode":
-                    machinesManager.toggleTankDefenseMode(argsCommand[1]);
+                    System.out.println(machinesManager.toggleTankDefenseMode(argsCommand[1]));
                     break;
                 case "Report":
-                    machinesManager.pilotReport(argsCommand[1]);
+                    System.out.println(machinesManager.pilotReport(argsCommand[1]));
                     break;
             }
         }

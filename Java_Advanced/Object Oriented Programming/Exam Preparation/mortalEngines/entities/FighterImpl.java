@@ -35,7 +35,7 @@ public class FighterImpl extends BaseMachine implements Fighter {
     @Override
     public String toString() {
         return super.toString() + System.lineSeparator() +
-                String.format("*Aggressive Mode(%s)", (this.getAggressiveMode()) ? "ON" : "OFF");
+                String.format(" *Aggressive Mode(%s)", (this.getAggressiveMode()) ? "ON" : "OFF");
 
     }
 }

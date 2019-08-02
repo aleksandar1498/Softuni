@@ -48,4 +48,20 @@ public abstract class Items implements Item {
     public int getDamageBonus() {
         return this.damageBonus;
     }
+
+    @Override
+    public String toString() {
+
+        return String.format("###Item %s", this.getName()) +
+                System.lineSeparator() +
+                String.format("###+%d Strength", this.getStrengthBonus()) +
+                System.lineSeparator() +
+                String.format("###+%d Agility", this.getAgilityBonus()) +
+                System.lineSeparator() +
+                String.format("###+%d Intelligence", this.getIntelligenceBonus()) +
+                System.lineSeparator() +
+                String.format("###+%d HitPoints", this.getHitPointsBonus()) +
+                System.lineSeparator() +
+                String.format("###+%d Damage", this.getDamageBonus());
+    }
 }

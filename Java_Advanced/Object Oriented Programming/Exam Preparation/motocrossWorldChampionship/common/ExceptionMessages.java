@@ -21,7 +21,7 @@ public class ExceptionMessages {
     public static final String RIDER_INVALID = "Rider cannot be null.";
 
 
-    public static final String MOTORCYCLE_EXISTS = "Motorcycle %s is already create.";
+    public static final String MOTORCYCLE_EXISTS = "Motorcycle %s is already created.";
 
     public static final String MOTORCYCLE_INVALID = "Motorcycle cannot be null.";
 

@@ -1,5 +1,6 @@
 package motocrossWorldChampionship.repositories;
 
+import motocrossWorldChampionship.common.ExceptionMessages;
 import motocrossWorldChampionship.entities.interfaces.Motorcycle;
 import motocrossWorldChampionship.repositories.interfaces.Repository;
 
@@ -17,7 +18,11 @@ public class MotorcycleRepository implements Repository<Motorcycle> {
 
     @Override
     public Motorcycle getByName(String name) {
-        return this.models.stream().filter(x -> x.getModel().equals(name)).findFirst().orElse(null);
+        Motorcycle motorcycle = this.models.stream().filter(x -> x.getModel().equals(name)).findFirst().orElse(null);
+        if(motorcycle == null){
+            throw new NullPointerException(String.format(ExceptionMessages.MOTORCYCLE_NOT_FOUND,name));
+        }
+        return motorcycle;
     }
 
     @Override
@@ -27,13 +32,18 @@ public class MotorcycleRepository implements Repository<Motorcycle> {
 
     @Override
     public void add(Motorcycle model) {
-//        if(this.models.stream().filter(m -> m.equals(model)).count() > 0){
-//            throw new IllegalArgumentException()
-//        }
+        if(model == null){
+            throw new IllegalArgumentException(ExceptionMessages.MOTORCYCLE_INVALID);
+        }
+        if(this.models.stream().anyMatch(m -> m.equals(model))){
+            throw new IllegalArgumentException(String.format(ExceptionMessages.MOTORCYCLE_EXISTS,model.getModel()));
+        }
+        this.models.add(model);
     }
 
     @Override
     public boolean remove(Motorcycle model) {
-        return false;
+//
+        return this.models.remove(model);
     }
 }

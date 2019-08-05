@@ -18,7 +18,7 @@ public abstract class MotorcycleImpl implements Motorcycle {
 
     private void setModel(String model) {
         if(model == null || model.trim().isEmpty() || model.length() < 4){
-            throw new IllegalArgumentException(String.format(ExceptionMessages.INVALID_MODEL,this.getModel(),4));
+            throw new IllegalArgumentException(String.format(ExceptionMessages.INVALID_MODEL,model,4));
         }
         this.model = model;
     }

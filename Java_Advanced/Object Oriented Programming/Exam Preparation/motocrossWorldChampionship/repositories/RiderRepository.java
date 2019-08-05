@@ -18,7 +18,11 @@ public class RiderRepository implements Repository<Rider> {
 
     @Override
     public Rider getByName(String name) {
-        return null;
+        Rider rider = this.models.stream().filter(x -> x.getName().equals(name)).findFirst().orElse(null);
+        if(rider == null){
+            throw new NullPointerException(String.format(ExceptionMessages.RIDER_NOT_FOUND,name));
+        }
+        return rider;
     }
 
     @Override
@@ -27,12 +31,20 @@ public class RiderRepository implements Repository<Rider> {
     }
 
     @Override
-    public void add(Rider model) {
+    public void add(Rider model)
+    {
+        if(model == null){
+                throw new NullPointerException(ExceptionMessages.RIDER_INVALID);
+            }
+            if(this.models.stream().anyMatch(x -> x.equals(model))){
+                throw new IllegalArgumentException(String.format(ExceptionMessages.RIDER_EXISTS,model.getName()));
+            }
+
         this.models.add(model);
     }
 
     @Override
     public boolean remove(Rider model) {
-        return false;
+        return this.models.remove(model);
     }
 }

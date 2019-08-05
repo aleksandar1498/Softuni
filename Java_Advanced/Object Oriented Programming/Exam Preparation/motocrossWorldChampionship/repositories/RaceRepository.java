@@ -1,5 +1,6 @@
 package motocrossWorldChampionship.repositories;
 
+import motocrossWorldChampionship.common.ExceptionMessages;
 import motocrossWorldChampionship.entities.interfaces.Race;
 import motocrossWorldChampionship.repositories.interfaces.Repository;
 
@@ -17,7 +18,11 @@ public class RaceRepository implements Repository<Race> {
 
     @Override
     public Race getByName(String name) {
-        return null;
+        Race race = this.models.stream().filter(x -> x.getName().equals(name)).findFirst().orElse(null);
+        if(race == null){
+            throw new NullPointerException(String.format(ExceptionMessages.RACE_NOT_FOUND,name));
+        }
+        return race;
     }
 
     @Override
@@ -27,11 +32,14 @@ public class RaceRepository implements Repository<Race> {
 
     @Override
     public void add(Race model) {
-
+       if(this.models.stream().anyMatch(x -> x.equals(model))){
+           throw new IllegalArgumentException(String.format(ExceptionMessages.RACE_EXISTS,model.getName()));
+       }
+       this.models.add(model);
     }
 
     @Override
     public boolean remove(Race model) {
-        return false;
+        return this.models.remove(model);
     }
 }

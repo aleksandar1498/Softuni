@@ -9,6 +9,7 @@ import motocrossWorldChampionship.repositories.interfaces.Repository;
 import java.util.Collection;
 
 public class RaceImpl implements Race {
+
     private String name;
     private int laps;
     private Repository<Rider> riders;
@@ -50,11 +51,8 @@ public class RaceImpl implements Race {
 
     @Override
     public void addRider(Rider rider) {
-        if(rider == null){
-            throw new NullPointerException(ExceptionMessages.RIDER_INVALID);
-        }
         if (!rider.getCanParticipate()) {
-            throw new IllegalArgumentException(String.format(ExceptionMessages.RACE_EXISTS, rider.getName()));
+            throw new IllegalArgumentException(String.format(ExceptionMessages.RIDER_NOT_PARTICIPATE, rider.getName()));
         }
         if (this.riders.getAll().contains(rider)) {
             throw new IllegalArgumentException(String.format(ExceptionMessages.RIDER_ALREADY_ADDED, rider.getName(), this.getName()));

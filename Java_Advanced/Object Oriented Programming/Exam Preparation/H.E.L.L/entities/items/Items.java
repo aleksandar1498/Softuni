@@ -1,6 +1,6 @@
-package entities.items;
+package hell.entities.items;
 
-import interfaces.Item;
+import hell.interfaces.Item;
 
 public abstract class Items implements Item {
     private String name;
@@ -17,6 +17,27 @@ public abstract class Items implements Item {
         this.intelligenceBonus = intelligenceBonus;
         this.hitPointsBonus = hitPointsBonus;
         this.damageBonus = damageBonus;
+    }
+
+    @Override
+    public String toString() {
+        //###Item: {item1Name}
+        //###+{strengthBonus} Strength
+        //###+{agilityBonus} Agility
+        //###+{intelligenceBonus} Intelligence
+        //###+{hitpointsBonus} HitPoints
+        //###+{damageBonus} Damage
+        return String.format("###Item: %s", this.getName()) +
+                System.lineSeparator() +
+                String.format("###+%d Strength", this.getStrengthBonus()) +
+                System.lineSeparator() +
+                String.format("###+%d Agility", this.getAgilityBonus()) +
+                System.lineSeparator() +
+                String.format("###+%d Intelligence", this.getIntelligenceBonus()) +
+                System.lineSeparator() +
+                String.format("###+%d HitPoints", this.getHitPointsBonus()) +
+                System.lineSeparator() +
+                String.format("###+%d Damage", this.getDamageBonus());
     }
 
     @Override
@@ -47,21 +68,5 @@ public abstract class Items implements Item {
     @Override
     public int getDamageBonus() {
         return this.damageBonus;
-    }
-
-    @Override
-    public String toString() {
-
-        return String.format("###Item %s", this.getName()) +
-                System.lineSeparator() +
-                String.format("###+%d Strength", this.getStrengthBonus()) +
-                System.lineSeparator() +
-                String.format("###+%d Agility", this.getAgilityBonus()) +
-                System.lineSeparator() +
-                String.format("###+%d Intelligence", this.getIntelligenceBonus()) +
-                System.lineSeparator() +
-                String.format("###+%d HitPoints", this.getHitPointsBonus()) +
-                System.lineSeparator() +
-                String.format("###+%d Damage", this.getDamageBonus());
     }
 }

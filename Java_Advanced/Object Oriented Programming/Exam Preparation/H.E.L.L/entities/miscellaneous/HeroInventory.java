@@ -1,9 +1,10 @@
-package entities.miscellaneous;
+package hell.entities.miscellaneous;
 
-import entities.items.CommonItem;
-import interfaces.Inventory;
-import interfaces.Item;
-import interfaces.Recipe;
+import hell.entities.items.CommonItem;
+import hell.entities.items.RecipeItem;
+import hell.interfaces.Inventory;
+import hell.interfaces.Item;
+import hell.interfaces.Recipe;
 
 import java.util.*;
 
@@ -21,17 +22,17 @@ public class HeroInventory implements Inventory {
 
     @Override
     public long getTotalStrengthBonus() {
-        return this.commonItems.values().stream().mapToLong(Item::getStrengthBonus).sum();
+        return this.commonItems.entrySet().stream().mapToLong((x) -> x.getValue().getStrengthBonus()).sum();
     }
 
     @Override
     public long getTotalAgilityBonus() {
-        return this.commonItems.values().stream().mapToLong(Item::getAgilityBonus).sum();
+        return this.commonItems.entrySet().stream().mapToLong((x) -> x.getValue().getAgilityBonus()).sum();
     }
 
     @Override
     public long getTotalIntelligenceBonus() {
-        return this.commonItems.values().stream().mapToLong(Item::getIntelligenceBonus).sum();
+        return this.commonItems.entrySet().stream().mapToLong((x) -> x.getValue().getIntelligenceBonus()).sum();
     }
 
     @Override
@@ -60,9 +61,9 @@ public class HeroInventory implements Inventory {
         for (Recipe recipe : this.recipeItems.values()) {
             List<String> requiredItems = new ArrayList<String>(recipe.getRequiredItems());
 
-            System.out.println("CHECKs");
             for (Item item : this.commonItems.values()) {
-                requiredItems.remove(item.getName());
+
+                    requiredItems.remove(item.getName());
             }
 
             if(requiredItems.isEmpty()) {
@@ -84,7 +85,7 @@ public class HeroInventory implements Inventory {
                 recipe.getIntelligenceBonus(),
                 recipe.getHitPointsBonus(),
                 recipe.getDamageBonus());
-
+        this.recipeItems.remove(recipe.getName());
         this.commonItems.put(newItem.getName(), newItem);
     }
 }

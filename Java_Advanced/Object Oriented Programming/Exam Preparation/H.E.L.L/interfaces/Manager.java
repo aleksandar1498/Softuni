@@ -1,4 +1,4 @@
-package interfaces;
+package hell.interfaces;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ public interface Manager {
 
     public String addRecipe(List<String> arguments);
 
-    public String inspect(List<String> arguments);
+    public String inspect(List<String> arguments) throws NoSuchFieldException, IllegalAccessException;
 
-    public String quit();
+    public String quit() throws NoSuchFieldException, IllegalAccessException;
 }

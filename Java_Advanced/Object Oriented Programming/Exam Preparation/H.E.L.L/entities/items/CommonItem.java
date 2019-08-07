@@ -1,4 +1,6 @@
-package entities.items;
+package hell.entities.items;
+
+import hell.interfaces.Item;
 
 public class CommonItem extends Items {
 

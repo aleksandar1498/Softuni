@@ -1,4 +1,4 @@
-package interfaces;
+package hell.interfaces;
 
 import java.util.Collection;
 
@@ -27,7 +27,7 @@ public interface Hero {
 
     long getDamage();
 
-    Collection<Item> getItems();
+    Collection<Item> getItems() throws NoSuchFieldException, IllegalAccessException;
 
     void addItem(Item item);
 

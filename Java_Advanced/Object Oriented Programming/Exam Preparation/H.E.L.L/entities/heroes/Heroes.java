@@ -1,11 +1,10 @@
-package entities.heroes;
+package hell.entities.heroes;
 
-import entities.miscellaneous.HeroInventory;
-import entities.miscellaneous.ItemCollection;
-import interfaces.Hero;
-import interfaces.Inventory;
-import interfaces.Item;
-import interfaces.Recipe;
+import hell.entities.miscellaneous.HeroInventory;
+import hell.interfaces.Hero;
+import hell.interfaces.Inventory;
+import hell.interfaces.Item;
+import hell.interfaces.Recipe;
 
 import java.lang.reflect.Field;
 import java.util.Collection;
@@ -13,14 +12,14 @@ import java.util.Map;
 
 public abstract class Heroes implements Hero {
     private String name;
-    private long strength;
-    private long agility;
-    private long intelligence;
-    private long hitPoints;
-    private long damage;
+    private int strength;
+    private int agility;
+    private int intelligence;
+    private int hitPoints;
+    private int damage;
     private Inventory inventory;
 
-    Heroes(String name, long strength, long agility, long intelligence, long hitPoints, long damage) {
+    Heroes(String name, int strength, int agility, int intelligence, int hitPoints, int damage) {
         this.name = name;
         this.strength = strength;
         this.agility = agility;
@@ -61,21 +60,15 @@ public abstract class Heroes implements Hero {
     }
 
     @Override
-    public Collection<Item> getItems() {
-        Map<String,Item> items = null;
-        Field[] fields = this.inventory.getClass().getDeclaredFields();
-        for (Field field : fields) {
-            if (field.getDeclaredAnnotations().length > 0 && field.getDeclaredAnnotations()[0].annotationType() == ItemCollection.class) {
-                field.setAccessible(true);
-                try {
-                    items = (Map<String, Item>) field.get(this.inventory);
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+    public Collection<Item> getItems() throws NoSuchFieldException, IllegalAccessException {
+        Field items = this.inventory.getClass().getDeclaredField("commonItems");
+        items.setAccessible(true);
+        Map<String, Item> results = (Map<String, Item>) items.get(this.inventory);
+        return results.values();
+    }
 
-        return items.values();
+    public Inventory getInventory() {
+        return this.inventory;
     }
 
     @Override
@@ -86,24 +79,5 @@ public abstract class Heroes implements Hero {
     @Override
     public void addRecipe(Recipe recipe) {
         this.inventory.addRecipeItem(recipe);
-    }
-
-    public Inventory getInventory() {
-        return this.inventory;
-    }
-
-    @Override
-    public String toString() {
-        System.out.println();
-        String builder = String.format("Hero: %s, Class: %s", this.getName(), this.getClass().getSimpleName()) +
-                System.lineSeparator() +
-                String.format("HitPoints: %d, Damage: %d", this.getHitPoints() + this.getItems().stream().mapToLong(Item::getHitPointsBonus).sum(), this.getDamage()+ this.getItems().stream().mapToLong(Item::getDamageBonus).sum()) +
-                System.lineSeparator() +
-                String.format("Strength: %d", this.getStrength() +  this.getItems().stream().mapToLong(Item::getStrengthBonus).sum()) +
-                System.lineSeparator() +
-                String.format("Agility: %d", this.getAgility() + this.getItems().stream().mapToLong(Item::getAgilityBonus).sum() ) +
-                System.lineSeparator() +
-                String.format("Intelligence: %d", this.getIntelligence() + + this.getItems().stream().mapToLong(Item::getIntelligenceBonus).sum());
-        return builder;
     }
 }

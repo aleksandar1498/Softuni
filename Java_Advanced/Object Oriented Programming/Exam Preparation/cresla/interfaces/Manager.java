@@ -9,5 +9,5 @@ public interface Manager {
 
     String reportCommand(List<String> arguments);
 
-    String exitCommand(List<String> arguments);
+    String exitCommand(List<String> arguments) throws NoSuchFieldException;
 }

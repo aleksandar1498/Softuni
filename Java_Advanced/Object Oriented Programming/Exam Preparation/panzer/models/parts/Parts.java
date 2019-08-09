@@ -29,4 +29,9 @@ public abstract class Parts implements Part {
     public String getModel() {
         return this.model;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s Part - %s",this.getClass().getSimpleName().replaceAll("Part",""),this.getModel());
+    }
 }

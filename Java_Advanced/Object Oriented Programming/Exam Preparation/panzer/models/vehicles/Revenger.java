@@ -3,7 +3,7 @@ package panzer.models.vehicles;
 import java.math.BigDecimal;
 
 public class Revenger extends Vehicles {
-    public Revenger(String model, double totalWeight, BigDecimal totalPrice, long totalAttack, long totalDefense, long totalHitPoints) {
-        super(model, totalWeight, totalPrice.multiply(BigDecimal.valueOf(1.5)), (long) (totalAttack*2.5), (long) (totalDefense*.5), (long) (totalHitPoints*.5));
+    public Revenger(String model, double weight, BigDecimal price, long attack, long defense, long hitPoints) {
+        super(model, weight, price.multiply(BigDecimal.valueOf(1.5)), (long) (attack*2.5), (long) (defense*.5), (long) (hitPoints*.5));
     }
 }

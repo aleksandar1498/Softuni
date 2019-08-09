@@ -21,9 +21,9 @@ public class VehicleAssembler implements Assembler {
 
     @Override
     public double getTotalWeight() {
-        return this.arsenalParts.stream().mapToDouble((x) -> x.getWeight()).sum()
-                - this.shellParts.stream().mapToDouble((x) -> x.getWeight()).sum()
-                + this.enduranceParts.stream().mapToDouble((x) -> x.getWeight()).sum();
+        return this.arsenalParts.stream().mapToDouble(Part::getWeight).sum()
+                + this.shellParts.stream().mapToDouble(Part::getWeight).sum()
+                + this.enduranceParts.stream().mapToDouble(Part::getWeight).sum();
     }
 
     @Override

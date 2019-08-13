@@ -1,7 +1,0 @@
-Function<T,R> -> it is an interface that accepts a parameter T and returns a variable of type R
-                              called with .apply()
-                 UnaryOperator<T> -> is an interface that extends the Function , it differs in that it has only one parameter, the reason is that
-                                     we know from the beginning that both input and output of the function are the same type.
-Consumer<T> -> it is a void interface ,it is called by .accept()
-Supplier<> -> it does not have parameters ,it is called with .get()
-Predicate<T> -> it is a condition that produces true or false , called with .test()

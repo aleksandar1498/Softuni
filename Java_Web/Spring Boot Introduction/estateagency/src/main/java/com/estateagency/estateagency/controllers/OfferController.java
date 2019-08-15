@@ -1,8 +1,10 @@
 package com.estateagency.estateagency.controllers;
 
 import com.estateagency.estateagency.entities.Offer;
+import com.estateagency.estateagency.models.FindOfferModel;
 import com.estateagency.estateagency.models.OfferModel;
 import com.estateagency.estateagency.repositories.OfferRepository;
+import com.estateagency.estateagency.service.FindServiceModel;
 import com.estateagency.estateagency.service.OfferService;
 import com.estateagency.estateagency.service.OfferServiceModel;
 import org.modelmapper.ModelMapper;
@@ -11,7 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.math.BigDecimal;
 
 @Controller
 public class OfferController {
@@ -27,8 +32,18 @@ public class OfferController {
 
     @GetMapping("/find")
     public ModelAndView showFindPage(ModelAndView modelAndView) {
+        modelAndView.addObject("findModel",new FindOfferModel());
         modelAndView.setViewName("find.html");
         return modelAndView;
+    }
+    @PostMapping("/find")
+    public String showFindPage(@ModelAttribute(name = "findmodel")FindOfferModel offerModel) {
+        try{
+            this.offerService.find(modelMapper.map(offerModel, FindServiceModel.class));
+        }catch (IllegalArgumentException ex){
+            return "redirect:/find";
+        }
+        return "redirect:/";
     }
 
     @GetMapping("/reg")

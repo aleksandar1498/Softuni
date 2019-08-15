@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Validator;
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -33,6 +34,19 @@ public class OfferServiceImpl implements OfferService {
         }
         this.offerRepository.saveAndFlush(modelMapper.map(offerServiceModel, Offer.class));
     }
+
+    @Override
+    public void find(FindServiceModel findServiceModel) {
+        if(validator.validate(findServiceModel).size() != 0){
+            throw new IllegalArgumentException("Illegal argument exception");
+        }
+        List<Offer> offers =this.offerRepository.findOffersThatMatchesBudget(findServiceModel.getOfferType(),findServiceModel.getFamilyBudget());
+        if(offers.size() > 0){
+            this.offerRepository.delete(offers.get(0));
+        }
+
+    }
+
 
     @Override
     public List<Offer> getAll() {

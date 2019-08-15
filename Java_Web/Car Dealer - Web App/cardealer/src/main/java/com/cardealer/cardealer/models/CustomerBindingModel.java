@@ -1,28 +1,22 @@
-package com.cardealer.cardealer.entities;
+package com.cardealer.cardealer.models;
 
-import javax.persistence.*;
 import java.math.BigInteger;
 import java.util.Date;
 
+public class CustomerBindingModel {
 
-@Entity
-@Table(name = "customers")
-public class Customer {
-    @Id
     private BigInteger id;
-    @Column(name = "name")
+
     private String name;
-    @Column(name = "birth_date")
-    @Temporal(TemporalType.TIMESTAMP)
+
     private java.util.Date birthDate;
-    @Column(name = "is_young_driver")
     private int isYoungDriver;
 
-    public Customer() {
+    public CustomerBindingModel() {
     }
 
     public BigInteger getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(BigInteger id) {
@@ -30,7 +24,7 @@ public class Customer {
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {
@@ -38,7 +32,7 @@ public class Customer {
     }
 
     public Date getBirthDate() {
-        return this.birthDate;
+        return birthDate;
     }
 
     public void setBirthDate(Date birthDate) {
@@ -51,10 +45,5 @@ public class Customer {
 
     public void setIsYoungDriver(int isYoungDriver) {
         this.isYoungDriver = isYoungDriver;
-    }
-
-    @Override
-    public String toString() {
-        return this.getName()+" "+this.getBirthDate().toString();
     }
 }

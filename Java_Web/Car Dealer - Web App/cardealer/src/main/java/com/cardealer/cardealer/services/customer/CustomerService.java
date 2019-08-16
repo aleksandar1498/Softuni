@@ -1,4 +1,4 @@
-package com.cardealer.cardealer.services;
+package com.cardealer.cardealer.services.customer;
 
 import com.cardealer.cardealer.entities.Customer;
 import com.cardealer.cardealer.models.CustomerBindingModel;

@@ -1,10 +1,9 @@
 package com.cardealer.cardealer.controllers;
 
 import com.cardealer.cardealer.entities.Customer;
-import com.cardealer.cardealer.entities.User;
 import com.cardealer.cardealer.models.CustomerBindingModel;
 import com.cardealer.cardealer.repositories.CustomerRepository;
-import com.cardealer.cardealer.services.CustomerService;
+import com.cardealer.cardealer.services.customer.CustomerService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

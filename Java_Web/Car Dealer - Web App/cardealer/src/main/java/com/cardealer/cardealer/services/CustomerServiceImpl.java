@@ -19,14 +19,20 @@ public class CustomerServiceImpl implements CustomerService {
         this.modelMapper = modelMapper;
     }
 
+
+
     @Override
     public List<Customer> getAllInAscendingOrderByDate() {
-         return this.customerRepository.findAll();
+        return this.customerRepository.findAllOrderedByDateAsc();
     }
 
     @Override
     public void saveCustomer(CustomerBindingModel customer) {
-        System.out.println();
         this.customerRepository.save(modelMapper.map(customer,Customer.class));
+    }
+
+    @Override
+    public List<Customer> getAllInDescendingOrderByDate() {
+        return this.customerRepository.findAllOrderedByDateDesc();
     }
 }

@@ -8,4 +8,6 @@ import java.util.List;
 public interface CustomerService {
     List<Customer> getAllInAscendingOrderByDate();
     void saveCustomer(CustomerBindingModel customer);
+
+    List<Customer> getAllInDescendingOrderByDate();
 }

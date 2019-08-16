@@ -9,6 +9,8 @@ import java.util.List;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer,Long> {
-    /* @Query("SELECT c FROM customers c ORDER BY c.birth_date DESC")
-    List<Customer> getAllOrderedByBirthDateDescOrder();*/
+    @Query(value = "SELECT c FROM Customer c ORDER BY c.birthDate ASC")
+    List<Customer> findAllOrderedByDateAsc();
+    @Query(value = "SELECT c FROM Customer c ORDER BY c.birthDate DESC")
+    List<Customer> findAllOrderedByDateDesc();
 }

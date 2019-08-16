@@ -1,6 +1,7 @@
 package com.cardealer.cardealer.controllers;
 
 import com.cardealer.cardealer.entities.Customer;
+import com.cardealer.cardealer.entities.User;
 import com.cardealer.cardealer.models.CustomerBindingModel;
 import com.cardealer.cardealer.repositories.CustomerRepository;
 import com.cardealer.cardealer.services.CustomerService;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.math.BigInteger;
 import java.sql.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("/customers")
@@ -30,7 +32,24 @@ public class CustomersController {
     @GetMapping("/all/ascending")
     @ResponseBody
     public String showAllCustomersInAscendingOder() {
-        return this.customerService.getAllInAscendingOrderByDate().toString();
+        List<Customer> customers = this.customerService.getAllInAscendingOrderByDate();
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Customer customer : customers) {
+            stringBuilder.append(customer).append("</br>");
+        }
+        return stringBuilder.toString();
+
+    }
+    @GetMapping("/all/descending")
+    @ResponseBody
+    public String showAllCustomersInDescendingOder() {
+        List<Customer> customers = this.customerService.getAllInDescendingOrderByDate();
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Customer customer : customers) {
+            stringBuilder.append(customer).append("</br>");
+        }
+        return stringBuilder.toString();
+
     }
     @GetMapping("/all/save")
     public String saveCustomer() {

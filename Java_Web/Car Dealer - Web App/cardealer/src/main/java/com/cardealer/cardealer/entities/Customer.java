@@ -18,8 +18,6 @@ public class Customer {
     @Column(name = "is_young_driver")
     private int isYoungDriver;
 
-    public Customer() {
-    }
 
     public BigInteger getId() {
         return this.id;

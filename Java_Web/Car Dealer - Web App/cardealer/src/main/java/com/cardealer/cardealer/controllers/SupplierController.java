@@ -1,6 +1,7 @@
 package com.cardealer.cardealer.controllers;
 
 import com.cardealer.cardealer.entities.Supplier;
+import com.cardealer.cardealer.entities.SupplierParts;
 import com.cardealer.cardealer.services.supplier.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,12 +22,16 @@ public class SupplierController {
 
     @GetMapping(value = "/local")
     public ModelAndView showLocalSuppliers(ModelAndView modelAndView){
-        List<Supplier> suppliers  = this.supplierService.showLocal();
-        System.out.println();
+        List<SupplierParts> suppliers  = this.supplierService.getLocalSuppliersWithOfferedParts();
+        modelAndView.addObject("suppliers",suppliers);
+        //modelAndView.setViewName();
         return modelAndView;
     }
     @GetMapping(value = "/importers")
     public ModelAndView showImportedSuppliers(ModelAndView modelAndView){
+        List<Supplier> suppliers  = this.supplierService.showImported();
+        modelAndView.addObject("suppliers",suppliers);
+       // modelAndView.setViewName();
         return modelAndView;
     }
 }

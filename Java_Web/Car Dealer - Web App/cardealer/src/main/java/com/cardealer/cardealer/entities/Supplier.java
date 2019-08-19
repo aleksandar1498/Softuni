@@ -1,30 +1,31 @@
 package com.cardealer.cardealer.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "suppliers")
 public class Supplier {
     @Id
-    @Column(name = "id")
-    private long id;
+    @Column(name = "supplier_id")
+    private long supplierId;
     @Column(name = "name")
     private String name;
     @Column(name = "is_importer",columnDefinition = "bit(1)")
     private boolean isImporter;
 
+    @OneToMany(mappedBy = "supplier",cascade = CascadeType.ALL)
+    private Set<Parts> parts;
+
     public Supplier() {
     }
 
-    public long getId() {
-        return id;
+    public long getSupplierId() {
+        return supplierId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setSupplierId(long supplierId) {
+        this.supplierId = supplierId;
     }
 
     public String getName() {

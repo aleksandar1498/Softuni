@@ -1,5 +1,6 @@
 package com.cardealer.cardealer.config;
 
+import com.cardealer.cardealer.entities.SupplierParts;
 import org.dom4j.rule.Mode;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
@@ -11,4 +12,5 @@ public class ApplicationBeanConfiguartion {
     public ModelMapper modelMapper() {
         return new ModelMapper();
     }
+
 }

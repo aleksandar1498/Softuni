@@ -3,6 +3,7 @@ package com.cardealer.cardealer.entities;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "parts")
@@ -21,6 +22,8 @@ public class Parts {
     @ManyToOne
     @JoinColumn(name = "supplier_id",insertable = false,updatable = false)
     private Supplier supplier;
+    @ManyToMany(mappedBy = "parts")
+    Set<Car> cars;
     public Parts() {
     }
 

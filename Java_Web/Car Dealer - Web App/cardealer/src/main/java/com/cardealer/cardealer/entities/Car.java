@@ -1,9 +1,7 @@
 package com.cardealer.cardealer.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "cars")
@@ -16,7 +14,11 @@ public class Car {
     private String model;
     @Column(name = "travelled_distance")
     private long travelledDistance;
-
+    @ManyToMany
+            @JoinTable(name = "parts_cars",
+            joinColumns= @JoinColumn(name="car_id"),
+    inverseJoinColumns = @JoinColumn(name = "part_id"))
+    Set<Parts> parts;
     public Car() {
     }
 

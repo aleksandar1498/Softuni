@@ -13,17 +13,17 @@
         <table class="table table-dark table-striped">
             <thead>
             <tr>
-                <th>Make</th>
-                <th>Model</th>
-                <th>Travelled Distance</th>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Offered Parts</th>
             </tr>
             </thead>
             <tbody>
-            <th:block th:each="car : ${cars}" th:object="${car}">
+            <th:block th:each="supplier : ${suppliersParts}" th:object="${supplier}">
                 <tr>
-                    <td th:text="*{make}"></td>
-                    <td th:text="*{model}"></td>
-                    <td th:text="*{travelledDistance}"></td>
+                    <td th:text="*{id}"></td>
+                    <td th:text="*{name}"></td>
+                    <td th:text="*{offeredParts}"></td>
                 </tr>
             </th:block>
             </tbody>

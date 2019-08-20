@@ -33,7 +33,17 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
+    public Car findCarById(Long id) {
+        return this.carsRepository.findCarById(id);
+    }
+
+    @Override
     public List<CarParts> findCarPartsByCarId(Long id) {
         return this.carsRepository.findAllPartsByCarId(id);
+    }
+
+    @Override
+    public Double getTotalPrice(Long id) {
+        return this.carsRepository.getTotalPrice(id);
     }
 }

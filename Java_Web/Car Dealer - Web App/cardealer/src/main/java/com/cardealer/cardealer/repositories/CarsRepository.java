@@ -15,4 +15,8 @@ public interface CarsRepository extends JpaRepository<Car, Integer> {
     List<Car> findAllByMake(@Param("make") String make);
     @Query(value = "SELECT new com.cardealer.cardealer.models.CarParts(c.make,c.model,c.travelledDistance,p.name,p.price) FROM Car c  INNER JOIN CarParts cp ON c.carId=cp.carId INNER JOIN Parts p ON cp.partId=p.partId WHERE c.carId=:id")
     List<CarParts> findAllPartsByCarId(@Param("id") Long id);
+    @Query(value = "SELECT c FROM Car c WHERE c.carId = :id")
+    Car findCarById(Long id);
+    @Query(value = "SELECT SUM(p.price) FROM Car c  INNER JOIN CarParts cp ON c.carId=cp.carId INNER JOIN Parts p ON cp.partId=p.partId WHERE c.carId=:id")
+    Double getTotalPrice(Long id);
 }

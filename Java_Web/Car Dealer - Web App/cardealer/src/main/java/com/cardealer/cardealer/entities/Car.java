@@ -18,7 +18,8 @@ public class Car {
     private long travelledDistance;
     @OneToMany(mappedBy = "car",cascade = CascadeType.ALL)
     private List<CarParts> carsParts;
-
+    @OneToMany(mappedBy = "car",cascade = CascadeType.ALL)
+    private List<Sales> sales;
     public Car() {
     }
 

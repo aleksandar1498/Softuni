@@ -8,11 +8,13 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.math.BigInteger;
 import java.sql.Date;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -27,7 +29,12 @@ public class CustomersController {
         this.customerRepository = customerRepository;
         this.modelMapper = modelMapper;
     }
-
+    @GetMapping("/{id}")
+    @ResponseBody
+    public String showDetailsAboutCustomerSales(@PathVariable("id") Long id){
+        List<String> data = Arrays.asList(this.customerService.getTotalSalesInfoByCustomer(id).split("-"));
+        return data.toString();
+    }
     @GetMapping("/all/ascending")
     @ResponseBody
     public String showAllCustomersInAscendingOder() {

@@ -3,13 +3,14 @@ package com.cardealer.cardealer.entities;
 import javax.persistence.*;
 import java.math.BigInteger;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
 @Table(name = "customers")
 public class Customer {
     @Id
-    private BigInteger id;
+    private Long id;
     @Column(name = "name")
     private String name;
     @Column(name = "birth_date")
@@ -17,13 +18,14 @@ public class Customer {
     private java.util.Date birthDate;
     @Column(name = "is_young_driver")
     private int isYoungDriver;
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
+    private List<Sales> sales;
 
-
-    public BigInteger getId() {
+    public Long getId() {
         return this.id;
     }
 
-    public void setId(BigInteger id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

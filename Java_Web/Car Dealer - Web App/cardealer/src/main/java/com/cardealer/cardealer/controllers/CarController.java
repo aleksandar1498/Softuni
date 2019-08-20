@@ -44,4 +44,9 @@ public class CarController {
         modelAndView.setViewName("./cars/ShowCarParts.html");
         return modelAndView;
     }
+    @GetMapping("/{id}/price")
+    @ResponseBody
+    public String getTotalPrice(@PathVariable("id") Long id){
+        return this.carService.getTotalPrice(id)+"";
+    }
 }

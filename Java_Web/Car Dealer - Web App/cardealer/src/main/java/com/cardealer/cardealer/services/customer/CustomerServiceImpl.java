@@ -1,11 +1,11 @@
 package com.cardealer.cardealer.services.customer;
 
-import com.cardealer.cardealer.entities.Car;
 import com.cardealer.cardealer.entities.Customer;
 import com.cardealer.cardealer.models.CustomerBindingModel;
 import com.cardealer.cardealer.models.SaleModel;
 import com.cardealer.cardealer.repositories.CarsRepository;
 import com.cardealer.cardealer.repositories.CustomerRepository;
+import com.cardealer.cardealer.repositories.SalesRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,11 +17,13 @@ public class CustomerServiceImpl implements CustomerService {
     private final CustomerRepository customerRepository;
     private final ModelMapper modelMapper;
     private final CarsRepository carsRepository;
+    private final SalesRepository salesRepository;
     @Autowired
-    public CustomerServiceImpl(CustomerRepository customerRepository, ModelMapper modelMapper, CarsRepository carsRepository) {
+    public CustomerServiceImpl(CustomerRepository customerRepository, ModelMapper modelMapper, CarsRepository carsRepository, SalesRepository salesRepository) {
         this.customerRepository = customerRepository;
         this.modelMapper = modelMapper;
         this.carsRepository = carsRepository;
+        this.salesRepository = salesRepository;
     }
 
     @Override
@@ -40,8 +42,8 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public String getTotalSalesInfoByCustomer(Long id){
-        List<SaleModel> sales = this.customerRepository.findAllCarsBoughtByUser(id);
+    public String getSalesInfoByCustomer(Long id){
+        List<SaleModel> sales = this.salesRepository.getAllSalesByGivenCustomerId(id);
         Customer customer = this.customerRepository.findById(id).orElse(null);
         //TODO discount needs to be added
         if(customer == null){

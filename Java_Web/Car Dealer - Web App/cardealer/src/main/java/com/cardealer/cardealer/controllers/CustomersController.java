@@ -32,7 +32,7 @@ public class CustomersController {
     @GetMapping("/{id}")
     @ResponseBody
     public String showDetailsAboutCustomerSales(@PathVariable("id") Long id){
-        List<String> data = Arrays.asList(this.customerService.getTotalSalesInfoByCustomer(id).split("-"));
+        List<String> data = Arrays.asList(this.customerService.getSalesInfoByCustomer(id).split("-"));
         return data.toString();
     }
     @GetMapping("/all/ascending")

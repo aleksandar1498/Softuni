@@ -3,6 +3,7 @@ package com.cardealer.cardealer.services.customer;
 import com.cardealer.cardealer.entities.Car;
 import com.cardealer.cardealer.entities.Customer;
 import com.cardealer.cardealer.models.CustomerBindingModel;
+import com.cardealer.cardealer.models.SaleModel;
 import com.cardealer.cardealer.repositories.CarsRepository;
 import com.cardealer.cardealer.repositories.CustomerRepository;
 import org.modelmapper.ModelMapper;
@@ -40,7 +41,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public String getTotalSalesInfoByCustomer(Long id){
-        List<Car> cars = this.customerRepository.findAllCarsBoughtByUser(id);
+        List<SaleModel> sales = this.customerRepository.findAllCarsBoughtByUser(id);
         Customer customer = this.customerRepository.findById(id).orElse(null);
         //TODO discount needs to be added
         if(customer == null){
@@ -48,10 +49,11 @@ public class CustomerServiceImpl implements CustomerService {
         }
 
         double totalSpentMoney = 0;
-        for (Car car : cars) {
-            totalSpentMoney+=this.carsRepository.getTotalPrice(car.getCarId());
+        for (SaleModel saleModel : sales) {
+            System.out.println(this.carsRepository.getTotalPrice(saleModel.getCar().getCarId()));
+            totalSpentMoney+=this.carsRepository.getTotalPrice(saleModel.getCar().getCarId())*(1-saleModel.getDiscount());
 
         }
-        return String.format("%s-%d-%.2f",customer.getName(),cars.size(),totalSpentMoney);
+        return String.format("%s-%d-%.2f",customer.getName(),sales.size(),totalSpentMoney);
     }
 }

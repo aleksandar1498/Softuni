@@ -1,7 +1,7 @@
 package com.cardealer.cardealer.controllers;
 
 import com.cardealer.cardealer.entities.Car;
-import com.cardealer.cardealer.entities.CarParts;
+import com.cardealer.cardealer.models.CarParts;
 import com.cardealer.cardealer.repositories.CarsRepository;
 import com.cardealer.cardealer.services.car.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +38,10 @@ public class CarController {
     public ModelAndView getCarByIdAndHisRelatedParts(@PathVariable("id") Long id,ModelAndView modelAndView){
         System.out.println(id);
         List<CarParts> carParts=this.carService.findCarPartsByCarId(id);
+        modelAndView.addObject("make",carParts.get(0).getCarMake());
+        modelAndView.addObject("model",carParts.get(0).getCarModel());
+        modelAndView.addObject("carParts",carParts);
+        modelAndView.setViewName("./cars/ShowCarParts.html");
         return modelAndView;
     }
 }

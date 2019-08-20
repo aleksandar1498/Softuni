@@ -1,7 +1,7 @@
 package com.cardealer.cardealer.services.car;
 
 import com.cardealer.cardealer.entities.Car;
-import com.cardealer.cardealer.entities.CarParts;
+import com.cardealer.cardealer.models.CarParts;
 import com.cardealer.cardealer.repositories.CarsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

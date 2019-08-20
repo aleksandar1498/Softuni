@@ -1,16 +1,15 @@
 package com.cardealer.cardealer.entities;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "parts")
 public class Parts {
     @Id
-    @Column(name = "id")
-    private long id;
+    @Column(name = "part_id")
+    private long partId;
     @Column(name = "name")
     private String name;
     @Column(name = "price")
@@ -22,20 +21,20 @@ public class Parts {
     @ManyToOne
     @JoinColumn(name = "supplier_id",insertable = false,updatable = false)
     private Supplier supplier;
-    @ManyToMany(mappedBy = "parts")
-    Set<Car> cars;
+    @OneToMany(mappedBy = "part",cascade = CascadeType.ALL)
+    private List<CarParts> carsParts;
     public Parts() {
     }
 
 
 
 
-    public long getId() {
-        return id;
+    public long getPartId() {
+        return partId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setPartId(long partId) {
+        this.partId = partId;
     }
 
     public String getName() {

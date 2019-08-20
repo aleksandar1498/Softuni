@@ -1,33 +1,33 @@
 package com.cardealer.cardealer.entities;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "cars")
 public class Car {
     @Id
-    private long id;
+    @Column(name = "car_id")
+    private long carId;
     @Column(name = "make")
     private String make;
     @Column(name = "model")
     private String model;
     @Column(name = "travelled_distance")
     private long travelledDistance;
-    @ManyToMany
-            @JoinTable(name = "parts_cars",
-            joinColumns= @JoinColumn(name="car_id"),
-    inverseJoinColumns = @JoinColumn(name = "part_id"))
-    Set<Parts> parts;
+    @OneToMany(mappedBy = "car",cascade = CascadeType.ALL)
+    private List<CarParts> carsParts;
+
     public Car() {
     }
 
-    public long getId() {
-        return id;
+    public long getCarId() {
+        return carId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setCarId(long carId) {
+        this.carId = carId;
     }
 
     public String getMake() {
@@ -56,6 +56,6 @@ public class Car {
 
     @Override
     public String toString() {
-        return this.getId() + " " + this.getMake();
+        return this.getCarId() + " " + this.getMake();
     }
 }

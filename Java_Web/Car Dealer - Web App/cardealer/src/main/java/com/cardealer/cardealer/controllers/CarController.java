@@ -1,9 +1,9 @@
 package com.cardealer.cardealer.controllers;
 
 import com.cardealer.cardealer.entities.Car;
+import com.cardealer.cardealer.entities.CarParts;
 import com.cardealer.cardealer.repositories.CarsRepository;
 import com.cardealer.cardealer.services.car.CarService;
-import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +32,12 @@ public class CarController {
         List<Car> cars =this.carService.findCarByMake(make);
         modelAndView.addObject("cars",cars);
         modelAndView.setViewName("./cars/ShowCars.html");
+        return modelAndView;
+    }
+    @GetMapping("/{id}/parts")
+    public ModelAndView getCarByIdAndHisRelatedParts(@PathVariable("id") Long id,ModelAndView modelAndView){
+        System.out.println(id);
+        List<CarParts> carParts=this.carService.findCarPartsByCarId(id);
         return modelAndView;
     }
 }

@@ -1,6 +1,7 @@
 package com.cardealer.cardealer.services.car;
 
 import com.cardealer.cardealer.entities.Car;
+import com.cardealer.cardealer.entities.CarParts;
 import com.cardealer.cardealer.repositories.CarsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,5 +30,10 @@ public class CarServiceImpl implements CarService {
         }).collect(Collectors.toList());
 
 
+    }
+
+    @Override
+    public List<CarParts> findCarPartsByCarId(Long id) {
+        return this.carsRepository.findAllPartsByCarId(id);
     }
 }

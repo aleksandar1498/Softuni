@@ -21,7 +21,7 @@
             <tbody>
             <th:block th:each="supplier : ${suppliersParts}" th:object="${supplier}">
                 <tr>
-                    <td th:text="*{id}"></td>
+                    <td th:text="*{carId}"></td>
                     <td th:text="*{name}"></td>
                     <td th:text="*{offeredParts}"></td>
                 </tr>

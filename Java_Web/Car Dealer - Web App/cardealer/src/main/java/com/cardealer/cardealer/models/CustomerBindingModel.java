@@ -1,6 +1,9 @@
 package com.cardealer.cardealer.models;
 
 import java.math.BigInteger;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.Date;
 
 public class CustomerBindingModel {
@@ -35,8 +38,11 @@ public class CustomerBindingModel {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+    public void setBirthDate(String birthDate) throws ParseException {
+        System.out.println();
+        SimpleDateFormat formatter=new SimpleDateFormat("yyyy-dd-MM");
+
+        this.birthDate = formatter.parse(birthDate);
     }
 
     public int getIsYoungDriver() {

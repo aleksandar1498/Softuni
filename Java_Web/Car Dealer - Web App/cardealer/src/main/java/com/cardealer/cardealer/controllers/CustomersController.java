@@ -4,18 +4,17 @@ import com.cardealer.cardealer.entities.Customer;
 import com.cardealer.cardealer.models.CustomerBindingModel;
 import com.cardealer.cardealer.repositories.CustomerRepository;
 import com.cardealer.cardealer.services.customer.CustomerService;
+import org.dom4j.rule.Mode;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.math.BigInteger;
-import java.sql.Date;
+
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -29,6 +28,29 @@ public class CustomersController {
         this.customerService = customerService;
         this.customerRepository = customerRepository;
         this.modelMapper = modelMapper;
+    }
+    @GetMapping("/add")
+    public ModelAndView ShowAddNewUserPage(ModelAndView modelAndView){
+        modelAndView.setViewName("/customers/AddUser.html");
+        modelAndView.addObject("customer",new CustomerBindingModel());
+        return modelAndView;
+    }
+    @PostMapping("/add")
+    public String addNewUser(CustomerBindingModel customerBindingModel){
+         Date d = customerBindingModel.getBirthDate();
+        Date current = new Date();
+        System.out.println();
+        if(current.getTime()-d.getTime() >= Long.valueOf("568025136000")){
+            customerBindingModel.setIsYoungDriver(1);
+        }else{
+            customerBindingModel.setIsYoungDriver(0);
+        }
+        try {
+            this.customerService.saveCustomer(customerBindingModel);
+        }catch (IllegalArgumentException ex){
+            return "redirect:/customers/add";
+        }
+        return "redirect:/";
     }
     @GetMapping("/{id}")
     @ResponseBody
@@ -55,15 +77,5 @@ public class CustomersController {
         return stringBuilder.toString();
 
     }
-    @GetMapping("/all/save")
-    public String saveCustomer() {
-        CustomerBindingModel customer = new CustomerBindingModel();
-        customer.setId(BigInteger.valueOf(22212211));
-        customer.setBirthDate(Date.valueOf("1990-10-04"));
-        customer.setName("Alex");
-        customer.setIsYoungDriver(0);
-        System.out.println();
-        this.customerService.saveCustomer(customer);
-        return "saved";
-    }
+
 }

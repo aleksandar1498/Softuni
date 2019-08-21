@@ -1,6 +1,10 @@
 package com.cardealer.cardealer.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
@@ -10,10 +14,15 @@ import java.util.List;
 @Table(name = "customers")
 public class Customer {
     @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(name = "name")
+    @NotNull
+    @NotEmpty
     private String name;
     @Column(name = "birth_date")
+    @PastOrPresent
     @Temporal(TemporalType.TIMESTAMP)
     private java.util.Date birthDate;
     @Column(name = "is_young_driver")

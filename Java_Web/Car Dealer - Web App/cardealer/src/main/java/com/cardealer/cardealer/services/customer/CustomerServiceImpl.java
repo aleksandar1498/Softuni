@@ -10,6 +10,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+import javax.validation.Validator;
 import java.util.List;
 
 @Service
@@ -18,12 +20,14 @@ public class CustomerServiceImpl implements CustomerService {
     private final ModelMapper modelMapper;
     private final CarsRepository carsRepository;
     private final SalesRepository salesRepository;
+    private final Validator validator;
     @Autowired
-    public CustomerServiceImpl(CustomerRepository customerRepository, ModelMapper modelMapper, CarsRepository carsRepository, SalesRepository salesRepository) {
+    public CustomerServiceImpl(CustomerRepository customerRepository, ModelMapper modelMapper, CarsRepository carsRepository, SalesRepository salesRepository, Validator validator) {
         this.customerRepository = customerRepository;
         this.modelMapper = modelMapper;
         this.carsRepository = carsRepository;
         this.salesRepository = salesRepository;
+        this.validator = validator;
     }
 
     @Override
@@ -33,6 +37,10 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void saveCustomer(CustomerBindingModel customer) {
+        System.out.println();
+        if(validator.validate(customer).size() > 0){
+            throw new IllegalArgumentException("Invalid data");
+        }
         this.customerRepository.save(modelMapper.map(customer,Customer.class));
     }
 

@@ -41,7 +41,7 @@ public class SalesController {
 
     @GetMapping(value = "/{id}")
     @ResponseBody
-    public String showAllSales(@PathVariable("id") Long id) {
+    public String showAllSalesByCustomerId(@PathVariable("id") Long id) {
         StringBuilder builder = new StringBuilder();
         List<SaleModel> sales = this.saleService.getAllSalesByCustomer(id);
         for (SaleModel sale : sales) {
@@ -54,26 +54,38 @@ public class SalesController {
         }
         return builder.toString();
     }
-/*
+
     @GetMapping(value = "/discounted")
     @ResponseBody
-    public void showAllSales() {
+    public String showAllDiscountedSales() {
         StringBuilder builder = new StringBuilder();
-        List<SaleModel> sales = this.saleService.getAllSalesByCustomer(id);
+        List<SaleModel> sales = this.saleService.getAllDiscountedSales();
         for (SaleModel sale : sales) {
-            builder.append(String.format("Car : %s %s %d Customer: %s",
+            builder.append(String.format("Car : %s %s %d Customer: %s Discount : %.2f - %.2f%%",
                     sale.getCar().getMake(),
                     sale.getCar().getModel(),
                     sale.getCar().getTravelledDistance(),
-                    sale.getCustomer().getName()
+                    sale.getCustomer().getName(),
+                    sale.getDiscount(),
+                    sale.getDiscount()*100
             )).append("</br>");
         }
         return builder.toString();
     }
-
-    @GetMapping(value =)
+    @GetMapping(value = "/discounted/{discount}")
     @ResponseBody
-    public void showAllSales() {
-
-    }*/
+    public String showAllSalesDiscountedBy(@PathVariable("discount") Double discount) {
+        StringBuilder builder = new StringBuilder();
+        List<SaleModel> sales = this.saleService.getAllSalesWithDiscountOf(discount/100);
+        for (SaleModel sale : sales) {
+            builder.append(String.format("Car : %s %s %d Customer: %s Discount - %.2f%%",
+                    sale.getCar().getMake(),
+                    sale.getCar().getModel(),
+                    sale.getCar().getTravelledDistance(),
+                    sale.getCustomer().getName(),
+                    sale.getDiscount()*100
+            )).append("</br>");
+        }
+        return builder.toString();
+    }
 }

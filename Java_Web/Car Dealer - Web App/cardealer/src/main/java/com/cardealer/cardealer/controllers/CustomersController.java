@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.math.BigInteger;
 import java.sql.Date;
@@ -36,14 +37,11 @@ public class CustomersController {
         return data.toString();
     }
     @GetMapping("/all/ascending")
-    @ResponseBody
-    public String showAllCustomersInAscendingOder() {
+    public ModelAndView showAllCustomersInAscendingOder(ModelAndView modelAndView) {
         List<Customer> customers = this.customerService.getAllInAscendingOrderByDate();
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Customer customer : customers) {
-            stringBuilder.append(customer).append("</br>");
-        }
-        return stringBuilder.toString();
+        modelAndView.addObject("customers",customers);
+        modelAndView.setViewName("/customers/MainCustomer.html");
+        return modelAndView;
 
     }
     @GetMapping("/all/descending")

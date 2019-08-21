@@ -45,6 +45,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public void editCustomer(CustomerBindingModel customerBindingModel, long id) {
+        System.out.println();
+        this.customerRepository.save(modelMapper.map(customerBindingModel,Customer.class));
+    }
+
+    @Override
     public List<Customer> getAllInDescendingOrderByDate() {
         return this.customerRepository.findAllOrderedByDateDesc();
     }

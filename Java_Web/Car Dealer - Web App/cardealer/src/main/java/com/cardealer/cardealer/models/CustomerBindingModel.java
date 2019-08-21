@@ -40,7 +40,7 @@ public class CustomerBindingModel {
 
     public void setBirthDate(String birthDate) throws ParseException {
         System.out.println();
-        SimpleDateFormat formatter=new SimpleDateFormat("yyyy-dd-MM");
+        SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd");
 
         this.birthDate = formatter.parse(birthDate);
     }

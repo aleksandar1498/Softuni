@@ -1,0 +1,15 @@
+<div th:replace="/fragments/header.html"></div>
+<div th:replace="/fragments/menu.html"></div>
+<div>
+    <div class="col-md-6">
+        <form class="m-2" th:object="${customer}" th:action="@{/customers/edit/(id =*{id})}"  method="post">
+            <label for="name">Name :</label>
+            <input th:field="*{name}" type="text" class="form-control" id="name">
+            <label for="birthday">Password:</label>
+            <input   th:field="${currentBirthDate}" type="date" class="form-control" id="birthday">
+            <button type="submit" class="btn btn-primary mt-2">Add User</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

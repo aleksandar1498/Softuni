@@ -1,5 +1,7 @@
 package com.cardealer.cardealer.entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotEmpty;
@@ -23,7 +25,7 @@ public class Customer {
     private String name;
     @Column(name = "birth_date")
     @PastOrPresent
-    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private java.util.Date birthDate;
     @Column(name = "is_young_driver")
     private int isYoungDriver;

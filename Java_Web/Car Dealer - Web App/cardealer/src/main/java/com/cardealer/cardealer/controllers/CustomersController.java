@@ -11,8 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.swing.text.DateFormatter;
 import java.math.BigInteger;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -52,6 +55,39 @@ public class CustomersController {
         }
         return "redirect:/";
     }
+
+    @GetMapping("/edit/{id}")
+    public ModelAndView ShowEditUserPage(@PathVariable("id") Long id, ModelAndView modelAndView) throws ParseException {
+        Customer customer = this.customerRepository.findById(id).orElse(null);
+        if(customer == null){
+            modelAndView.addObject("id",id);
+            modelAndView.setViewName("/customers/UserNotFound.html");
+        }else{
+            modelAndView.setViewName("/customers/EditUser.html");
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            modelAndView.addObject("currentBirthDate",format.parse(customer.getBirthDate().toString()));
+            modelAndView.addObject("customer",customer);
+        }
+       return modelAndView;
+    }
+    @PostMapping("/edit/{id}")
+    public String editUser(@PathVariable("id") Long id, ModelAndView modelAndView){
+       /* Date d = customerBindingModel.getBirthDate();
+        Date current = new Date();
+        System.out.println();
+        if(current.getTime()-d.getTime() >= Long.valueOf("568025136000")){
+            customerBindingModel.setIsYoungDriver(1);
+        }else{
+            customerBindingModel.setIsYoungDriver(0);
+        }
+        try {
+            this.customerService.saveCustomer(customerBindingModel);
+        }catch (IllegalArgumentException ex){
+            return "redirect:/customers/add";
+        }*/
+        return "redirect:/";
+    }
+
     @GetMapping("/{id}")
     @ResponseBody
     public String showDetailsAboutCustomerSales(@PathVariable("id") Long id){

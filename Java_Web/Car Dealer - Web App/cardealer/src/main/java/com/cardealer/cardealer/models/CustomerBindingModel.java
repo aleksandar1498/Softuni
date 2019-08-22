@@ -1,6 +1,6 @@
 package com.cardealer.cardealer.models;
 
-import java.math.BigInteger;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class CustomerBindingModel {
 
-    private BigInteger id;
+    private Long id;
 
     private String name;
 
@@ -18,11 +18,11 @@ public class CustomerBindingModel {
     public CustomerBindingModel() {
     }
 
-    public BigInteger getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(BigInteger id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

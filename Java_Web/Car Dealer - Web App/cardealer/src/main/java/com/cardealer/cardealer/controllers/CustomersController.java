@@ -40,14 +40,6 @@ public class CustomersController {
     }
     @PostMapping("/add")
     public String addNewUser(CustomerBindingModel customerBindingModel){
-         Date d = customerBindingModel.getBirthDate();
-        Date current = new Date();
-        System.out.println();
-        if(current.getTime()-d.getTime() >= Long.valueOf("568025136000")){
-            customerBindingModel.setIsYoungDriver(1);
-        }else{
-            customerBindingModel.setIsYoungDriver(0);
-        }
         try {
             this.customerService.saveCustomer(customerBindingModel);
         }catch (IllegalArgumentException ex){
@@ -64,27 +56,19 @@ public class CustomersController {
             modelAndView.setViewName("/customers/UserNotFound.html");
         }else{
             modelAndView.setViewName("/customers/EditUser.html");
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            modelAndView.addObject("currentBirthDate",format.parse(customer.getBirthDate().toString()));
+            modelAndView.addObject("currentBirthDate",customer.getBirthDate());
             modelAndView.addObject("customer",customer);
         }
        return modelAndView;
     }
     @PostMapping("/edit/{id}")
-    public String editUser(@PathVariable("id") Long id, ModelAndView modelAndView){
-       /* Date d = customerBindingModel.getBirthDate();
-        Date current = new Date();
-        System.out.println();
-        if(current.getTime()-d.getTime() >= Long.valueOf("568025136000")){
-            customerBindingModel.setIsYoungDriver(1);
-        }else{
-            customerBindingModel.setIsYoungDriver(0);
-        }
+    public String editUser(CustomerBindingModel customerBindingModel){
         try {
-            this.customerService.saveCustomer(customerBindingModel);
-        }catch (IllegalArgumentException ex){
-            return "redirect:/customers/add";
-        }*/
+            this.customerService.editCustomer(customerBindingModel);
+
+        }catch (IllegalArgumentException exception){
+            return "redirect:/edit/"+customerBindingModel.getId();
+        }
         return "redirect:/";
     }
 

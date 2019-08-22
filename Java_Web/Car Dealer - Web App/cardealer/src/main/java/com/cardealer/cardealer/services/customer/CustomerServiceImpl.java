@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 
 import javax.validation.Validator;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -41,13 +42,20 @@ public class CustomerServiceImpl implements CustomerService {
         if(validator.validate(customer).size() > 0){
             throw new IllegalArgumentException("Invalid data");
         }
+        Date d = customer.getBirthDate();
+        Date current = new Date();
+        System.out.println();
+        if(current.getTime()-d.getTime() >= Long.valueOf("568025136000")){
+            customer.setIsYoungDriver(1);
+        }else{
+            customer.setIsYoungDriver(0);
+        }
         this.customerRepository.save(modelMapper.map(customer,Customer.class));
     }
 
     @Override
-    public void editCustomer(CustomerBindingModel customerBindingModel, long id) {
-        System.out.println();
-        this.customerRepository.save(modelMapper.map(customerBindingModel,Customer.class));
+    public void editCustomer(CustomerBindingModel customerBindingModel) {
+        this.saveCustomer(customerBindingModel);
     }
 
     @Override

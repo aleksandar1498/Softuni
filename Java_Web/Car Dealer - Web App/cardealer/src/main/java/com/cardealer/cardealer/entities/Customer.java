@@ -4,13 +4,17 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.FutureOrPresent;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+
 import javax.validation.constraints.PastOrPresent;
-import java.math.BigInteger;
+
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
+
+import static javax.persistence.TemporalType.DATE;
 
 
 @Entity
@@ -24,8 +28,8 @@ public class Customer {
     private String name;
     @Column(name = "birth_date")
     @PastOrPresent
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private java.util.Date birthDate;
+    @DateTimeFormat (pattern="yyyy-MM-dd")
+    private Date birthDate;
     @Column(name = "is_young_driver")
     private int isYoungDriver;
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
@@ -48,11 +52,13 @@ public class Customer {
     }
 
     public Date getBirthDate() {
+
         return this.birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+    public void setBirthDate(Date date) {
+
+        this.birthDate = date;
     }
 
     public int getIsYoungDriver() {

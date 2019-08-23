@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 
 import javax.validation.Validator;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -45,7 +47,7 @@ public class CustomerServiceImpl implements CustomerService {
         Date d = customer.getBirthDate();
         Date current = new Date();
         System.out.println();
-        if(current.getTime()-d.getTime() >= Long.valueOf("568025136000")){
+        if(current.getTime()-d.getTime() >= 20){
             customer.setIsYoungDriver(1);
         }else{
             customer.setIsYoungDriver(0);

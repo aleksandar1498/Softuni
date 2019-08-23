@@ -4,15 +4,17 @@
     <div class="col-md-6">
 
 
-    <h1 th:each="error : ${#fields.errors('*')}" th:text="${error}"></h1>
+
 
 
 
         <form class="m-2" th:action="@{/customers/add}" th:object="${customer}" method="post">
             <label for="name">Name :</label>
+            <h1 th:each="error : ${#fields.errors('name')}" th:text="${error}"></h1>
             <input th:field="*{name}" type="text" class="form-control" id="name">
-            <label for="birthday">Password:</label>
-            <input   th:field="*{birthDate}" type="date" class="form-control" id="birthday">
+            <label for="birthday">Birthdate:</label>
+            <h1 th:each="error : ${#fields.errors('birthDate')}" th:text="${error}"></h1>
+            <input  th:field="*{birthDate}" type="date"  class="form-control" id="birthday">
             <button type="submit" class="btn btn-primary mt-2">Add User</button>
         </form>
     </div>

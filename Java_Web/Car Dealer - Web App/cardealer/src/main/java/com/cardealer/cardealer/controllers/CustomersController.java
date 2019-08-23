@@ -40,18 +40,17 @@ public class CustomersController {
     }
 
     @GetMapping("/add")
-    public ModelAndView ShowAddNewUserPage(@ModelAttribute CustomerBindingModel customerBindingModel, ModelAndView modelAndView) {
-        modelAndView.setViewName("/customers/AddUser.html");
-        modelAndView.addObject("customer", new CustomerBindingModel());
-        return modelAndView;
+    public String ShowAddNewUserPage(@ModelAttribute("customer") CustomerBindingModel customer) {
+     return "/customers/AddUser.html";
     }
 
     @PostMapping("/add")
-    public String addNewUser(@Valid @ModelAttribute("customer") CustomerBindingModel customerBindingModel, BindingResult bindingResult) {
+    public String addNewUser(@Valid @ModelAttribute("customer") CustomerBindingModel customer, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
+            System.out.println();
             return "/customers/AddUser.html";
         }
-        this.customerService.saveCustomer(customerBindingModel);
+        this.customerService.saveCustomer(customer);
         return "redirect:/";
     }
 

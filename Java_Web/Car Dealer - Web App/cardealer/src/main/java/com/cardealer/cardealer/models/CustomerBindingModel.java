@@ -1,23 +1,35 @@
 package com.cardealer.cardealer.models;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.Temporal;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
+
+import static javax.persistence.TemporalType.DATE;
 
 public class CustomerBindingModel {
 
     private Long id;
     @NotNull
-    @NotEmpty
+    @NotEmpty(message = "The name must not be empty")
     @Size(min = 5,max = 10,message = "The name length must be between 5 and 10")
     private String name;
 
-    private java.util.Date birthDate;
+    @DateTimeFormat (pattern="yyyy-MM-dd")
+    @NotNull(message = "The date must be set")
+    @PastOrPresent(message = "The date must be present or in the past")
+    private Date birthDate;
     private int isYoungDriver;
 
     public CustomerBindingModel() {
@@ -40,14 +52,13 @@ public class CustomerBindingModel {
     }
 
     public Date getBirthDate() {
-        return birthDate;
+        return this.birthDate;
     }
 
-    public void setBirthDate(String birthDate) throws ParseException {
-        System.out.println();
-        SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd");
 
-        this.birthDate = formatter.parse(birthDate);
+    public void setBirthDate(Date date){
+
+        this.birthDate = date;
     }
 
     public int getIsYoungDriver() {

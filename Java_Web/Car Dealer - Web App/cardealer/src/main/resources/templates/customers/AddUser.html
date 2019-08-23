@@ -2,6 +2,12 @@
 <div th:replace="/fragments/menu.html"></div>
 <div>
     <div class="col-md-6">
+
+
+    <h1 th:each="error : ${#fields.errors('*')}" th:text="${error}"></h1>
+
+
+
         <form class="m-2" th:action="@{/customers/add}" th:object="${customer}" method="post">
             <label for="name">Name :</label>
             <input th:field="*{name}" type="text" class="form-control" id="name">

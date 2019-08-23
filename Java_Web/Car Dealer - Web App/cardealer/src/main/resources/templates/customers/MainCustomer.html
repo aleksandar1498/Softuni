@@ -15,6 +15,7 @@
     <tbody>
     <th:block th:each="customer : ${customers}" th:object="${customer}">
         <tr>
+
             <td th:text="*{name}"></td>
             <td th:text="*{birthDate}"></td>
             <td><input type="checkbox" disabled="disabled" name="active" th:checked="*{isYoungDriver}"/></td>

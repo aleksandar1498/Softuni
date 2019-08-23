@@ -1,5 +1,6 @@
 package com.cardealer.cardealer.entities;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -20,8 +21,6 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(name = "name")
-    @NotNull
-    @NotEmpty
     private String name;
     @Column(name = "birth_date")
     @PastOrPresent

@@ -8,14 +8,19 @@ import org.dom4j.rule.Mode;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.swing.text.DateFormatter;
+import javax.validation.Valid;
 import java.math.BigInteger;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -26,66 +31,72 @@ public class CustomersController {
     private final CustomerService customerService;
     private final CustomerRepository customerRepository;
     private final ModelMapper modelMapper;
+
     @Autowired
     public CustomersController(CustomerService customerService, CustomerRepository customerRepository, ModelMapper modelMapper) {
         this.customerService = customerService;
         this.customerRepository = customerRepository;
         this.modelMapper = modelMapper;
     }
+
     @GetMapping("/add")
-    public ModelAndView ShowAddNewUserPage(ModelAndView modelAndView){
+    public ModelAndView ShowAddNewUserPage(@ModelAttribute CustomerBindingModel customerBindingModel, ModelAndView modelAndView) {
         modelAndView.setViewName("/customers/AddUser.html");
-        modelAndView.addObject("customer",new CustomerBindingModel());
+        modelAndView.addObject("customer", new CustomerBindingModel());
         return modelAndView;
     }
+
     @PostMapping("/add")
-    public String addNewUser(CustomerBindingModel customerBindingModel){
-        try {
-            this.customerService.saveCustomer(customerBindingModel);
-        }catch (IllegalArgumentException ex){
-            return "redirect:/customers/add";
+    public String addNewUser(@Valid @ModelAttribute("customer") CustomerBindingModel customerBindingModel, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "/customers/AddUser.html";
         }
+        this.customerService.saveCustomer(customerBindingModel);
         return "redirect:/";
     }
 
     @GetMapping("/edit/{id}")
     public ModelAndView ShowEditUserPage(@PathVariable("id") Long id, ModelAndView modelAndView) throws ParseException {
         Customer customer = this.customerRepository.findById(id).orElse(null);
-        if(customer == null){
-            modelAndView.addObject("id",id);
+
+        if (customer == null) {
+            modelAndView.addObject("id", id);
             modelAndView.setViewName("/customers/UserNotFound.html");
-        }else{
+        } else {
             modelAndView.setViewName("/customers/EditUser.html");
-            modelAndView.addObject("currentBirthDate",customer.getBirthDate());
-            modelAndView.addObject("customer",customer);
+            modelAndView.addObject("currentBirthDate", customer.getBirthDate());
+            modelAndView.addObject("customer", customer);
         }
-       return modelAndView;
+        return modelAndView;
     }
+
     @PostMapping("/edit/{id}")
-    public String editUser(CustomerBindingModel customerBindingModel){
+    public String editUser(CustomerBindingModel customerBindingModel) {
         try {
             this.customerService.editCustomer(customerBindingModel);
 
-        }catch (IllegalArgumentException exception){
-            return "redirect:/edit/"+customerBindingModel.getId();
+        } catch (IllegalArgumentException exception) {
+            return "redirect:/edit/" + customerBindingModel.getId();
         }
         return "redirect:/";
     }
 
     @GetMapping("/{id}")
     @ResponseBody
-    public String showDetailsAboutCustomerSales(@PathVariable("id") Long id){
+    public String showDetailsAboutCustomerSales(@PathVariable("id") Long id) {
         List<String> data = Arrays.asList(this.customerService.getSalesInfoByCustomer(id).split("-"));
         return data.toString();
     }
+
     @GetMapping("/all/ascending")
     public ModelAndView showAllCustomersInAscendingOder(ModelAndView modelAndView) {
         List<Customer> customers = this.customerService.getAllInAscendingOrderByDate();
-        modelAndView.addObject("customers",customers);
+        modelAndView.addObject("customers", customers);
         modelAndView.setViewName("/customers/MainCustomer.html");
         return modelAndView;
 
     }
+
     @GetMapping("/all/descending")
     @ResponseBody
     public String showAllCustomersInDescendingOder() {
@@ -97,5 +108,14 @@ public class CustomersController {
         return stringBuilder.toString();
 
     }
+
+    private ModelAndView redirect(String address) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:"+address);
+        return modelAndView;
+    }
+
+
+
 
 }

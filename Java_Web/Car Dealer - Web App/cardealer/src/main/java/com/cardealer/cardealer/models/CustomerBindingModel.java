@@ -1,6 +1,9 @@
 package com.cardealer.cardealer.models;
 
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -9,7 +12,9 @@ import java.util.Date;
 public class CustomerBindingModel {
 
     private Long id;
-
+    @NotNull
+    @NotEmpty
+    @Size(min = 5,max = 10,message = "The name length must be between 5 and 10")
     private String name;
 
     private java.util.Date birthDate;

@@ -1,11 +1,5 @@
-<html xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <title>Cars In Parking</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-</head>
-<body>
+<div th:replace="/fragments/header.html"></div>
+<div th:replace="/fragments/menu.html"></div>
 <col>
 <div class="row">
     <div class="col-xl-3"></div>
@@ -21,7 +15,7 @@
             <tbody>
             <th:block th:each="supplier : ${suppliersParts}" th:object="${supplier}">
                 <tr>
-                    <td th:text="*{carId}"></td>
+                    <td th:text="*{id}"></td>
                     <td th:text="*{name}"></td>
                     <td th:text="*{offeredParts}"></td>
                 </tr>

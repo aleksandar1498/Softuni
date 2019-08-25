@@ -16,6 +16,8 @@ public interface SupplierRepository extends JpaRepository<Supplier, Long> {
     List<Supplier> getImportedSuppliers();
     @Query(value = "SELECT new com.cardealer.cardealer.models.SupplierParts(s.supplierId,s.name,COUNT(p.partId)) FROM Supplier AS s LEFT JOIN Parts AS p ON s.supplierId=p.supplierId WHERE s.isImporter = 0 GROUP BY s.supplierId, s.name")
     List<SupplierParts> getLocalSuppliersWithOfferedParts();
-    @Query(value = "SELECT new com.cardealer.cardealer.models.SupplierParts(s.supplierId,s.name,COUNT(p.partId)) FROM Supplier AS s LEFT JOIN Parts AS p ON s.supplierId=p.supplierId WHERE s.isImporter = 1 GROUP BY s.supplierId, s.name")
+    @Query(value = "SELECT new com.cardealer.cardealer.models.SupplierParts(s.supplierId,s.name,COUNT(p.partId)) FROM Supplier AS s  LEFT JOIN Parts AS p ON s.supplierId=p.supplierId WHERE s.isImporter = 1 GROUP BY s.supplierId, s.name")
     List<SupplierParts> getImportedSuppliersWithOfferedParts();
+    @Query(value = "SELECT new com.cardealer.cardealer.models.SupplierParts(s.supplierId,s.name,COUNT(p.partId)) FROM Supplier AS s LEFT JOIN Parts AS p ON s.supplierId=p.supplierId  GROUP BY s.supplierId, s.name")
+    List<SupplierParts> getAllSuppliersWithOfferedParts();
 }

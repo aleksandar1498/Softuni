@@ -20,7 +20,7 @@ public class SupplierParts {
 
 
     public long getId() {
-        return id;
+        return this.id;
     }
 
     public long getOfferedParts() {
@@ -32,7 +32,7 @@ public class SupplierParts {
 
     }
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {

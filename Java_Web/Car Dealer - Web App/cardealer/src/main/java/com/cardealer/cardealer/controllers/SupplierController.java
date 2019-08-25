@@ -1,5 +1,6 @@
 package com.cardealer.cardealer.controllers;
 
+import com.cardealer.cardealer.entities.Supplier;
 import com.cardealer.cardealer.models.SupplierParts;
 import com.cardealer.cardealer.services.supplier.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-@RequestMapping("/suppliers")
+    @RequestMapping("/suppliers")
 public class SupplierController {
     private final SupplierService supplierService;
     @Autowired
@@ -29,6 +30,13 @@ public class SupplierController {
     @GetMapping(value = "/importers")
     public ModelAndView showImportedSuppliers(ModelAndView modelAndView){
         List<SupplierParts> suppliers  = this.supplierService.getImportedSuppliersWithOfferedParts();
+        modelAndView.addObject("suppliersParts",suppliers);
+        modelAndView.setViewName("./suppliers/ShowSuppliers.html");
+        return modelAndView;
+    }
+    @GetMapping(value = "/")
+    public ModelAndView showAllSuppliers(ModelAndView modelAndView){
+        List<SupplierParts> suppliers  = this.supplierService.getAll();
         modelAndView.addObject("suppliersParts",suppliers);
         modelAndView.setViewName("./suppliers/ShowSuppliers.html");
         return modelAndView;

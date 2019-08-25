@@ -19,6 +19,11 @@ public class SupplierServiceImpl implements SupplierService {
     }
 
     @Override
+    public List<SupplierParts> getAll() {
+        return this.supplierRepository.getAllSuppliersWithOfferedParts();
+    }
+
+    @Override
     public List<Supplier> showLocal() {
         return this.supplierRepository.getLocalSuppliers();
     }

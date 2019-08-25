@@ -8,6 +8,7 @@ import java.util.Set;
 @Table(name = "parts")
 public class Parts {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "part_id")
     private long partId;
     @Column(name = "name")

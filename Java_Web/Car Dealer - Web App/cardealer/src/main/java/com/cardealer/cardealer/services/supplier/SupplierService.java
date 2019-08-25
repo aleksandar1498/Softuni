@@ -6,6 +6,7 @@ import com.cardealer.cardealer.models.SupplierParts;
 import java.util.List;
 
 public interface SupplierService {
+    List<SupplierParts> getAll();
     List<Supplier> showLocal();
     List<Supplier> showImported();
     List<SupplierParts> getLocalSuppliersWithOfferedParts();

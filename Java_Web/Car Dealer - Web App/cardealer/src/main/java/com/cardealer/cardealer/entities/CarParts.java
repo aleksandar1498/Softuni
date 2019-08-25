@@ -27,7 +27,7 @@ public class CarParts {
     }
 
     public long getCarId() {
-        return carId;
+        return this.carId;
     }
 
     public void setCarId(long carId) {
@@ -35,7 +35,7 @@ public class CarParts {
     }
 
     public long getPartId() {
-        return partId;
+        return this.partId;
     }
 
     public void setPartId(long partId) {

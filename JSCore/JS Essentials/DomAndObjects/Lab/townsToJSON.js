@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <script>
-        function matrixToJSON(input){
+  function matrixToJSON(input){
           let output = [];
 		  let header = []; 
 		  for(let j = 0 ; j < input.length ; j++){
@@ -39,7 +29,3 @@
 		  }
 		  console.log(JSON.stringify(output));
         }
-        matrixToJSON(['| Town | Latitude | Longitude |','| Veliko Turnovao | 42.696552 | 0.00 |','| Beijing | 39.913818 | 116.363625 |']);
-    </script>
-</body>
-</html>

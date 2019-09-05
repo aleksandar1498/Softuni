@@ -9,17 +9,19 @@
 <body>
     <script>
         function sumOfTowns(input){
-          let towns = {};
-		  for(let i = 0 ;i < input.length ; i+=2){
-			if(towns[input[i]]){
-				towns[input[i]]+=Number(input[i+1]);
+		input = input[0].replace(/[^ A-Za-z0-9_]+/g," ").trim().split(/ +/);
+	
+          let words = {};
+		  for(let i = 0 ;i < input.length ; i++){
+			if(words[input[i]]){
+				words[input[i]]+=1;
 				continue;
 			}
-			towns[input[i]]=Number(input[i+1]);
+			words[input[i]]=1;
 		  }
-		  console.log(JSON.stringify(towns));
+		  console.log(JSON.stringify(words));
         }
-        sumOfTowns(["Sofia",'20',"Varna",'3',"sofia",'5',"varna",'4']);
+        sumOfTowns(["Far too slow, you're far too slow."]);
     </script>
 </body>
 </html>

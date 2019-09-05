@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <script>
-        function validator(inputPoints){
+function validator(inputPoints){
            let points = [];
            for(let i = 0; i < inputPoints.length ; i+=2){
                points.push({x : inputPoints[i],y : inputPoints[i+1]});
@@ -30,7 +20,3 @@
                return Math.sqrt(Math.pow(Math.max(x1,x2) - Math.min(x1,x2),2) + Math.pow(Math.max(y1,y2)- Math.min(y1,y2),2));
            }
         }
-        validator([2,1,1,1])
-    </script>
-</body>
-</html>

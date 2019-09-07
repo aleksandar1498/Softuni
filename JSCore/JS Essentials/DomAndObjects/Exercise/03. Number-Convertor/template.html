@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="template.css">
     <title>NUMBER CONVERTOR</title>
     <script src="./solution.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -18,6 +19,8 @@
         <label for="selectMenuTo">To</label>
         <select id="selectMenuTo">
             <option selected value=""></option>
+            <option value="binary">Binary</option>
+            <option value="hexadecimal">Hexadecimal</option>
         </select>
         <button>Convert it</button>
 
@@ -28,6 +31,7 @@
     </footer>
     <script>
         solve();
+        
     </script>
 </body>
 </html>

@@ -18,6 +18,7 @@ public class AnonymousThreat {
                     int endIndex = Integer.valueOf(action[2]);
                     if (startIndex < 0) {
                         startIndex = 0;
+			// prova Kosio e bil tuka
                     }
                     if (startIndex > stringList.size() - 1) {
                         action = scanner.nextLine().split(" ");

@@ -7,6 +7,7 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class AnonymousThreat {
+    // Sashko e bil tuk
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         List<String> stringList = Arrays.stream(scanner.nextLine().split(" ")).collect(Collectors.toList());

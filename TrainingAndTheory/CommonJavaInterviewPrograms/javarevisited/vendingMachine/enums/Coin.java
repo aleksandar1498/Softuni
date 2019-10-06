@@ -1,10 +1,10 @@
 package com.interview.preparation.javarevisited.vendingMachine.enums;
 
 public enum Coin {
-    ONE(1),
-    FIVE(5),
-    TEN(10),
-    TWENTYFIVE(25);
+    PENNY(1),
+    NICKEL(5),
+    DIME(10),
+    QUARTER(25);
     int val = 0;
     Coin(int val){
         this.val = val;

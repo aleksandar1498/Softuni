@@ -2,6 +2,7 @@ package com.interview.preparation.javarevisited.vendingMachine.core;
 
 import com.interview.preparation.javarevisited.vendingMachine.enums.Coin;
 import com.interview.preparation.javarevisited.vendingMachine.interfaces.Repository;
+import com.interview.preparation.javarevisited.vendingMachine.models.VendingMachine;
 import com.interview.preparation.javarevisited.vendingMachine.models.products.Coke;
 import com.interview.preparation.javarevisited.vendingMachine.models.products.Product;
 import com.interview.preparation.javarevisited.vendingMachine.models.products.Soda;
@@ -10,14 +11,16 @@ import com.interview.preparation.javarevisited.vendingMachine.models.repositorie
 
 public class Main {
     public static void main(String[] args) {
-        Product coke = new Coke();
-        System.out.println(coke.getPrice());
-        Product soda = new Soda();
-        System.out.println(soda.getPrice());
-        Coin coin = Coin.ONE;
-        Repository<Product> repository = new ProductRepository();
-        repository.add(coke.getClass().getSimpleName(),coke);
-        repository.add(coke.getClass().getSimpleName(),soda);
-        System.out.println(repository.getAll());
+        VendingMachine vendingMachine = new VendingMachine();
+        vendingMachine.deposit(Coin.DIME);
+        vendingMachine.deposit(Coin.DIME);
+        vendingMachine.deposit(Coin.DIME);
+        vendingMachine.load(new Coke());
+        vendingMachine.deposit(Coin.NICKEL);
+        vendingMachine.deposit(Coin.NICKEL);
+        vendingMachine.deposit(Coin.PENNY);
+        vendingMachine.deposit(Coin.PENNY);
+        vendingMachine.deposit(Coin.PENNY);
+        vendingMachine.terminate();
     }
 }

@@ -1,5 +1,7 @@
 package servlets;
 
+import models.Cat;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,11 +23,11 @@ public class CreateServlet extends HttpServlet {
         resp.setContentType("text/html");
         writer.println("<h1>Create a Cat</h1>");
         writer.println("<form action='/01_FluffyDuffyMunchkinCats_war_exploded/cats/create' method='post'>Create a Cat</h1>");
-        writer.println("Name : <input type='text' name='name'/>");
-        writer.println("Breed : <input type='text' name='breed'/>");
-        writer.println("Color : <input type='text' name='color'/>");
-        writer.println("Number of Legs : <input type='number' name='numLegs'/>");
-        writer.println("<button type='submit'>Create Cat</button>");
+        writer.println("Name : <input type='text' name='name'/ value='Alex'></br>");
+        writer.println("Breed : <input type='text' name='breed' value='Bulldog'/></br>");
+        writer.println("Color : <input type='text' name='color' value='White'/></br>");
+        writer.println("Number of Legs : <input type='number' name='numLegs'value='4'/></br>");
+        writer.println("<button type='submit'>Create Cat</button></br>");
         writer.println("</form>");
         writer.println("<a href='/01_FluffyDuffyMunchkinCats_war_exploded/'>Back To Home</h1>");
     }
@@ -44,9 +47,9 @@ public class CreateServlet extends HttpServlet {
         }
 
         if(req.getSession().getAttribute("cats") == null){
-            req.getSession().setAttribute("cats",new ArrayList<String>());
+            req.getSession().setAttribute("cats",new LinkedHashMap<String, Cat>());
         }
-        ((ArrayList<String>)req.getSession().getAttribute("cats")).add(name);
-        resp.sendRedirect("/01_FluffyDuffyMunchkinCats_war_exploded/cats/all");
+        ((LinkedHashMap<String, Cat>)req.getSession().getAttribute("cats")).put(name,new Cat(name,breed,color,numLegs));
+        resp.sendRedirect("/01_FluffyDuffyMunchkinCats_war_exploded/cats/profile?catName="+name);
     }
 }

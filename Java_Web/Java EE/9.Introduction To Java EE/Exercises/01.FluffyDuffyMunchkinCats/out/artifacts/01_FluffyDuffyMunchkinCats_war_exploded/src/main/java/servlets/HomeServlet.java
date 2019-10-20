@@ -25,11 +25,6 @@ public class HomeServlet extends HttpServlet{
         writer.println("<h1>Navigate through the following links</h1>");
         writer.println("<a href='/01_FluffyDuffyMunchkinCats_war_exploded/cats/create'>Create Cat</a></br>");
         writer.println("<a href='/01_FluffyDuffyMunchkinCats_war_exploded/cats/all'>Show All Cats</a>");
-        /*if(req.getSession().getAttribute("cats") == null){
-            req.getSession().setAttribute("cats",new ArrayList<String>());
-        }*/
-
-
     }
 
 }

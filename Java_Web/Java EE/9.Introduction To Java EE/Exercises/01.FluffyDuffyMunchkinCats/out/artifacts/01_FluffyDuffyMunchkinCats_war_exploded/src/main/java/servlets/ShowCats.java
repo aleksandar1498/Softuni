@@ -27,7 +27,7 @@ public class ShowCats extends HttpServlet {
         }else{
             StringBuilder builder = new StringBuilder();
             for(Cat cat : ((LinkedHashMap<String,Cat>)req.getSession().getAttribute("cats")).values()){
-                builder.append(String.format("<a href='/01_FluffyDuffyMunchkinCats_war_exploded/cats/profile?catName=%s'>%s</a>",cat.getName(),cat.getName()));
+                builder.append(String.format("<a href='/01_FluffyDuffyMunchkinCats_war_exploded/cats/profile?catName=%s'>%s</a></br>",cat.getName(),cat.getName()));
             }
             resp.getWriter().println(builder.toString());
         }

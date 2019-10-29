@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="fbefbb89-204e-4791-9fc5-85525a4bd767" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../../../JAVA DB/DB Essentials/DB Essentials.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../JAVA DB/DB Essentials/DB Essentials.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../JAVA DB/DB Essentials/src/employee/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../JAVA DB/DB Essentials/src/employee/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../JAVA DB/DB Essentials/src/employee/connection/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../JAVA DB/DB Essentials/src/employee/connection/DBConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../01.FluffyDuffyMunchkinCats/Web Pages/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../01.FluffyDuffyMunchkinCats/Web Pages/home.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../Tech_Module/Lists/AnonymousThreat.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Tech_Module/Lists/AnonymousThreat.java" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="JUnit5 Test Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../.." />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="C:\Users\Aleksandar Stefanov\Desktop\SoftUni\Softuni\Java_Web\Java EE\9.Introduction To Java EE\Exercises\math\.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1StYqKmuoFXPIzoBhohWFRlxMqc" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="Downloaded.Files.Path.Enabled" value="true" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/test/main/java" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="main.java" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Aleksandar Stefanov\Desktop\SoftUni\Softuni\Java_Web\Java EE\9.Introduction To Java EE\Exercises\math\test\main\java" />
+      <recent name="C:\Users\Aleksandar Stefanov\Desktop\SoftUni\Softuni\Java_Web\Java EE\9.Introduction To Java EE\Exercises\math\src\main\java" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="JUnit.FactorialWithBigIntegerTest">
+    <configuration name="FactorialWithBigInteger" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.java.FactorialWithBigInteger" />
+      <module name="math" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.java.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FactorialTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="math" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.java.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="main.java" />
+      <option name="MAIN_CLASS_NAME" value="main.java.FactorialTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FactorialTest.iterativeForHighestValue (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="math" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.java.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="main.java" />
+      <option name="MAIN_CLASS_NAME" value="main.java.FactorialTest" />
+      <option name="METHOD_NAME" value="iterativeForHighestValue(int)" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FactorialTest.recursiveForHighestValue (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="math" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.java.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="main.java" />
+      <option name="MAIN_CLASS_NAME" value="main.java.FactorialTest" />
+      <option name="METHOD_NAME" value="recursiveForHighestValue(int)" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FactorialWithBigIntegerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="math" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.java.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="main.java" />
+      <option name="MAIN_CLASS_NAME" value="main.java.FactorialWithBigIntegerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.FactorialWithBigIntegerTest" />
+        <item itemvalue="Application.FactorialWithBigInteger" />
+        <item itemvalue="JUnit.FactorialTest.recursiveForHighestValue (1)" />
+        <item itemvalue="JUnit.FactorialTest" />
+        <item itemvalue="JUnit.FactorialTest.iterativeForHighestValue (1)" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fbefbb89-204e-4791-9fc5-85525a4bd767" name="Default Changelist" comment="" />
+      <created>1572384548949</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1572384548949</updated>
+      <workItem from="1572384550504" duration="4126000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

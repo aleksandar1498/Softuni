@@ -113,9 +113,17 @@ class FactorialTest {
 	 */
 	@Test
 	void recursiveForTen() {
+
+		IntToLongFunction factTestExtendend = new IntToLongFunction() {
+			@Override
+			public long applyAsLong(int value) {
+				return Factorial.factorialRecursive(value);
+			}
+		};
 		IntToLongFunction factTest = (int val) -> {
 			return Factorial.factorialRecursive(val);
 		};
+		assertEquals(factTestExtendend.applyAsLong(10),3628800);
 		assertEquals(factTest.applyAsLong(10),3628800);
 	}
 

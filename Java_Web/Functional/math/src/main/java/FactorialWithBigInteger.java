@@ -4,9 +4,12 @@ import java.math.BigInteger;
 
 public class FactorialWithBigInteger {
 	public static void main(String [] args) {
-		for(int i=0;i<1000;i++) {
-			System.out.println(FactorialWithBigInteger.factorialRecursive(i));	
-		}
+
+			System.out.println(FactorialWithBigInteger.factorialRecursive(10));
+			System.out.println(FactorialWithBigInteger.factorialRecursive(100));
+			System.out.println(FactorialWithBigInteger.factorialRecursive(1000));
+			System.out.println(FactorialWithBigInteger.factorialRecursive(10000));
+
 	
 	}
 	public static BigInteger factorialRecursive(int n) {

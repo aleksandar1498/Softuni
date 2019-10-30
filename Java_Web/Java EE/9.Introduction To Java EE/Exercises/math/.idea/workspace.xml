@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/../../../../../JAVA DB/DB Essentials/DB Essentials.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../JAVA DB/DB Essentials/DB Essentials.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../../JAVA DB/DB Essentials/src/employee/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../JAVA DB/DB Essentials/src/employee/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../../JAVA DB/DB Essentials/src/employee/connection/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../JAVA DB/DB Essentials/src/employee/connection/DBConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../01.FluffyDuffyMunchkinCats/Web Pages/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../01.FluffyDuffyMunchkinCats/Web Pages/home.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../../Tech_Module/Lists/AnonymousThreat.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Tech_Module/Lists/AnonymousThreat.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -47,7 +46,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/test/main/java" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../Functional/math" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -174,6 +173,7 @@
       <option name="presentableId" value="Default" />
       <updated>1572384548949</updated>
       <workItem from="1572384550504" duration="4126000" />
+      <workItem from="1572426188442" duration="75000" />
     </task>
     <servers />
   </component>
@@ -185,7 +185,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

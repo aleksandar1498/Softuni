@@ -7,7 +7,7 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class AnonymousThreat {
-    // Sashko e bil tuk
+   
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         List<String> stringList = Arrays.stream(scanner.nextLine().split(" ")).collect(Collectors.toList());
@@ -19,7 +19,7 @@ public class AnonymousThreat {
                     int endIndex = Integer.valueOf(action[2]);
                     if (startIndex < 0) {
                         startIndex = 0;
-			// prova Kosio e bil tuka
+			
                     }
                     if (startIndex > stringList.size() - 1) {
                         action = scanner.nextLine().split(" ");

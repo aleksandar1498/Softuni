@@ -8,27 +8,40 @@ import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.function.BiConsumer;
+import java.util.stream.Stream;
+
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
+
 
 final class SignatureTest {
 	
-	@Test
-	@DisplayName("signData function with input 'My\n' ")
- void shouldReturnAKeyValuePairOfElaborated() throws UnsupportedEncodingException {
-		checkData(Signature::signData,"My","My My\n");
+	@ParameterizedTest(name = "{0} should return ''")
+	@DisplayName("result should be '' on passed emtpy")
+	@ValueSource(strings = {""," ","  ","   "})
+	void shouldReturnEmptyIfEmptyStringIsPassed(String value) throws UnsupportedEncodingException {
+		checkData(Signature::signData,value,"");		
 	}
 	
-	@Test
-	@DisplayName("squashData function with input 'My\n' ")
-	 void squashDatashouldReturnAKeyValuePairOfElaborated() throws UnsupportedEncodingException {
-		StringBuilder input = new StringBuilder();
-		input.append("am ma\n");
-		input.append("am am\n");
-		input.append("acs sac\n");
-		checkData(Squash::squash,input.toString(),"ma am\nsac");
+	@ParameterizedTest(name = "sign {0} should be equal {1}")
+	@MethodSource
+	@DisplayName("signData")
+	void shouldReturnAKeyValuePairOfElaborated(String input,String expected) throws UnsupportedEncodingException {
+		checkData(Signature::signData,input,expected);
 	}
-
+	
+	static Stream<Arguments> shouldReturnAKeyValuePairOfElaborated() {
+		return Stream.of(
+				Arguments.arguments("",""),
+				Arguments.arguments(" am","am am\n"),
+				Arguments.arguments("My","My My\n"),
+				Arguments.arguments("acdb prova","abcd acdb\naoprv prova\n")
+				);
+	}
+	
 	private final static void checkData(BiConsumer<ByteArrayInputStream,PrintStream> func,final String INPUT,final String EXPECTED_OUTPUT) throws UnsupportedEncodingException {
 		//final String EXPECTED = "My My\n";
 		ByteArrayInputStream in = new ByteArrayInputStream(INPUT.getBytes());

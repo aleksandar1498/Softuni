@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.dxc.internship;
 
@@ -9,106 +9,128 @@ package com.dxc.internship;
  */
 public final class Rotator {
 
-	private Rotator() {
-		// Utility class
-	}
+    private Rotator() {
+        // Utility class
+    }
 
-	public static void main(String[] args) {
+    /**
+     * Reverts an array of chars from {@code start} index to {@code end} index
+     *
+     * @param sentence is the char array that needs to be reverted. If it is null or
+     *                 empty array an IllegalArgumentExceptionIsThrown
+     * @param start    is the starting index for the reversion . It is inclusive
+     * @param end      is the ending index for the reversion. It is inclusive
+     * @throws IllegalArgumentException if : -word is null or empty -start index is
+     *                                  less then 0 or more then the length of the
+     *                                  word -end index is less then 0 or more then
+     *                                  the length of the word -start index is
+     *                                  greater than end index
+     */
+    public static void revert(final char[] sentence, final int start, final int end) {
+        checkValidityArray(sentence);
+        checkIndexValidity(sentence, start, end);
+        revertFragment(sentence, start, end);
+    }
 
-		Rotator.revertInternWords(new char[] { ' ', ' ', ' ' });
-		Rotator.revertInternWords(
-				new char[] { 'I', ' ', 'A', 'm', ' ', 'H', 'e', 'l', 'l', 'o', ' ', ' ', 'I', 'v', '!', 'a', 'n' });
-		Rotator.revertInternWords(new char[] { 'I', ' ', 'A', 'm', ' ', 'H', 'e', 'l', 'l', 'o', ' ', ' ', 'I', 'v',
-				'!', 'a', 'n', ' ', ' ' });
-		Rotator.revertInternWords(new char[] { ' ', 'I', ' ', 'A', 'm', ' ', 'H', 'e', 'l', 'l', 'o', ' ', ' ', 'I',
-				'v', '!', 'a', 'n', ' ', ' ' });
-	}
+    private static int middleIndex(final int start, final int end) {
+        return start + (end - start) / 2;
+    }
 
-	/**
-	 * Reverts an array of chars from {@code start} index  to {@code end} index 
-	 * 
-	 * @param word  is the char array that needs to be reverted. If it is null or
-	 *              empty array an IllegalArgumentExceptionIsThrown
-	 * @param start is the starting index for the reversion . It is inclusive
-	 * @param end   is the ending index for the reversion. It is inclusive
-	 * @throws IllegalArgumentException if : -word is null or empty -start index is
-	 *                                  less then 0 or more then the length of the
-	 *                                  word -end index is less then 0 or more then
-	 *                                  the length of the word -start index is
-	 *                                  greater than end index
-	 */
-	public static final void revert(char[] word, int start, int end) {
-		checkValidityArray(word);
-		if (start < 0 || start >= word.length || end < 0 || end >= word.length) {
-			throw new IllegalArgumentException("index is out of bounds");
-		}
-		if (start > end) {
-			throw new IllegalArgumentException("start cannot be after the end");
-		}
-		int middle = start + (end - start) / 2;
-		String.copyValueOf(word);
-		while (start <= middle) {
-			char temp = word[start];
-			word[start] = word[end];
-			word[end] = temp;
-			start++;
-			end--;
-		}
-	}
+    private static void revertFragment(final char[] sentence, final int start, final int end) {
+        int i = 0;
+        final int middle = middleIndex(start, end);
+        while (start + i <= middle) {
+            final char temp = sentence[start + i];
+            sentence[start + i] = sentence[end - i];
+            sentence[end - i] = temp;
+            i++;
+        }
+    }
 
-	/**
-	 * Reverts an array of chars
-	 * 
-	 * @param word is the char array that needs to be reverted this method
-	 *             implements polymorphism, calls the original implementation of the
-	 *             method by setting the starting and ending value
-	 *             {@link #revert(char[], int, int) revert}
-	 */
-	public static final void revert(char[] word) {
-		checkValidityArray(word);
-		Rotator.revert(word, 0, word.length - 1);
-	}
+    /**
+     * Reverts an array of chars
+     *
+     * @param sentence is the char array that needs to be reverted this method
+     *                 implements polymorphism, calls the original implementation of
+     *                 the method by setting the starting and ending value
+     *                 {@link #revert(char[], int, int) revert}
+     */
+    public static void revert(final char[] sentence) {
+        checkValidityArray(sentence);
+        Rotator.revert(sentence, 0, sentence.length - 1);
+    }
 
-	/**
-	 * Reverts the order of the whole words in the array of char ,maintaining the number and the order of the spaces
-	 * @param word is the char array that needs to be reverted
-	 * @throws  IllegalArgumentException
-     *          If {@code word} is null,or {@code word} is empty
-	 */
-	public static final void revertInternWords(char[] word) {
-		revert(word);
-		int startIndex = -1;
-		for (int i = 0; i < word.length; i++) {
+    /**
+     * Reverts the order of the whole words in the array of char ,maintaining the
+     * number and the order of the spaces
+     *
+     * @param word is the char array that needs to be reverted
+     * @throws IllegalArgumentException If {@code word} is null,or {@code word} is
+     *                                  empty
+     */
+    public static void revertInternWords(final char[] word) {
+        Rotator.revert(word);
+        int startIndex = -1;
+        for (int i = 0; i < word.length; i++) {
 
-			if (startIndex == -1 && word[i] != ' ') {
-				startIndex = i;
-			} else if (startIndex != -1 && word[i] == ' ') {
-				revert(word, startIndex, i - 1);
-				startIndex = -1;
-			}
+            if (isWordFound(startIndex) == false && !isDelimiter(word, i)) {
+                startIndex = i;
+            } else if (isWordFound(startIndex) && isDelimiter(word, i)) {
+                revert(word, startIndex, i - 1);
+                startIndex = -1;
+            }
 
-		}
+        }
 
-		if (startIndex != -1) {
-			revert(word, startIndex, word.length - 1);
-		}
+        if (isWordFound(startIndex)) {
+            revert(word, startIndex, word.length - 1);
+        }
 
-		System.out.println(word);
-	}
+    }
 
-	/**
-	 * Utility method used to check if the passed argument is valid 
-	 * @param word is the argument that needs to be checked
-	 * @throws IllegalArgumentException 
-	 * 	if the passed argument is null or the passed argument length is equal to '0'
-	 */
-	private static void checkValidityArray(char[] word) {
-		if (word == null) {
-			throw new IllegalArgumentException("word cannot be null");
-		}
-		if (word.length == 0) {
-			throw new IllegalArgumentException("word cannot be empty");
-		}
-	}
+    private static boolean isWordFound(final int startIndex) {
+        return startIndex != -1;
+    }
+
+    private static boolean isDelimiter(final char[] word, final int i) {
+        return word[i] == ' ';
+    }
+
+    /**
+     * Utility method used to check if the passed argument is valid
+     *
+     * @param word is the argument that needs to be checked
+     * @throws IllegalArgumentException if the passed argument is null or the passed
+     *                                  argument length is equal to '0'
+     */
+
+    private static void checkValidityArray(final char[] sentence) {
+        if (sentence == null) {
+            throw new IllegalArgumentException("sentence cannot be null");
+        }
+        if (sentence.length == 0) {
+            throw new IllegalArgumentException("sentence cannot be empty");
+        }
+
+    }
+
+    private static void checkIndexValidity(final char[] sentence, final int start, final int end) {
+        checkIndexValidity(sentence, start);
+        checkIndexValidity(sentence, end);
+        checkIndexValidity(start, end);
+    }
+
+    private static void checkIndexValidity(final char[] sentence, final int index) {
+        if (index < 0 || index >= sentence.length) {
+            throw new IllegalArgumentException("index is out of bounds");
+
+        }
+    }
+
+    private static void checkIndexValidity(final int start, final int end) {
+        if (start > end) {
+            throw new IllegalArgumentException("start cannot be after the end");
+        }
+    }
 
 }

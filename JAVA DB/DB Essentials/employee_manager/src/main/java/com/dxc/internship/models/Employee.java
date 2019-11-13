@@ -1,30 +1,44 @@
 /**
- * 
+ *
  */
 package com.dxc.internship.models;
 
 import java.sql.Date;
-import java.sql.Time;
 
 /**
  * @author astefanov2
  *
  */
 public class Employee {
-    private int id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String phoneNumber;
-    private Date hireDate;
-    private String jobId;
-    private double salary;
-    private double commissionPct;
-    private int managerId;
-    private int departmentId;
+    private final Integer id;
+    private final String firstName;
+    private final String lastName;
+    private final String email;
+    private final String phoneNumber;
+    private final Date hireDate;
+    private final String jobId;
+    private final double salary;
+    private final double commissionPct;
+    private final int managerId;
+    private final int departmentId;
 
-    public Employee(int employeeId, String firstName, String lastName, String email, String phoneNumber, Date hireDate,
-            String jobId, double salary, double commissionPct, int managerId, int departmentId) {
+    /**
+     * @param employeeId    is the unique identifier for the user
+     * @param firstName
+     * @param lastName
+     * @param email
+     * @param phoneNumber
+     * @param hireDate
+     * @param jobId
+     * @param salary
+     * @param commissionPct
+     * @param managerId
+     * @param departmentId
+     */
+    @SuppressWarnings("hiding")
+    public Employee(final Integer employeeId, final String firstName, final String lastName, final String email,
+            final String phoneNumber, final Date hireDate, final String jobId, final double salary,
+            final double commissionPct, final int managerId, final int departmentId) {
         this.id = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -38,59 +52,90 @@ public class Employee {
         this.departmentId = departmentId;
     }
 
-    public int getId() {
-        return id;
+    /**
+     * @return the id of the employee
+     */
+    public Integer getId() {
+        return this.id;
     }
 
+    /**
+     * @return the firstName of the employee
+     */
     public String getFirstName() {
-        return firstName;
+        return this.firstName;
     }
 
+    /**
+     * @return the lastName of the employee
+     */
     public String getLastName() {
-        return lastName;
+        return this.lastName;
     }
 
+    /**
+     * @return the email of the employee
+     */
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
+    /**
+     * @return the phoneNumber of the employee
+     */
     public String getPhoneNumber() {
-        return phoneNumber;
+        return this.phoneNumber;
     }
 
+    /**
+     * @return the hireDate of the employee
+     */
     public Date getHireDate() {
-        return hireDate;
+        return this.hireDate;
     }
 
+    /**
+     * @return the jobId of the employee
+     */
     public String getJobId() {
-        return jobId;
+        return this.jobId;
     }
 
+    /**
+     * @return the salary of the employee
+     */
     public double getSalary() {
-        return salary;
+        return this.salary;
     }
 
+    /**
+     * @return the commissionPct of the employee
+     */
     public double getCommissionPct() {
-        return commissionPct;
+        return this.commissionPct;
     }
 
+    /**
+     * @return the managerId of the employee
+     */
     public int getManagerId() {
-        return managerId;
+        return this.managerId;
     }
 
+    /**
+     * @return the departmentId of the employee
+     */
     public int getDepartmentId() {
-        return departmentId;
+        return this.departmentId;
     }
 
+    @SuppressWarnings("nls")
     @Override
     public String toString() {
-        return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-                + ", phoneNumber=" + phoneNumber + ", hireDate=" + hireDate + ", jobId=" + jobId + ", salary=" + salary
-                + ", commissionPct=" + commissionPct + ", managerId=" + managerId + ", departmentId=" + departmentId
-                + "]";
+        return "Employee [id=" + this.id + ", firstName=" + this.firstName + ", lastName=" + this.lastName + ", email="
+                + this.email + ", phoneNumber=" + this.phoneNumber + ", hireDate=" + this.hireDate + ", jobId="
+                + this.jobId + ", salary=" + this.salary + ", commissionPct=" + this.commissionPct + ", managerId="
+                + this.managerId + ", departmentId=" + this.departmentId + "]";
     }
-
-  
-    
 
 }

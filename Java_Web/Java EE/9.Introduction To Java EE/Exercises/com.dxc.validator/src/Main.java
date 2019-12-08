@@ -1,6 +1,6 @@
 import models.Doctor;
-import validator.*;
-import validator.Error;
+import validator.strategy.*;
+import validator.strategy.Error;
 
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -25,4 +25,5 @@ public class Main {
             }
         }
     }
+
 }

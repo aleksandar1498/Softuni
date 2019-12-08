@@ -1,4 +1,4 @@
-package validator;
+package validator.strategy;
 
 public class Error {
     private String problem;

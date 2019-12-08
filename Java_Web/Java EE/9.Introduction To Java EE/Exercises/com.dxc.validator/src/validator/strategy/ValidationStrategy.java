@@ -1,7 +1,6 @@
-package validator;
+package validator.strategy;
 
 import models.Doctor;
-import validator.DoctorValidationType;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package validator;
+package validator.strategy;
 
 import models.Doctor;
 

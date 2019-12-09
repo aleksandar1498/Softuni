@@ -28,7 +28,7 @@ public class Main {
                 throw new ValidationException(errors);
             }
         }catch (ValidationException e){
-            
+
             for(var err : e.getRoot().entrySet()){
                 System.out.println(err.getKey());
                 for (var reason : err.getValue()){

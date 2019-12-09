@@ -1,7 +1,7 @@
 package validator.validator.interfaces;
 
-import validator.functional.Error;
 
+import validator.validator.errors.Error;
 import java.util.List;
 import java.util.Set;
 

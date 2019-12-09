@@ -1,17 +1,19 @@
 package validator.validator.exceptions;
 
-import validator.strategy.Error;
+
 
 import java.util.List;
+import java.util.Map;
+import validator.validator.errors.Error;
 
 public class ValidationException extends IllegalArgumentException{
-    private List<Error> root;
-    public ValidationException(List<Error> root) {
+    private Map<String,List<Error>> root;
+    public ValidationException(Map<String,List<Error>> root) {
         super();
         this.root = root;
     }
 
-    public List<Error> getRoot() {
+    public Map<String,List<Error>> getRoot() {
         return root;
     }
 }

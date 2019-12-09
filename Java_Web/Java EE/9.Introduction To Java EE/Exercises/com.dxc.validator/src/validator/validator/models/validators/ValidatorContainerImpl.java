@@ -1,13 +1,10 @@
 package validator.validator.models.validators;
 
-import validator.functional.Error;
-import validator.validator.interfaces.Validator;
 import validator.validator.interfaces.ValidatorContainer;
-
+import validator.validator.errors.Error;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.BiFunction;
 
 public class ValidatorContainerImpl implements ValidatorContainer {
     private Map<String,List<Error>> validators;

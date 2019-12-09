@@ -1,6 +1,8 @@
-package validator.validator.models.rules.simple;
+package validator.validator.models.rules;
 
-import java.text.Format;
+import validator.validator.errors.Error;
+import validator.validator.errors.ErrorType;
+
 import java.util.regex.Pattern;
 
 public class StringFormatRule extends FormatRule<String> {
@@ -17,7 +19,12 @@ public class StringFormatRule extends FormatRule<String> {
     }
 
     @Override
-    public String getMessage() {
-        return "The format is not in "+regex;
+    public ErrorType getError() {
+        return ErrorType.FORMAT;
+    }
+
+    @Override
+    public Object[] getParams() {
+        return new Object[]{regex};
     }
 }

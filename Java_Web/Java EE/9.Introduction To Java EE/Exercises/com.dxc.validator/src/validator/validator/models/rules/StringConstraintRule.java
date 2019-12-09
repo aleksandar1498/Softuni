@@ -1,6 +1,6 @@
-package validator.validator.models.rules.simple;
+package validator.validator.models.rules;
 
-import validator.validator.models.rules.parameterized.ConstraintsRule;
+import validator.validator.errors.ErrorType;
 
 public class StringConstraintRule extends ConstraintsRule<String> {
     private  int lowLimit;
@@ -17,7 +17,11 @@ public class StringConstraintRule extends ConstraintsRule<String> {
     }
 
     @Override
-    public String getMessage() {
-        return String.format("The passed argument is not between %d and %d",this.lowLimit,this.topLimit);
+    public ErrorType getError() {
+        return ErrorType.NOT_IN_RANGE;
+    }
+    @Override
+    public Object[] getParams(){
+        return new Object[]{this.lowLimit,this.topLimit};
     }
 }

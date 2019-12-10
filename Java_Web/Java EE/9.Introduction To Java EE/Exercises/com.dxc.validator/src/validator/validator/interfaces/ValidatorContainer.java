@@ -8,5 +8,5 @@ import java.util.function.BiFunction;
 
 public interface ValidatorContainer {
     void addValidator(String id,List<Error> errors);
-    Map<String,List<Error>> execute();
+    void checkValidated();
 }

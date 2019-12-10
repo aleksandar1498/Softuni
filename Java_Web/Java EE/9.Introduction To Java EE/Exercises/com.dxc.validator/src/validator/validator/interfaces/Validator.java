@@ -10,4 +10,5 @@ public interface Validator<T> {
     void setRules(Set<ValidationRule> rules);
     void addRule(ValidationRule rule);
     List<Error> validate(T obj);
+
 }

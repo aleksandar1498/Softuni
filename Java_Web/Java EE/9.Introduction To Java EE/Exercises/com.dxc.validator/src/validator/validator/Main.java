@@ -15,18 +15,14 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        ValidatorContainer container = new ValidatorContainerImpl();
+        ValidatorContainer validatorContainer = new ValidatorContainerImpl();
         final Validator patientIdValidator = new PatientIdValidator();
         final Validator doctorIdValidator = new DoctorIdValidator();
-        container.addValidator(patientIdValidator.getIdentifier(),patientIdValidator.validate("PAT111"));
-        container.addValidator(doctorIdValidator.getIdentifier(),doctorIdValidator.validate("PAT111"));
-
-        Map<String,List<Error>> errors = container.execute();
+        validatorContainer.addValidator(patientIdValidator.getIdentifier(),patientIdValidator.validate("PAT111"));
+        validatorContainer.addValidator(doctorIdValidator.getIdentifier(),doctorIdValidator.validate("PAT111"));
 
         try{
-            if(errors.size() > 0){
-                throw new ValidationException(errors);
-            }
+            validatorContainer.checkValidated();
         }catch (ValidationException e){
 
             for(var err : e.getRoot().entrySet()){

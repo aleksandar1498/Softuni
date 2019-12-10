@@ -10,11 +10,11 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-public abstract class ValidatorBase<T> implements Validator<T> {
+public class ValidatorBase<T> implements Validator<T> {
     private Set<ValidationRule> rules;
     private final String identifier;
 
-    ValidatorBase(String identifier,Set<ValidationRule> rules) {
+    ValidatorBase(String identifier, Set<ValidationRule> rules) {
         this.identifier = identifier;
         this.setRules(rules);
     }

@@ -1,5 +1,6 @@
 package validator.validator.models.validators;
 
+import validator.validator.exceptions.ValidationException;
 import validator.validator.interfaces.ValidatorContainer;
 import validator.validator.errors.Error;
 import java.util.LinkedHashMap;
@@ -19,14 +20,15 @@ public class ValidatorContainerImpl implements ValidatorContainer {
     }
 
     @Override
-    public Map<String, List<Error>> execute() {
+    public void checkValidated() {
         Map<String,List<Error>> errors = new LinkedHashMap<>();
-        System.out.println();
         for(var validator : this.validators.entrySet()){
             if(validator.getValue().size() > 0){
                 errors.put(validator.getKey(),validator.getValue());
             }
         }
-        return errors;
+        if(errors.size() > 0){
+            throw new ValidationException(errors);
+        }
     }
 }

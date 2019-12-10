@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import validator.validator.errors.Error;
 
-public class ValidationException extends IllegalArgumentException{
+public class ValidationException extends RuntimeException{
     private Map<String,List<Error>> root;
     public ValidationException(Map<String,List<Error>> root) {
         super();

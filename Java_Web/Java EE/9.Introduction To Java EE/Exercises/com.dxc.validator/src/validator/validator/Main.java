@@ -29,7 +29,7 @@ public class Main {
         final BaseValidator validator = new BaseValidator();
         validator.validate("PAT_ID", "PAT1112", new StringFormatRule("PAT[0-9]{3}"));
         validator.validate("PAT_ID", "PAT11asd12", new StringConstraintRule(5, 10));
-        validator.validate("DOC_ID", "PAT11asd12", new StringConstraintRule(5, 10));
+        // validator.validate("DOC_ID", "PAT11asd12", new StringConstraintRule(5, 10));
         validator.validate("TEST_DUE_DATE", new Date(millis), new DateBeforeRule(new Date()));
         try {
             validator.checkValidated();

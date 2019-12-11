@@ -1,24 +1,24 @@
 package validator.validator.models.validators;
 
-
-
-import validator.validator.interfaces.ValidationRule;
-import validator.validator.interfaces.Validator;
-import validator.validator.errors.Error;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import validator.validator.errors.Error;
+import validator.validator.interfaces.ValidationRule;
+import validator.validator.interfaces.Validator;
+
 public class ValidatorBase<T> implements Validator<T> {
     private Set<ValidationRule> rules;
     private final String identifier;
 
-    ValidatorBase(String identifier, Set<ValidationRule> rules) {
+    ValidatorBase(final String identifier, final Set<ValidationRule> rules) {
         this.identifier = identifier;
         this.setRules(rules);
     }
-    protected ValidatorBase(String identifier) {
+
+    protected ValidatorBase(final String identifier) {
         this.identifier = identifier;
         this.setRules(new LinkedHashSet<>());
     }
@@ -29,25 +29,27 @@ public class ValidatorBase<T> implements Validator<T> {
     }
 
     @Override
-    public void setRules(Set<ValidationRule> rules) {
+    public void setRules(final Set<ValidationRule> rules) {
         this.rules = rules;
     }
 
     @Override
-    public void addRule(ValidationRule rule) {
+    public void addRule(final ValidationRule rule) {
         this.rules.add(rule);
     }
 
-    public List<Error> validate(T obj) {
+    @Override
+    public List<Error> validate(final T obj, final Set<ValidationRule> rules) {
         ValidationRule<T> dataValidation = null;
 
-        List<Error> errors = new ArrayList<>();
-        for (ValidationRule<T> rule : rules) {
+        final List<Error> errors = new ArrayList<>();
+        for (final ValidationRule<T> rule : rules) {
             dataValidation = rule;
             if (!dataValidation.validate(obj)) {
-                errors.add(new Error(dataValidation.getError(),dataValidation.getParams()));
+                errors.add(new Error(dataValidation.getError(), dataValidation.getParams()));
             }
         }
         return errors;
     }
+
 }

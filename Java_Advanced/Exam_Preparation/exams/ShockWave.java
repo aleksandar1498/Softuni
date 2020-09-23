@@ -1,7 +1,7 @@
-package arena;
+package exams;
 import java.util.*;
 import java.util.stream.*;
-public class Shockwave {
+public class ShockWave {
     public static void main(String args[]) {
         Scanner scanner=new Scanner(System.in);
         int [] dimension=Arrays.stream(scanner.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();

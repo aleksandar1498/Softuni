@@ -1,7 +1,7 @@
-package arena;
+package exams;
 import java.util.*;
 import java.util.stream.*;
-public class MyClass {
+public class ChesKnight {
     public static void main(String args[]) {
         Scanner scanner=new Scanner(System.in);
        String [][] chessTable=new String[8][8];

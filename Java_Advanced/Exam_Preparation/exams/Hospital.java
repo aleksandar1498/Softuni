@@ -1,4 +1,4 @@
-package arena;
+package exams;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;

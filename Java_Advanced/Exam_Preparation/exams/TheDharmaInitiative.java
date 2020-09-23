@@ -1,7 +1,7 @@
-package arena;
+package exams;
 import java.util.*;
 import java.util.stream.*;
-public class DharmaInitiative {
+public class TheDharmaInitiative {
     public static void main(String args[]) {
         Scanner scanner=new Scanner(System.in);
         List<String> stationNames=new ArrayList(Arrays.asList("Hydra","Arrow","Flame","Pearl","Orchid"));

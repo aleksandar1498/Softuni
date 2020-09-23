@@ -1,4 +1,4 @@
-package arena;
+package exams;
 import java.util.*;
 import java.lang.*;
 public class NaturalMessagingService {

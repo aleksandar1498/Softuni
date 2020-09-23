@@ -1,10 +1,10 @@
-package arena;
+package exams;
 import java.util.*;
 import java.util.stream.*;
 import java.text.DecimalFormat;
 import java.util.regex.*;
 import java.util.function.Predicate;
-public class LetterExpression {
+public class HandScore {
     public static List<String> values=new ArrayList<>(Arrays.asList("2","3","4","5","6","7","8","9","10","J","Q","K","A"));
     public static void main(String args[]) {
       Scanner scanner=new Scanner(System.in);

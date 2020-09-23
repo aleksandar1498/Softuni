@@ -1,4 +1,4 @@
-package arena;
+package exams;
 import java.util.*;
 public class NatureProphet {
     public static void main(String args[]) {

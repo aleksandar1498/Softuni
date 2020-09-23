@@ -1,4 +1,4 @@
-package arena;
+package exams;
 
 import javax.management.ObjectName;
 import java.util.Arrays;
